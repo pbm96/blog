@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Categoria;
+use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -24,9 +25,22 @@ class SuperadminController extends Controller
     }
 
     public function crear_post(){
-        $categorias = Categoria::all();
+
+        $categorias = Categoria::orderBy('nombre_categoria', 'ASC')->pluck('nombre_categoria', 'id');
 
         return view('crear_post')->with('categorias',$categorias);
+
+    }
+    public function guardar_post(Request $request){
+        $user = auth()->user();
+
+        $entrada = new Post( $request->all());
+
+        $entrada->user_id = $user->id;
+
+        $entrada->save();
+
+        return redirect()->route('perfil_superadmin',$user->id);
 
     }
 }
