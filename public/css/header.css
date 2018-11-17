@@ -1,0 +1,13 @@
+header {
+    padding: 160px 0 100px;
+}
+
+@media (min-width: 992px) {
+    header {
+        padding: 160px 0 100px;
+    }
+}
+
+section {
+    padding: 160px 0;
+}

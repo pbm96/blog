@@ -11,10 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
+Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', array('as'=>'home','uses'=>'HomeController@index'))->name('home');
+
+
+Route::get('/perfil-superadmin/{id}', ['as' => 'perfil_superadmin', 'uses' => 'SuperadminController@panel']);
+
+Route::get('crear-post', ['as' => 'crear_post', 'uses' => 'SuperadminController@crear_post']);
+Route::post('guardar-post', ['as' => 'guardar_post', 'uses' => 'SuperadminController@guardar_post']);
+
+
+

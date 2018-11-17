@@ -15,18 +15,26 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/css/mdb.min.css" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    @yield('estilos')
 
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+
+
+
+    <style>
+        @yield('estilos')
+    </style>
 
 </head>
 
 <body>
 <!-- header-->
-<header class="bg-primary mb-4">
+
 @include('templates.header')
-</header>
+@yield('cabezera')
 <!-- contenido-->
-<main>
+<main class="main">
     @yield('contenido')
 
 </main>
@@ -45,9 +53,41 @@
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script>
 
+<script>
+    (function($) {
+        "use strict"; // Start of use strict
+
+        // Smooth scrolling using jQuery easing
+        $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html, body').animate({
+                        scrollTop: (target.offset().top - 54)
+                    }, 1000, "easeInOutExpo");
+                    return false;
+                }
+            }
+        });
+
+        // Closes responsive menu when a scroll trigger link is clicked
+        $('.js-scroll-trigger').click(function() {
+            $('.navbar-collapse').collapse('hide');
+        });
+
+        // Activate scrollspy to add active class to navbar items on scroll
+        $('body').scrollspy({
+            target: '#mainNav',
+            offset: 54
+        });
+
+    })(jQuery); // End of use strict
+
+
 
 @yield('scripts')
-
+</script>
 
 </body>
 
