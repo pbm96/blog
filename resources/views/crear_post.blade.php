@@ -43,9 +43,8 @@
 
 
         <label for="descripcion_post">Texto Entrada</label>
-        <textarea rows="20" cols="20" name="descripcion_post" id="descripcion_post"
-                  class="form-control {{ $errors->has('descripcion_post') ? ' invalid' : '' }}"
-                  required>{{old('subtitulo_post')}}</textarea>
+
+        <textarea name="descripcion_post"  id="descripcion_post" >{{old('subtitulo_post')}}</textarea>
         @if ($errors->has('descripcion_post'))
             <span class="invalid-feedback mr-5">
              <strong>{{ $errors->first('descripcion_post') }}</strong>

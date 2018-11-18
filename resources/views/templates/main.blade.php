@@ -53,6 +53,12 @@
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script>
 
+
+
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+
+
+
 <script>
     (function($) {
         "use strict"; // Start of use strict
@@ -86,7 +92,25 @@
 
 
 
+
 @yield('scripts')
+
+tinymce.init({
+    selector: '#descripcion_post',
+    height: 500,
+    theme: 'modern',
+    plugins: [
+        'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+        'searchreplace wordcount visualblocks visualchars code fullscreen',
+        'insertdatetime media nonbreaking save table contextmenu directionality',
+        'emoticons template paste textcolor colorpicker textpattern imagetools'
+    ],
+
+
+    toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+    toolbar2: 'print preview media | forecolor backcolor emoticons',
+    image_advtab: true
+});
 </script>
 
 </body>
