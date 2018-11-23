@@ -29,4 +29,9 @@ class Post extends Model
         return $this->belongsTo('App\Categoria');
     }
 
+    static function posts_user($id){
+
+        return Post::where('user_id',$id);
+    }
+
 }

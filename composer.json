@@ -10,7 +10,8 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.4.0",
-        "laraveles/spanish": "^1.1"
+        "laraveles/spanish": "^1.1",
+        "nesbot/carbon": "^1.25"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

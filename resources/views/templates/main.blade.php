@@ -31,7 +31,7 @@
 @include('templates.header')
 @yield('cabezera')
 <!-- contenido-->
-<main class="main">
+<main class="main principal">
     @yield('contenido')
 
 </main>
