@@ -6,16 +6,37 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            <ul class="navbar-nav ml-auto p-1">
+                <li class="nav-item pt-1">
+                    <a class="nav-link js-scroll-trigger" href="#">About</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+                <li class="nav-item pt-1">
+                    <a class="nav-link js-scroll-trigger" href="#">Sobre mi</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-                </li>
+
+                @guest()
+                    <li class="nav-item pt-1">
+                        <a class="nav-link js-scroll-trigger" href="{{route('login')}}">Login</a>
+                    </li>
+                    @else
+
+                    <li class="nav-item avatar dropdown pl-4">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg"  class="rounded-circle z-depth-0 imagen_perfil" alt="avatar image">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-5">
+                            <a class="dropdown-item waves-effect waves-light" href="#">Panel Administrador</a>
+                            <a class="dropdown-item  waves-effect waves-light" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @endguest
             </ul>
         </div>
     </div>

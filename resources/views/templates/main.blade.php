@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
+
         @yield('estilos')
 
 
@@ -31,7 +32,7 @@
 @include('templates.header')
 @yield('cabezera')
 <!-- contenido-->
-<main class="main principal">
+<main class="main principal  grey lighten-4">
     @yield('contenido')
 
 </main>

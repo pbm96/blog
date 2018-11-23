@@ -1,16 +1,14 @@
 header {
-    padding: 160px 0 100px;
-}
+     padding-top: 68px  ;
+ }
 
 @media (min-width: 992px) {
     header {
-        padding: 160px 0 100px;
+        padding-top: 68px ;
     }
 }
 
-section {
-    padding: 160px 0;
+.imagen_perfil{
+    max-width: 35px;
 }
-
-
 
