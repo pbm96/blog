@@ -20,7 +20,9 @@ class SuperadminController extends Controller
         $user = User::find($id);
         if ($user == auth()->user()){
 
-            return view('superadmin')->with('user',$user);
+            $categorias = self::crear_post();
+
+            return view('superadmin')->with('user',$user)->with('categorias',$categorias);
         }
     }
 
@@ -28,7 +30,7 @@ class SuperadminController extends Controller
 
         $categorias = Categoria::orderBy('nombre_categoria', 'ASC')->pluck('nombre_categoria', 'id');
 
-        return view('crear_post')->with('categorias',$categorias);
+        return $categorias;
 
     }
     public function guardar_post(Request $request){

@@ -20,11 +20,8 @@
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
-
-
-    <style>
         @yield('estilos')
-    </style>
+
 
 </head>
 
@@ -40,9 +37,6 @@
 </main>
 
     @extends('templates.footer')
-
-
-
 
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -93,7 +87,7 @@
 
 
 
-@yield('scripts')
+
 
 tinymce.init({
     selector: '#descripcion_post',
@@ -111,8 +105,14 @@ tinymce.init({
     toolbar2: 'print preview media | forecolor backcolor emoticons',
     image_advtab: true
 });
-</script>
 
+</script>
+@yield('scripts')
 </body>
 
 </html>
+<script>
+
+
+
+</script>
