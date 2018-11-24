@@ -25,7 +25,7 @@
                             <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg"  class="rounded-circle z-depth-0 imagen_perfil" alt="avatar image">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-5">
-                            <a class="dropdown-item waves-effect waves-light" href="#">Panel Administrador</a>
+                            <a class="dropdown-item waves-effect waves-light" href="{{route('perfil_superadmin',auth()->user()->id)}}">Panel Administrador</a>
                             <a class="dropdown-item  waves-effect waves-light" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

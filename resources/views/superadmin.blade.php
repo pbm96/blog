@@ -50,13 +50,17 @@
             left: 0;
 
         }
+
+        .contenido{
+            padding-top: 10em;
+        }
     </style>
 
 @endsection
 
 
 @section('contenido')
-    <div class="container">
+    <div class="container contenido">
 
         <ul class="nav nav-tabs md-tabs" id="myTabEx" role="tablist">
             <li class="nav-item">

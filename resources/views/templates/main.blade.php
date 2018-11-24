@@ -112,8 +112,3 @@ tinymce.init({
 </body>
 
 </html>
-<script>
-
-
-
-</script>
