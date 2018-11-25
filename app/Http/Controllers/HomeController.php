@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Categoria;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\Types\Self_;
 
 class HomeController extends Controller
@@ -29,8 +31,20 @@ class HomeController extends Controller
 
         $posts = Post::orderBy('created_at','DESC')->paginate(5);
 
-            self::sacar_mes_post($posts);
+            //self::sacar_mes_post($posts);
+        $categorias = Categoria::all();
 
+
+         $posts_categorias = Post::groupBy('categoria_id')->select('categoria_id', DB::raw('count(*) as total'))->pluck('total','categoria_id')->all();
+
+         foreach ($categorias as  $categoria){
+             foreach ($posts_categorias as $key => $count){
+                if ($key == $categoria->id){
+                    $categoria->count = $count;
+                }
+             }
+
+         }
 
         $this->superadminController->fecha_post($posts);
 
@@ -40,8 +54,10 @@ class HomeController extends Controller
 
 
 
-        return view('welcome')->with('posts',$posts)->with('ultimo_post',$ultimo_post);
+        return view('welcome')->with('posts',$posts)->with('ultimo_post',$ultimo_post)->with('categorias',$categorias);
     }
+
+
 
  /*   public function sacar_mes_post($posts){
         $meses= [];

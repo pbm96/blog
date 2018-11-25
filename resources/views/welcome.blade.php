@@ -40,10 +40,31 @@
 
     }
     .titulo_caja_pequeña{
-        height: 50px;
+
         overflow: hidden;
 
+
     }
+    #titulo_card_pequeña{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+    }
+    #subtitulo_card_pequeña{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+    }
+    .titulo_card_principal{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
 
 </style>
 @endsection
@@ -146,7 +167,7 @@
                                             </a>
                                         </div>
                                         <div class="card-body principal_card mx-4">
-                                            <h4 title="{{$ultimo_post->titulo_post}}" class="card-title ">
+                                            <h4 title="{{$ultimo_post->titulo_post}}" class="card-title titulo_card_principal ">
                                                 <strong>{{$ultimo_post->titulo_post}}</strong>
                                             </h4>
                                             <hr>
@@ -182,12 +203,15 @@
                                                     <strong>{{$post->categoria->nombre_categoria}}</strong>
                                                 </a><a class="dark-grey-text font-small"> - {{$post->fecha}}</a>
                                             </h6>
-                                            <h5 title="{{$post->titulo_post}}" id="titulo_card_pequeña" class="card-title  titulo_caja_pequeña">
+                                            <div class=" titulo_caja_pequeña">
+                                            <h5 title="{{$post->titulo_post}}" id="titulo_card_pequeña" >
                                                 <strong>{{$post->titulo_post}}</strong>
                                             </h5>
+                                            </div>
                                             <hr>
-                                            <p class="dark-grey-text mb-4 caja_subtitulo_pequeñas" id="subtitulo_caja_pequeña">{{$post->subtitulo_post}}</p>
-
+                                            <div class="caja_subtitulo_pequeñas">
+                                            <p class="dark-grey-text mb-4 " id="subtitulo_card_pequeña">{{$post->subtitulo_post}}</p>
+                                            </div>
                                             <p class="text-right mb-0 text-uppercase font-small spacing font-weight-bold">
                                                 <a>leer más
                                                     <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
@@ -325,12 +349,14 @@
                                         <strong>CATEGORIES</strong>
                                     </p>
                                     <ul class="list-group my-4">
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            <a class="">
-                                                <p class="mb-0">Travel</p>
-                                            </a>
-                                            <span class="badge teal badge-pill font-small">4</span>
-                                        </li>
+                                        @foreach($categorias as $categoria)
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <a class="">
+                                                    <p class="mb-0">{{$categoria->nombre_categoria}}</p>
+                                                </a>
+                                                <span class="badge teal badge-pill font-small"> {{empty($categoria->count)?0:$categoria->count}}</span>
+                                            </li>
+                                        @endforeach
                                      
                                     </ul>
                                 </div>
@@ -427,13 +453,5 @@
 
 @endsection
 @section('scripts')
-    <script  src="{{ asset('js/clamp.js') }}"></script>
-    <script>
-        var module = document.getElementById("titulo_card_pequeña");
-        $clamp(module, {clamp: 2});
 
-        var module2 = document.getElementById("subtitulo_caja_pequeña");
-        $clamp(module2, {clamp: 4});
-
-    </script>
 @endsection
