@@ -11,7 +11,8 @@
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.4.0",
         "laraveles/spanish": "^1.1",
-        "nesbot/carbon": "^1.25"
+        "nesbot/carbon": "^1.25",
+        "unisharp/laravel-filemanager": "~1.8"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
