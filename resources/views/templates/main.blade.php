@@ -49,11 +49,6 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script>
 
 
-
-<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-
-
-
 <script>
     (function($) {
         "use strict"; // Start of use strict
