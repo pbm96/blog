@@ -6,6 +6,7 @@ use App\Categoria;
 use App\Post;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class SuperadminController extends Controller
 {
@@ -39,11 +40,20 @@ class SuperadminController extends Controller
 
     }
     public function guardar_post(Request $request){
+        /*$this->validate($request, [
+            'imagen.*' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'nombre' => 'string|required|max:191',
+            'precio' => 'numeric|required',
+            'descripcion'=> 'string|required|max:500'
+        ]);*/
+
         $user = auth()->user();
 
         $entrada = new Post( $request->all());
 
         $entrada->user_id = $user->id;
+
+        $entrada->slug = str_slug($request->titulo_post,'-');
 
         $entrada->save();
 
@@ -69,6 +79,16 @@ class SuperadminController extends Controller
         return ($posts);
     }
 
+    public function hora_post($posts)
+    {
+        foreach ($posts as $post) {
+            $hora = $post->created_at->hour;
+            $hora = $hora<10?'0'.$hora:$hora;
+            $minutos = $post->created_at->minute;
+             $minutos = $minutos<10?'0'.$minutos:$minutos;
+            $post->hora = $hora.':'. $minutos;
+        }
+    }
 
 
         /*public function posts_ajax(){

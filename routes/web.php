@@ -24,5 +24,8 @@ Route::get('/perfil-superadmin/{id}', ['as' => 'perfil_superadmin', 'uses' => 'S
 Route::get('crear-post', ['as' => 'crear_post', 'uses' => 'SuperadminController@crear_post']);
 Route::post('guardar-post', ['as' => 'guardar_post', 'uses' => 'SuperadminController@guardar_post']);
 
+Route::get('/{slug}', ['as' => 'vista_post', 'uses' => 'HomeController@vista_post']);
+
+
 //Route::get('/ajax/products',['as'=>'post_ajax','uses'=>'SuperadminController@posts_ajax']);
 

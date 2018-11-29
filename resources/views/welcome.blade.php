@@ -162,7 +162,7 @@
                                     <div class="card">
                                         <div class="view overlay">
                                             <img src="http://mdbootstrap.com/img/Photos/Slides/img%20(28).jpg" class="card-img-top" alt="">
-                                            <a>
+                                            <a href="{{route('vista_post',$ultimo_post->slug)}}">
                                                 <div class="mask rgba-white-slight waves-effect waves-light"></div>
                                             </a>
                                         </div>
@@ -177,7 +177,7 @@
                                                 <i class="fa fa-clock-o"></i> {{$ultimo_post->fecha}}</p>
                                             <p class="font-small dark-grey-text mb-0 font-weight-bold">{{$ultimo_post->user->nombre." ".$ultimo_post->user->apellidos}}</p>
                                             <p class="text-right mb-0 text-uppercase dark-grey-text font-weight-bold">
-                                                <a>leer más
+                                                <a href="{{route('vista_post',$ultimo_post->slug)}}">leer más
                                                     <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                                                 </a>
                                             </p>
@@ -193,7 +193,7 @@
                                     <div class="card text-left card_secundaria ">
                                         <div class="view overlay">
                                             <img src="https://mdbootstrap.com/img/Photos/Others/images/14.jpg" class="card-img-top" alt="">
-                                            <a>
+                                            <a href="{{route('vista_post',$post->slug)}}">
                                                 <div class="mask rgba-white-slight waves-effect waves-light"></div>
                                             </a>
                                         </div>
@@ -213,7 +213,7 @@
                                             <p class="dark-grey-text mb-4 " id="subtitulo_card_pequeña">{{$post->subtitulo_post}}</p>
                                             </div>
                                             <p class="text-right mb-0 text-uppercase font-small spacing font-weight-bold">
-                                                <a>leer más
+                                                <a href="{{route('vista_post',$post->slug)}}">leer más
                                                     <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                                                 </a>
                                             </p>

@@ -57,6 +57,19 @@ class HomeController extends Controller
         return view('welcome')->with('posts',$posts)->with('ultimo_post',$ultimo_post)->with('categorias',$categorias);
     }
 
+    public function vista_post($slug){
+        $post = Post::where('slug',$slug)->get();
+
+        $ultimas_noticias = Post::orderBy('created_at','DESC')->take(9)->get();
+
+
+         $this->superadminController->fecha_post($post);
+        $this->superadminController->hora_post($post);
+
+        $this->superadminController->fecha_post($ultimas_noticias);
+
+        return view('vista_post')->with('post', $post)->with('ultimas_noticias',$ultimas_noticias);
+    }
 
 
  /*   public function sacar_mes_post($posts){
