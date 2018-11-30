@@ -246,7 +246,7 @@
                                                                     <div class="card">
                                                                         <div class="view overlay">
                                                                             <img src="http://mdbootstrap.com/img/Photos/Others/img (40).jpg" class="card-img-top" alt="sample image">
-                                                                            <a href="{{route('vista_post',$noticia->slug)}}">
+                                                                            <a href="{{route('vista_post',[$noticia->categoria->nombre_categoria,$noticia->slug])}}">
                                                                                 <div class="mask rgba-white-slight waves-effect waves-light"></div>
                                                                             </a>
                                                                         </div>
@@ -260,7 +260,7 @@
                                                                                 <i class="fa fa-clock-o"></i> {{$noticia->fecha}}</p>
                                                                             <p class="font-small grey-text mb-0">{{$noticia->user->nombre}} {{$noticia->user->apellidos}}</p>
                                                                             <p class="text-right mb-0 font-small font-weight-bold">
-                                                                                <a href="{{route('vista_post',$noticia->slug)}}">leer más
+                                                                                <a href="{{route('vista_post',[$noticia->categoria->nombre_categoria,$noticia->slug])}}">leer más
                                                                                     <i class="fa fa-angle-right"></i>
                                                                                 </a>
                                                                             </p>

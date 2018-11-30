@@ -16,7 +16,7 @@
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/home', array('as'=>'home','uses'=>'HomeController@index'))->name('home');
+//Route::get('/home', array('as'=>'home','uses'=>'HomeController@index'))->name('home');
 
 
 Route::get('/perfil-superadmin/{id}', ['as' => 'perfil_superadmin', 'uses' => 'SuperadminController@panel']);
@@ -24,7 +24,13 @@ Route::get('/perfil-superadmin/{id}', ['as' => 'perfil_superadmin', 'uses' => 'S
 Route::get('crear-post', ['as' => 'crear_post', 'uses' => 'SuperadminController@crear_post']);
 Route::post('guardar-post', ['as' => 'guardar_post', 'uses' => 'SuperadminController@guardar_post']);
 
-Route::get('/{slug}', ['as' => 'vista_post', 'uses' => 'HomeController@vista_post']);
+Route::get('{categoria}/{slug}', ['as' => 'vista_post', 'uses' => 'HomeController@vista_post']);
+
+Route::put('modificar-categoria/{id}', ['as' => 'editar_categoria', 'uses' => 'SuperadminController@editar_categoria']);
+Route::post('añadir-categoria', ['as' => 'añadir_categoria', 'uses' => 'SuperadminController@nueva_categoria']);
+Route::delete('eliminar-categoria/{id}', ['as' => 'eliminar_categoria', 'uses' => 'SuperadminController@eliminar_categoria']);
+
+
 
 
 //Route::get('/ajax/products',['as'=>'post_ajax','uses'=>'SuperadminController@posts_ajax']);

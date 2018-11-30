@@ -51,8 +51,18 @@
 
         }
 
-        .contenido{
+        .contenido {
             padding-top: 10em;
+        }
+
+        .editar_categoria {
+            display: none;
+        }
+
+        .borrar {
+            margin: .375rem;
+            padding-top: .7rem;
+            padding-bottom: .7rem;
         }
     </style>
 
@@ -79,9 +89,18 @@
                 <a class="nav-link" id="usuarios_tab" data-toggle="tab" href="#usuarios" role="tab"
                    aria-controls="usuarios" aria-selected="false">Usuarios</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" id="comentarios_tab" data-toggle="tab" href="#comentarios" role="tab"
+                   aria-controls="comentarios" aria-selected="false">Comentarios</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="categorias_tab" data-toggle="tab" href="#categorias" role="tab"
+                   aria-controls="categorias" aria-selected="false">Categorias</a>
+            </li>
         </ul>
         <div class="tab-content pt-5" id="myTabContentEx">
-            <div class="tab-pane fade active show col-sm-12" id="mis_posts" role="tabpanel" aria-labelledby="mis_posts_tab">
+            <div class="tab-pane fade active show col-sm-12" id="mis_posts" role="tabpanel"
+                 aria-labelledby="mis_posts_tab">
                 @foreach($posts->chunk(3) as $postChunk)
                     <div class="row">
                         @foreach( $postChunk as $post)
@@ -155,7 +174,7 @@
                 @endif
 
                 <label for="categoria">Categoria Entrada</label>
-                {!! Form::select('categoria_id',$categorias,null,['class'=>'form-control mt-2','required','id'=>'categoria']) !!}
+                {!! Form::select('categoria_id',$categorias_select,null,['class'=>'form-control mt-2','required','id'=>'categoria']) !!}
 
                 @if ($errors->has('categoria'))
                     <span class="invalid-feedback mr-5">
@@ -166,7 +185,8 @@
 
                 <label for="descripcion_post">Texto Entrada</label>
 
-                <textarea name="descripcion_post"  class="form-control my-editor" id="descripcion_post ">{{old('descripcion_post')}}</textarea>
+                <textarea name="descripcion_post" class="form-control my-editor"
+                          id="descripcion_post ">{{old('descripcion_post')}}</textarea>
                 @if ($errors->has('descripcion_post'))
                     <span class="invalid-feedback mr-5">
              <strong>{{ $errors->first('descripcion_post') }}</strong>
@@ -182,57 +202,123 @@
             <div class="tab-pane fade" id="usuarios" role="tabpanel" aria-labelledby="usuarios_tab">
                 usuarios
             </div>
+            <div class="tab-pane fade" id="comentarios" role="tabpanel" aria-labelledby="comentarios_tab">
+                comentarios
+            </div>
+            <div class="tab-pane fade" id="categorias" role="tabpanel" aria-labelledby="categorias_tab">
+                <div class="row justify-content-end mr-1">
+                    <a class="btn btn-outline-success waves-effect " onclick="nueva_categoria()">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </div>
+                {!! Form::Open(['route' => 'añadir_categoria','method'=>'POST',]) !!}
+                <div class="row editar_categoria md-form col-sm-12 " id="añadir_categoria_caja">
+                    <input type="text" name="nombre_categoria" class=" col-sm-4 "
+                           id="añadir_categoria">
+                    <label for="añadir_categoria" style="left: 1em">Nombre categoria</label>
+                    <input type="submit" class=" btn-outline-success waves-effect p-2" value="Guardar">
+                </div>
+                {!! Form::close() !!}
+                @foreach($categorias as $categoria)
+                    <div class="card mb-3 p-2">
+                        <div class="row ">
+                            <div class="col-sm-3 text-uppercase ml-4 pt-3">
+                                {{$categoria->nombre_categoria}}
+                            </div>
+                            <section class="col-sm-4 ml-auto row">
+                                <a class=" btn btn-outline-info waves-effect"
+                                   onclick="editar_categoria({{$categoria->id}})">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                {!! Form::Open(['route'=>['eliminar_categoria',$categoria->id],'method'=>'DELETE',]) !!}
+                                {!!Form::submit('eliminar',['class'=>'  borrar btn-outline-danger waves-effect confirm ','data-confirm' => 'Seguro que quieres borrar la categoria?'])!!} {!! Form::close() !!}
+                            </section>
+                        </div>
+                    </div>
+                    {!! Form::Open(['route' => ['editar_categoria',$categoria->id],'method'=>'PUT',]) !!}
+                    <div class="row editar_categoria md-form col-sm-12 " id="editar_categoria{{$categoria->id}}">
+                        <input type="text" name="nombre_categoria" class=" col-sm-4 "
+                               id="nombre_categoria{{$categoria->id}}" placeholder="{{$categoria->nombre_categoria}}">
+                        <label for="nombre_categoria{{$categoria->id}}" style="left: 1em">Nombre categoria</label>
+                        <input type="submit" class=" btn-outline-success waves-effect p-2" value="Guardar">
+                    </div>
+                    {!! Form::close() !!}
+                @endforeach
+            </div>
 
 
         </div>
     </div>
 
 
-        @endsection
-        @section('scripts')
-            <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+@endsection
+@section('scripts')
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
-            <script>
+    <script>
 
-                var editor_config = {
-                    path_absolute : "/",
-                    height: 500,
-                    selector: "textarea.my-editor",
-                    plugins: [
-                        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-                        "searchreplace wordcount visualblocks visualchars code fullscreen",
-                        "insertdatetime media nonbreaking save table contextmenu directionality",
-                        "emoticons template paste textcolor colorpicker textpattern"
-                    ],
-                    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
-                    relative_urls: false,
-                    image_advtab: true,
-                    file_browser_callback : function(field_name, url, type, win) {
-                        var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
-                        var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+        var editor_config = {
+            path_absolute: "/",
+            height: 500,
+            selector: "textarea.my-editor",
+            plugins: [
+                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+                "searchreplace wordcount visualblocks visualchars code fullscreen",
+                "insertdatetime media nonbreaking save table contextmenu directionality",
+                "emoticons template paste textcolor colorpicker textpattern"
+            ],
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+            relative_urls: false,
+            image_advtab: true,
+            file_browser_callback: function (field_name, url, type, win) {
+                var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+                var y = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;
 
-                        var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
-                        if (type == 'image') {
-                            cmsURL = cmsURL + "&type=Images";
-                        } else {
-                            cmsURL = cmsURL + "&type=Files";
-                        }
+                var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
+                if (type == 'image') {
+                    cmsURL = cmsURL + "&type=Images";
+                } else {
+                    cmsURL = cmsURL + "&type=Files";
+                }
 
-                        tinyMCE.activeEditor.windowManager.open({
-                            file : cmsURL,
-                            title : 'Filemanager',
-                            width : x * 0.8,
-                            height : y * 0.8,
-                            resizable : "yes",
-                            close_previous : "no"
-                        });
-                    }
-                };
+                tinyMCE.activeEditor.windowManager.open({
+                    file: cmsURL,
+                    title: 'Filemanager',
+                    width: x * 0.8,
+                    height: y * 0.8,
+                    resizable: "yes",
+                    close_previous: "no"
+                });
+            }
+        };
 
-                tinymce.init(editor_config);
+        tinymce.init(editor_config);
 
+        function editar_categoria(id) {
+            var caja = $('#editar_categoria' + id)
+            if (caja.css("display") === 'none') {
+                caja.show();
+            } else {
+                caja.hide();
+            }
 
-                /** $(document).on('click','.pagination a', function(e){
+        }
+
+        function nueva_categoria() {
+            var caja = $('#añadir_categoria_caja')
+            if (caja.css("display") === 'none') {
+                caja.show();
+            } else {
+                caja.hide();
+            }
+
+        }
+
+        $('.confirm').on('click', function (e) {
+            return !!confirm($(this).data('confirm'));
+        });
+
+        /** $(document).on('click','.pagination a', function(e){
             e.preventDefault();
              var page = $(this).attr('href').split('page=')[1];
 
@@ -240,7 +326,7 @@
 
         });
 
-                 function getProducts(page) {
+         function getProducts(page) {
             $.ajax({
                 url :'/ajax/products?page='+page
             }).done(function (data) {
@@ -248,5 +334,5 @@
             })
         }*/
 
-            </script>
+    </script>
 @endsection

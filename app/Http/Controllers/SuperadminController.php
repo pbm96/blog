@@ -17,29 +17,27 @@ class SuperadminController extends Controller
         $this->middleware('superadmin');
     }
 
-    public function panel($id){
+    public function panel($id)
+    {
         $user = User::find($id);
 
-        if ($user == auth()->user()){
+        if ($user == auth()->user()) {
 
-            $categorias = self::crear_post();
+            $categorias_select = Categoria::orderBy('nombre_categoria', 'ASC')->pluck('nombre_categoria', 'id');
+
+            $categorias = Categoria::all();
 
             $posts = self::obtener_posts($user->id);
 
-             self::fecha_post($posts);
+            self::fecha_post($posts);
 
-            return view('superadmin')->with('user',$user)->with('categorias',$categorias)->with('posts',$posts);
+            return view('superadmin')->with('user', $user)->with('categorias_select', $categorias_select)->with('posts', $posts)->with('categorias', $categorias);
         }
     }
 
-    public function crear_post(){
 
-        $categorias = Categoria::orderBy('nombre_categoria', 'ASC')->pluck('nombre_categoria', 'id');
-
-        return $categorias;
-
-    }
-    public function guardar_post(Request $request){
+    public function guardar_post(Request $request)
+    {
         /*$this->validate($request, [
             'imagen.*' => 'image|mimes:jpeg,png,jpg|max:2048',
             'nombre' => 'string|required|max:191',
@@ -49,31 +47,59 @@ class SuperadminController extends Controller
 
         $user = auth()->user();
 
-        $entrada = new Post( $request->all());
+        $entrada = new Post($request->all());
 
         $entrada->user_id = $user->id;
 
-        $entrada->slug = str_slug($request->titulo_post,'-');
+        $entrada->slug = str_slug($request->titulo_post, '-');
 
         $entrada->save();
 
-        return redirect()->route('perfil_superadmin',$user->id);
+        return redirect()->route('perfil_superadmin', $user->id);
+
+    }
+    public function nueva_categoria(Request $request){
+        $categoria = New Categoria($request->all());
+
+        $categoria->save();
+
+        return redirect()->route('perfil_superadmin', auth()->user()->id);
 
     }
 
-    public function obtener_posts($id){
+    public function editar_categoria(Request $request, $id){
+        $categoria = Categoria::find($id);
+
+        $categoria->nombre_categoria = $request->nombre_categoria;
+
+        $categoria->save();
+
+        return redirect()->route('perfil_superadmin',auth()->user()->id);
+    }
+    public function eliminar_categoria($id){
+        $categoria = Categoria::find($id);
+
+        $categoria->delete();
+
+        return redirect()->route('perfil_superadmin',auth()->user()->id);
+
+    }
+
+    public function obtener_posts($id)
+    {
         $posts = Post::posts_user($id)->paginate(9);
 
         return $posts;
     }
 
-    public function fecha_post($posts){
-        foreach ($posts as $post){
+    public function fecha_post($posts)
+    {
+        foreach ($posts as $post) {
             $mes = $post->created_at->month;
             $año = $post->created_at->year;
             $dia = $post->created_at->day;
 
-            $post->fecha = $dia.'/'.$mes.'/'.$año;
+            $post->fecha = $dia . '/' . $mes . '/' . $año;
         }
 
         return ($posts);
@@ -83,21 +109,21 @@ class SuperadminController extends Controller
     {
         foreach ($posts as $post) {
             $hora = $post->created_at->hour;
-            $hora = $hora<10?'0'.$hora:$hora;
+            $hora = $hora < 10 ? '0' . $hora : $hora;
             $minutos = $post->created_at->minute;
-             $minutos = $minutos<10?'0'.$minutos:$minutos;
-            $post->hora = $hora.':'. $minutos;
+            $minutos = $minutos < 10 ? '0' . $minutos : $minutos;
+            $post->hora = $hora . ':' . $minutos;
         }
     }
 
 
-        /*public function posts_ajax(){
-        $user = auth()->user();
-        $posts = Post::posts_user($user->id)->paginate(3);
+    /*public function posts_ajax(){
+    $user = auth()->user();
+    $posts = Post::posts_user($user->id)->paginate(3);
 
-        $categorias = self::crear_post();
+    $categorias = self::crear_post();
 
 
-        return view('superadmin')->with('posts',$posts)->with('user',$user)->with('categorias',$categorias);
-    }*/
+    return view('superadmin')->with('posts',$posts)->with('user',$user)->with('categorias',$categorias);
+}*/
 }

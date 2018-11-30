@@ -57,7 +57,7 @@ class HomeController extends Controller
         return view('welcome')->with('posts',$posts)->with('ultimo_post',$ultimo_post)->with('categorias',$categorias);
     }
 
-    public function vista_post($slug){
+    public function vista_post($categoria,$slug){
         $post = Post::where('slug',$slug)->get();
 
         $ultimas_noticias = Post::orderBy('created_at','DESC')->take(9)->get();
