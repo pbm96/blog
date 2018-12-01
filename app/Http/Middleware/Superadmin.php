@@ -13,13 +13,14 @@ class Superadmin
      * @param  \Closure  $next
      * @return mixed
      */
+
     public function handle($request, Closure $next)
     {
 
         $user = auth()->user();
 
         if ($user->superadmin != 1){
-            return redirect('home');
+            return redirect('/');
 
         }
         return $next($request);

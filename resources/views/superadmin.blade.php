@@ -297,9 +297,9 @@
         function editar_categoria(id) {
             var caja = $('#editar_categoria' + id)
             if (caja.css("display") === 'none') {
-                caja.show();
+                caja.fadeIn();
             } else {
-                caja.hide();
+                caja.fadeOut();
             }
 
         }
