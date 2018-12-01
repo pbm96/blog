@@ -56,6 +56,7 @@
         .imagen_principal_noticia{
             height: 250px;
         }
+
     }
     .imagen_principal_noticia{
         width: 100%;

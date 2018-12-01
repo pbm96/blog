@@ -64,6 +64,25 @@
         text-overflow: ellipsis;
         white-space: nowrap;
     }
+    .titulo_post_popular{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+    }
+
+    @media (max-width: 992px) {
+        .carousel_principal{
+            height: 200px;
+        }
+        .imagen_primer_post{
+            height: 210px ;
+        }
+
+    }
+    .i
+
 
 
 </style>
@@ -76,73 +95,41 @@
                 <img src="http://mdbootstrap.com/img/Photos/Others/nature4.jpg" style="width: 100%;height: 500px">
             </div>
         </section>-->
-                    <div id="carousel-example-4" class="carousel slide carousel-fade z-depth-1-half carousel_main" data-ride="carousel">
+                    <div id="carousel_principal" class="carousel slide carousel-fade z-depth-1-half carousel_main" data-ride="carousel">
                         <ol class="carousel-indicators">
-                            <li data-target="#carousel-example-4" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-example-4" data-slide-to="1" class=""></li>
-                            <li data-target="#carousel-example-4" data-slide-to="2" class=""></li>
+                            <li data-target="#carousel_principal" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel_principal" data-slide-to="1" class=""></li>
+                            <li data-target="#carousel_principal" data-slide-to="2" class=""></li>
                         </ol>
-                        <div class="carousel-inner" role="listbox">
-                            <div class="carousel-item active">
-                                <div class="view">
-                                    <img src="http://mdbootstrap.com/img/Photos/Others/nature4.jpg" class="img-fluid  imagenes_carousel"  alt="">
-                                    <a href="#!">
+                        <div class="carousel-inner carousel_principal" role="listbox">
+                        @foreach($post_populares->take(3) as $post)
+
+                            <div class="carousel-item {{$loop->first?'active':''}} carousel_principal">
+                                <div class="view carousel_principal">
+                                    <img src="http://mdbootstrap.com/img/Photos/Others/nature4.jpg" class="img-fluid  imagenes_carousel carousel_principal"  alt="">
+                                    <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">
                                         <div class="mask flex-center rgba-black-strong waves-effect waves-light"></div>
                                     </a>
                                 </div>
                                 <div class="carousel-caption">
                                     <div class="animated fadeInDown">
-                                        <h4 class="h4-responsive">
-                                            <a href="#!" class="white-text font-weight-bold">Your health</a>
+                                        <h4 class="h4-responsive titulo_post_popular">
+                                            <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}" class="white-text font-weight-bold">{{$post->titulo_post}}</a>
                                         </h4>
                                         <p>
-                                            <a href="#!" class="white-text">Lorem ipsum</a>
+                                            <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}" class="white-text">{{$post->categoria->nombre_categoria}}</a>
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="carousel-item">
-                                <div class="view">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/8-col/img%20(128).jpg" class="img-fluid  imagenes_carousel" alt="">
-                                    <a href="#!">
-                                        <div class="mask flex-center rgba-black-strong waves-effect waves-light"></div>
-                                    </a>
-                                </div>
-                                <div class="carousel-caption">
-                                    <div class="animated fadeInDown">
-                                        <h4 class="h4-responsive">
-                                            <a href="#!" class="white-text font-weight-bold">News title</a>
-                                        </h4>
-                                        <p>
-                                            <a href="#!" class="white-text">Lorem ipsum</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="view">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/8-col/img%20(133).jpg" class="img-fluid  imagenes_carousel"  alt="">
-                                    <a href="#!">
-                                        <div class="mask flex-center rgba-black-strong waves-effect waves-light"></div>
-                                    </a>
-                                </div>
-                                <div class="carousel-caption">
-                                    <div class="animated fadeInDown">
-                                        <h4 class="h4-responsive">
-                                            <a href="#!" class="white-text font-weight-bold">News title</a>
-                                        </h4>
-                                        <p>
-                                            <a href="#!" class="white-text">Lorem ipsum</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
+
                         </div>
-                        <a class="carousel-control-prev" href="#carousel-example-4" role="button" data-slide="prev">
+                        <a class="carousel-control-prev" href="#carousel_principal" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
-                        <a class="carousel-control-next" href="#carousel-example-4" role="button" data-slide="next">
+                        <a class="carousel-control-next" href="#carousel_principal" role="button" data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
@@ -158,10 +145,11 @@
                     <div class="col-lg-8 col-12 mt-1 mx-lg-4">
                         <section class="section extra-margins pb-3 text-center text-lg-left">
                             <div class="row mb-4">
+                                @if(isset($ultimo_post))
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="view overlay">
-                                            <img src="http://mdbootstrap.com/img/Photos/Slides/img%20(28).jpg" class="card-img-top" alt="">
+                                            <img src="http://mdbootstrap.com/img/Photos/Slides/img%20(28).jpg" class="card-img-top imagen_primer_post" alt="">
                                             <a href="{{route('vista_post',[$ultimo_post->categoria->nombre_categoria,$ultimo_post->slug])}}">
                                                 <div class="mask rgba-white-slight waves-effect waves-light"></div>
                                             </a>
@@ -184,8 +172,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                    @endif
                             </div>
-
+                            @if(isset($posts))
                             @foreach($posts->chunk(2) as $postchunck)
                             <div class="row text-center">
                                 @foreach($postchunck as $post)
@@ -223,10 +212,12 @@
                                     @endforeach
                             </div>
                                  @endforeach
+
                         </section>
                         <div class="row justify-content-around">
                             <div class="">{{ $posts->render() }}</div>
                         </div>
+                        @endif
                     </div>
                     <div class="col-lg-3 col-12 mt-1">
                         <div class="card">
@@ -270,30 +261,32 @@
                             <div class="card card-body pb-0">
                                 <div class="single-post">
                                     <p class="font-weight-bold dark-grey-text text-center spacing grey lighten-4 py-2 mb-4">
-                                        <strong>POPULAR POSTS</strong>
+                                        <strong>ARTICULOS POPULARES</strong>
                                     </p>
+                                    @foreach($post_populares as $post)
                                     <div class="row mb-4">
                                         <div class="col-5">
                                             <div class="view overlay">
                                                 <img src="https://mdbootstrap.com/img/Photos/Others/photo13.jpg" class="img-fluid z-depth-1 rounded-0" alt="sample image">
-                                                <a>
+                                                <a  href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">
                                                     <div class="mask rgba-white-slight waves-effect waves-light"></div>
                                                 </a>
                                             </div>
                                         </div>
-                                        <div class="col-7">
-                                            <h6 class="mt-0 font-small">
-                                                <a>
-                                                    <strong>Title of the news</strong>
+                                        <div class="col-7 ">
+                                            <h6 class="mt-0 font-small titulo_post_popular" title="{{$post->titulo_post}}">
+                                                <a  class="dark-grey-text font-weight-bold" href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">
+                                                    <strong>{{$post->titulo_post}}</strong>
                                                 </a>
                                             </h6>
 
                                             <div class="post-data">
                                                 <p class="font-small grey-text mb-0">
-                                                    <i class="fa fa-clock-o"></i> 18/08/2017</p>
+                                                    <i class="fa fa-clock-o"></i> {{$post->fecha}}</p>
                                             </div>
                                         </div>
                                     </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </section>
@@ -346,9 +339,10 @@
                             <div class="card card-body pb-0">
                                 <div class="single-post">
                                     <p class="font-weight-bold dark-grey-text text-center spacing grey lighten-4 py-2 mb-4">
-                                        <strong>CATEGORIES</strong>
+                                        <strong>CATEGORIAS</strong>
                                     </p>
                                     <ul class="list-group my-4">
+                                        @if(isset($categorias))
                                         @foreach($categorias as $categoria)
                                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                                 <a class="">
@@ -357,6 +351,7 @@
                                                 <span class="badge teal badge-pill font-small"> {{empty($categoria->count)?0:$categoria->count}}</span>
                                             </li>
                                         @endforeach
+                                            @endif
                                      
                                     </ul>
                                 </div>
@@ -369,73 +364,40 @@
                             <div class="row mt-4">
                                 <div class="col-md-12">
 
-                                    <div id="carousel-example-4" class="carousel slide carousel-fade z-depth-1-half" data-ride="carousel">
+                                    <div id="carousel_secundario" class="carousel slide carousel-fade z-depth-1-half" data-ride="carousel">
                                         <ol class="carousel-indicators">
-                                            <li data-target="#carousel-example-4" data-slide-to="0" class="active"></li>
-                                            <li data-target="#carousel-example-4" data-slide-to="1" class=""></li>
-                                            <li data-target="#carousel-example-4" data-slide-to="2" class=""></li>
+                                            <li data-target="#carousel_secundario" data-slide-to="0" class="active"></li>
+                                            <li data-target="#carousel_secundario" data-slide-to="1" class=""></li>
+                                            <li data-target="#carousel_secundario" data-slide-to="2" class=""></li>
                                         </ol>
                                         <div class="carousel-inner" role="listbox">
-                                            <div class="carousel-item active">
+                                            @foreach($post_populares->take(3) as $post)
+                                            <div class="carousel-item {{$loop->first?'active':''}}">
                                                 <div class="view">
                                                     <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/8-col/img%20(126).jpg" class="img-fluid" alt="">
-                                                    <a href="#!">
+                                                    <a  href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">
                                                         <div class="mask flex-center rgba-stylish-strong waves-effect waves-light"></div>
                                                     </a>
                                                 </div>
                                                 <div class="carousel-caption">
                                                     <div class="animated fadeInDown">
-                                                        <h4 class="h4-responsive">
-                                                            <a href="#!" class="white-text font-weight-bold">Your health</a>
+                                                        <h4 class="h4-responsive titulo_post_popular">
+                                                            <a  href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}" class="white-text font-weight-bold">{{$post->titulo_post}}</a>
                                                         </h4>
                                                         <p>
-                                                            <a href="#!" class="white-text">Lorem ipsum</a>
+                                                            <a  href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}" class="white-text">{{$post->categoria->nombre_categoria}}</a>
                                                         </p>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="carousel-item">
-                                                <div class="view">
-                                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/8-col/img%20(128).jpg" class="img-fluid" alt="">
-                                                    <a href="#!">
-                                                        <div class="mask flex-center rgba-black-light waves-effect waves-light"></div>
-                                                    </a>
-                                                </div>
-                                                <div class="carousel-caption">
-                                                    <div class="animated fadeInDown">
-                                                        <h4 class="h4-responsive">
-                                                            <a href="#!" class="white-text font-weight-bold">News title</a>
-                                                        </h4>
-                                                        <p>
-                                                            <a href="#!" class="white-text">Lorem ipsum</a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="carousel-item">
-                                                <div class="view">
-                                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/8-col/img%20(133).jpg" class="img-fluid" alt="">
-                                                    <a href="#!">
-                                                        <div class="mask flex-center rgba-black-light waves-effect waves-light"></div>
-                                                    </a>
-                                                </div>
-                                                <div class="carousel-caption">
-                                                    <div class="animated fadeInDown">
-                                                        <h4 class="h4-responsive">
-                                                            <a href="#!" class="white-text font-weight-bold">News title</a>
-                                                        </h4>
-                                                        <p>
-                                                            <a href="#!" class="white-text">Lorem ipsum</a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                @endforeach
+
                                         </div>
-                                        <a class="carousel-control-prev" href="#carousel-example-4" role="button" data-slide="prev">
+                                        <a class="carousel-control-prev" href="#carousel_secundario" role="button" data-slide="prev">
                                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                             <span class="sr-only">Previous</span>
                                         </a>
-                                        <a class="carousel-control-next" href="#carousel-example-4" role="button" data-slide="next">
+                                        <a class="carousel-control-next" href="#carousel_secundario" role="button" data-slide="next">
                                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                             <span class="sr-only">Next</span>
                                         </a>

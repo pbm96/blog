@@ -63,7 +63,66 @@
             margin: .375rem;
             padding-top: .7rem;
             padding-bottom: .7rem;
+            box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
         }
+        .borrar:hover{
+            box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+            outline: 0;
+        }
+
+        /* switch*/
+        .switch label {
+            cursor: pointer;
+        }
+        .switch label input[type=checkbox] {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .switch label .lever {
+            content: "";
+            display: inline-block;
+            position: relative;
+            background-color: #818181;
+            -webkit-border-radius: .9375rem;
+            border-radius: .9375rem;
+            margin-right: .625rem;
+            vertical-align: middle;
+            margin: 0 1rem;
+            width: 2.5rem;
+            height: .9375rem;
+            -webkit-transition: background .3s ease;
+            -o-transition: background .3s ease;
+            transition: background .3s ease;
+        }
+        .switch label input[type=checkbox]:checked+.lever {
+            background-color: #dccfe2;
+        }
+        .switch label input[type=checkbox]:checked+.lever:after {
+            background-color: #a6c;
+            left: 1.5rem;
+        }
+        .switch label .lever:after {
+            content: "";
+            position: absolute;
+            display: inline-block;
+            background-color: #f1f1f1;
+            -webkit-border-radius: 1.3125rem;
+            border-radius: 1.3125rem;
+            left: -.3125rem;
+            top: -.1875rem;
+            -webkit-box-shadow: 0 0.0625rem 0.1875rem 0.0625rem rgba(0,0,0,.4);
+            box-shadow: 0 0.0625rem 0.1875rem 0.0625rem rgba(0,0,0,.4);
+            width: 1.3125rem;
+            height: 1.3125rem;
+            -webkit-transition: left .3s ease,background .3s ease,-webkit-box-shadow 1s ease;
+            transition: left .3s ease,background .3s ease,-webkit-box-shadow 1s ease;
+            -o-transition: left .3s ease,background .3s ease,box-shadow 1s ease;
+            transition: left .3s ease,background .3s ease,box-shadow 1s ease;
+            transition: left .3s ease,background .3s ease,box-shadow 1s ease,-webkit-box-shadow 1s ease;
+        }
+
     </style>
 
 @endsection
@@ -200,7 +259,69 @@
                 <p>Mi perfil</p>
             </div>
             <div class="tab-pane fade" id="usuarios" role="tabpanel" aria-labelledby="usuarios_tab">
-                usuarios
+                <div class="row justify-content-end mr-1">
+                    <a class="btn btn-outline-success waves-effect " href="{{route('register')}}">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </div>
+
+                @foreach($users as $user)
+                    <div class="card mb-3 p-2">
+                        <div class="row ">
+                            <div class="col-sm-3 text-uppercase ml-4 pt-3">
+                                {{$user->nombre}} {{$user->apellidos}}
+                            </div>
+                            <section class="col-sm-4 ml-auto row">
+                                <a class=" btn btn-outline-info waves-effect"
+                                   onclick="editar_usuario({{$user->id}})">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                {!! Form::Open(['route'=>['eliminar_usuario',$user->id],'method'=>'DELETE',]) !!}
+                                {!!Form::submit('eliminar',['class'=>'  borrar btn-outline-danger waves-effect confirm ','data-confirm' => 'Seguro que quieres borrar el usuario?'])!!} {!! Form::close() !!}
+                            </section>
+                        </div>
+                        {!! Form::Open(['route' => ['editar_usuario_admin',$user->id],'method'=>'PUT',]) !!}
+
+                        <div class="  editar_categoria mt-3" id="editar_usuario{{$user->id}}">
+                            <div class="row ">
+                                <div class="col-sm-3 text-uppercase ml-4 ">
+                                    Admin
+                                </div>
+                                <section class="col-sm-4 ml-auto row">
+                                    <div class="switch ">
+                                        <label>
+                                            Off
+                                            <input type="checkbox" {{$user->admin==1?'checked':''}} name="admin" value="1" id="check{{$user->id}}" >
+                                            <span class="lever"></span> On
+                                        </label>
+                                    </div>
+                                </section>
+                            </div>
+                            <hr>
+                            <div class="row ">
+                                <div class="col-sm-3 text-uppercase ml-4 ">
+                                    Superadmin
+                                </div>
+                                <section class="col-sm-4 ml-auto row">
+                                    <div class="switch ">
+                                        <label>
+                                            Off
+                                            <input type="checkbox" {{$user->superadmin==1?'checked':''}} name="superadmin" value="1" id="check{{$user->id}}">
+                                            <span class="lever"></span> On
+                                        </label>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="row justify-content-end mr-4">
+                            <input type="submit" class=" btn-outline-success waves-effect p-2 justify-content-end" value="Guardar">
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
+
+
+                    </div>
+
+                @endforeach
             </div>
             <div class="tab-pane fade" id="comentarios" role="tabpanel" aria-labelledby="comentarios_tab">
                 comentarios
@@ -303,6 +424,16 @@
             }
 
         }
+        function editar_usuario(id) {
+            var caja = $('#editar_usuario' + id)
+            if (caja.css("display") === 'none') {
+                caja.fadeIn();
+            } else {
+                caja.fadeOut();
+            }
+
+        }
+
 
         function nueva_categoria() {
             var caja = $('#añadir_categoria_caja')

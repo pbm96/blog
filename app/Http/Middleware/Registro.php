@@ -20,8 +20,8 @@ class Registro
     {
 
         $users = User::all();
+        if (sizeof($users)== 0){
 
-        if ($users == null){
             return $next($request);
 
         }elseif ( Auth::check() && auth()->user()->superadmin==1){

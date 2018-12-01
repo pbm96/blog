@@ -49,16 +49,23 @@ class HomeController extends Controller
         $this->superadminController->fecha_post($posts);
 
         $ultimo_post = $posts->first();
+
         // borro el ultimo post del array de posts
         unset($posts[0]);
 
+        //posts populares
+
+        $posts_populares = self::post_populares($posts);
 
 
-        return view('welcome')->with('posts',$posts)->with('ultimo_post',$ultimo_post)->with('categorias',$categorias);
+        return view('welcome')->with('posts',$posts)->with('ultimo_post',$ultimo_post)->with('categorias',$categorias)->with('post_populares', $posts_populares);
     }
 
     public function vista_post($categoria,$slug){
         $post = Post::where('slug',$slug)->get();
+
+        $post[0]->visitas_semanales = $post[0]->visitas_semanales +1;
+        $post[0]->save();
 
         $ultimas_noticias = Post::orderBy('created_at','DESC')->take(9)->get();
 
@@ -68,7 +75,14 @@ class HomeController extends Controller
 
         $this->superadminController->fecha_post($ultimas_noticias);
 
+
         return view('vista_post')->with('post', $post)->with('ultimas_noticias',$ultimas_noticias);
+    }
+
+    public function post_populares($posts){
+
+        return $posts->sortByDesc('visitas_semanales')->take(5);
+
     }
 
 

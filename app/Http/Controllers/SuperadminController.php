@@ -29,9 +29,11 @@ class SuperadminController extends Controller
 
             $posts = self::obtener_posts($user->id);
 
+            $users = User::all();
+
             self::fecha_post($posts);
 
-            return view('superadmin')->with('user', $user)->with('categorias_select', $categorias_select)->with('posts', $posts)->with('categorias', $categorias);
+            return view('superadmin')->with('user', $user)->with('categorias_select', $categorias_select)->with('posts', $posts)->with('categorias', $categorias)->with('users', $users);
         }
     }
 
@@ -78,10 +80,47 @@ class SuperadminController extends Controller
     }
     public function eliminar_categoria($id){
         $categoria = Categoria::find($id);
+        dd($categoria);
 
         $categoria->delete();
 
         return redirect()->route('perfil_superadmin',auth()->user()->id);
+
+    }
+
+    public function eliminar_usuario($id){
+        $user = User::find($id);
+
+        $user->delete();
+
+        return redirect()->route('perfil_superadmin',auth()->user()->id);
+
+
+    }
+
+    public function editar_user_admin( Request $request, $id){
+
+        $user = User::find($id);
+
+        if (isset($request->superadmin)){
+
+            $user->superadmin = 1;
+        }else{
+            $user->superadmin =0;
+        }
+
+        if (isset($request->admin)){
+
+            $user->admin = 1;
+        }else{
+            $user->admin =0;
+        }
+
+
+
+        $user->save();
+        return redirect()->route('perfil_superadmin',auth()->user()->id);
+
 
     }
 

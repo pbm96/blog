@@ -26,10 +26,14 @@ Route::post('guardar-post', ['as' => 'guardar_post', 'uses' => 'SuperadminContro
 
 Route::get('{categoria}/{slug}', ['as' => 'vista_post', 'uses' => 'HomeController@vista_post']);
 
+// administrar categorias
 Route::put('modificar-categoria/{id}', ['as' => 'editar_categoria', 'uses' => 'SuperadminController@editar_categoria']);
 Route::post('añadir-categoria', ['as' => 'añadir_categoria', 'uses' => 'SuperadminController@nueva_categoria']);
 Route::delete('eliminar-categoria/{id}', ['as' => 'eliminar_categoria', 'uses' => 'SuperadminController@eliminar_categoria']);
 
+//administrar users
+Route::delete('eliminar-usuario/{id}', ['as' => 'eliminar_usuario', 'uses' => 'SuperadminController@eliminar_usuario']);
+Route::put('modificar-usuario/{id}', ['as' => 'editar_usuario_admin', 'uses' => 'SuperadminController@editar_user_admin']);
 
 
 

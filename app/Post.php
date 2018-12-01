@@ -15,7 +15,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'titulo_post','subtitulo_post','descripcion_post', 'categoria_id','user_id'
+        'titulo_post','subtitulo_post','descripcion_post', 'categoria_id','user_id','visitas_semanales'
     ];
 
 
@@ -27,6 +27,10 @@ class Post extends Model
     public function categoria()
     {
         return $this->belongsTo('App\Categoria');
+    }
+    public function comentario()
+    {
+        return $this->hasMany('App\Comentario');
     }
 
     static function posts_user($id){

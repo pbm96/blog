@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,9 +15,11 @@ class CreatePostTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('slug');
             $table->string('titulo_post');
             $table->string('subtitulo_post');
             $table->string('descripcion_post');
+            $table->integer('visitas_semanales')->default(0);
             $table->integer('user_id')->unsigned();
             $table->integer('categoria_id')->unsigned();
 
