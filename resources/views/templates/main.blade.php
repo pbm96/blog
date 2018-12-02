@@ -82,7 +82,10 @@
         }
     });
 
-    
+
+
+
+
 </script>
 @yield('scripts')
 </body>

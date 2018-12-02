@@ -10,3 +10,7 @@ html, body{
 .fixed-top{
     z-index: 99999 !important;
 }
+.btn-rounded {
+    -webkit-border-radius: 10em;
+    border-radius: 10em;
+}
