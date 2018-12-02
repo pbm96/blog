@@ -30,9 +30,19 @@
 <!-- header-->
 
 @include('templates.header')
+@if(session()->has('mensaje'))
+    <div class="alert  {{ Session::get('alert-class') }} mensaje_alerta text-center">
+        {{ session()->get('mensaje') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
 @yield('cabezera')
+
 <!-- contenido-->
 <main class="main principal  grey lighten-4">
+
     @yield('contenido')
 
 </main>
@@ -60,6 +70,19 @@
             $('#footer').css('margin-top', 10+ (docHeight - footerTop) + 'px');
         }
     });
+
+    //buscador
+    $( "#icono_buscador" ).click(function() {
+        var buscador = $('#buscador');
+
+        if (buscador.css("display") === 'none'){
+            buscador.show()
+        } else{
+            buscador.hide();
+        }
+    });
+
+    
 </script>
 @yield('scripts')
 </body>

@@ -12,3 +12,16 @@ header {
     max-width: 35px;
 }
 
+.icono_buscador{
+    cursor: pointer;
+}
+.icono_buscador:hover{
+    color: rgba(255,255,255,.75) !important;
+}
+#buscador{
+    display: none;
+}
+.caja_buscador{
+    color: #FFFFFF !important;
+
+}

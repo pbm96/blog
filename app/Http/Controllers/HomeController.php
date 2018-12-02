@@ -6,6 +6,8 @@ use App\Categoria;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 use phpDocumentor\Reflection\Types\Self_;
 
 class HomeController extends Controller
@@ -85,6 +87,31 @@ class HomeController extends Controller
 
     }
 
+    public function categoria($categoria){
+
+        $categoria_completa = Categoria::where('nombre_categoria',$categoria)->first();
+        $posts = Post::where('categoria_id',$categoria_completa->id)->paginate(3);
+
+        return view('vista_categorias')->with('posts',$posts)->with('categoria_completa',$categoria_completa);
+    }
+
+    public function buscar(){
+        $buscar = Input::get('buscar');
+        $posts = Post::where('titulo_post', 'like', '%'.$buscar.'%')
+            ->orWhere('descripcion_post', 'like', '%'.$buscar.'%')
+            ->orderBy('created_at', 'desc')->paginate(6);
+
+        if (sizeof($posts)> 0){
+            return view('vista_categorias')->with('posts',$posts)->with('buscar',$buscar);
+
+        }else{
+            Session::flash('mensaje', 'No se ha encontrado ningun resultado de '.$buscar);
+            Session::flash('alert-class', 'alert-danger');
+            return redirect()->route('home');
+        }
+
+
+    }
 
  /*   public function sacar_mes_post($posts){
         $meses= [];

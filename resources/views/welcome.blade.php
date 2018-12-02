@@ -51,6 +51,7 @@
         -webkit-box-orient: vertical;
         display: -webkit-box;
         -webkit-line-clamp: 2;
+        height: 45px;
     }
     #subtitulo_card_pequeña{
         overflow: hidden;
@@ -58,6 +59,7 @@
         -webkit-box-orient: vertical;
         display: -webkit-box;
         -webkit-line-clamp: 4;
+
     }
     .titulo_card_principal{
         overflow: hidden;
@@ -186,7 +188,7 @@
                                                 <div class="mask rgba-white-slight waves-effect waves-light"></div>
                                             </a>
                                         </div>
-                                        <div class="card-body mx-4">
+                                        <div class="card-body mx-4 p-0">
                                             <a href="" class="teal-text text-center text-uppercase font-small">
                                             </a><h6 class="mb-3 mt-3"><a href="" class="teal-text text-center text-uppercase font-small">
                                                     <strong>{{$post->categoria->nombre_categoria}}</strong>
@@ -345,7 +347,7 @@
                                         @if(isset($categorias))
                                         @foreach($categorias as $categoria)
                                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                <a class="">
+                                                <a href="{{route('categoria',$categoria->nombre_categoria)}}">
                                                     <p class="mb-0">{{$categoria->nombre_categoria}}</p>
                                                 </a>
                                                 <span class="badge teal badge-pill font-small"> {{empty($categoria->count)?0:$categoria->count}}</span>

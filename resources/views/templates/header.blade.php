@@ -18,6 +18,7 @@
                     <li class="nav-item pt-1">
                         <a class="nav-link js-scroll-trigger" href="{{route('login')}}">Login</a>
                     </li>
+
                     @else
 
                     <li class="nav-item avatar dropdown pl-4">
@@ -38,6 +39,18 @@
                     </li>
                 @endguest
             </ul>
+            <div class="md-form my-0 ml-3 " id="buscador">
+
+               {!! Form::Open(['route' => 'buscar','method'=>'GET',]) !!}
+                <input class="form-control mr-sm-2 caja_buscador" type="text" placeholder="Search" value="{{old('buscar')}}" name="buscar" aria-label="Search">
+                {!!  Form::close() !!}
+
+            </div>
+            <div id="icono_buscador">
+            <i class="fa fa-search text-white ml-3 icono_buscador "  aria-hidden="true" ></i>
+            </div>
         </div>
     </div>
+
 </nav>
+
