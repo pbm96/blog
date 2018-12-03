@@ -14,3 +14,6 @@ html, body{
     -webkit-border-radius: 10em;
     border-radius: 10em;
 }
+.close{
+    float: none;
+}

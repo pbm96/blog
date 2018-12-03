@@ -33,7 +33,7 @@
 @if(session()->has('mensaje'))
     <div class="alert  {{ Session::get('alert-class') }} mensaje_alerta text-center">
         {{ session()->get('mensaje') }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <button type="button" class="close ml-3" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>

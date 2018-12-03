@@ -52,6 +52,7 @@ class HomeController extends Controller
 
         $ultimo_post = $posts->first();
 
+
         // borro el ultimo post del array de posts
         unset($posts[0]);
 
@@ -90,7 +91,10 @@ class HomeController extends Controller
     public function categoria($categoria){
 
         $categoria_completa = Categoria::where('nombre_categoria',$categoria)->first();
+
         $posts = Post::where('categoria_id',$categoria_completa->id)->paginate(3);
+
+
 
         return view('vista_categorias')->with('posts',$posts)->with('categoria_completa',$categoria_completa);
     }
