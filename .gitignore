@@ -20,3 +20,4 @@ Homestead.json
 .rocketeer/
 *.iml
 *.jpg
+.idea/workspace.xml
