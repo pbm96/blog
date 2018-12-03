@@ -40,6 +40,7 @@ Route::delete('eliminar-categoria/{id}', ['as' => 'eliminar_categoria', 'uses' =
 Route::delete('eliminar-usuario/{id}', ['as' => 'eliminar_usuario', 'uses' => 'SuperadminController@eliminar_usuario']);
 Route::put('modificar-usuario/{id}', ['as' => 'editar_usuario_admin', 'uses' => 'SuperadminController@editar_user_admin']);
 
+Route::post('escribir-comentario',['as'=>'escribir_comentario','uses'=>'ComentariosController@esribir_comentario']);
 
 //Route::get('/ajax/products',['as'=>'post_ajax','uses'=>'SuperadminController@posts_ajax']);
 

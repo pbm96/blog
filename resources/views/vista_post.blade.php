@@ -51,6 +51,9 @@
         .cuerpo_noticia {
             margin-top: -100px;
         }
+        .nombre_comentario{
+            margin-top: -1.6em;
+        }
     }
     @media (max-width: 992px) {
         .imagen_principal_noticia{
@@ -61,6 +64,8 @@
     .imagen_principal_noticia{
         width: 100%;
     }
+
+
 
 </style>
 @endsection
@@ -152,77 +157,37 @@
                                     </section>
                                     <!--/Comments-->
                                     <hr>
-                                    <!--Section: Leave a reply (Not Logged In User)-->
                                     <section class="mb-4 wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;">
-                                        <h3 class="font-weight-bold text-center my-5">Leave a reply</h3>
+                                        <h3 class="font-weight-bold text-center my-5">Dejar Comentario</h3>
+                                        {!! Form::Open(['route'=>['escribir_comentario'],'method'=>'POST',]) !!}
 
-                                        <!--Grid row-->
                                         <div class="row">
-
-                                            <!--Grid column-->
-                                            <div class="col-lg-4 col-md-12 mb-4">
-
-                                                <div class="input-group md-form form-sm form-3 pl-0">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text white black-text" id="basic-addon8">1</span>
-                                                    </div>
-                                                    <input type="text" class="form-control mt-0 black-border rgba-white-strong" placeholder="Name" aria-describedby="basic-addon9">
-                                                </div>
-
-                                            </div>
-                                            <!--Grid column-->
-
-                                            <!--Grid column-->
-                                            <div class="col-lg-4 col-md-6 mb-4">
-
-                                                <div class="input-group md-form form-sm form-3 pl-0">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text white black-text" id="basic-addon9">2</span>
-                                                    </div>
-                                                    <input type="text" class="form-control mt-0 black-border rgba-white-strong" placeholder="Email" aria-describedby="basic-addon9">
-                                                </div>
-
-                                            </div>
-                                            <!--Grid column-->
-
-                                            <!--Grid column-->
-                                            <div class="col-lg-4 col-md-6 mb-4">
-
-                                                <div class="input-group md-form form-sm form-3 pl-0">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text white black-text" id="basic-addon10">3</span>
-                                                    </div>
-                                                    <input type="text" class="form-control mt-0 black-border rgba-white-strong" placeholder="Website" aria-describedby="basic-addon9">
-                                                </div>
-
-                                            </div>
-                                            <!--Grid column-->
-
-                                        </div>
-                                        <!--Grid row-->
-
-                                        <!--Grid row-->
-                                        <div class="row">
-
-                                            <div class="col-12 mt-1">
+                                            <div class="col-sm-8">
                                                 <div class="form-group basic-textarea rounded-corners shadow-textarea">
-
-                                                    <textarea class="form-control" id="exampleFormControlTextarea6" rows="5" placeholder="Write something here..."></textarea>
-                                                </div>
-
-                                                <div class="text-right">
-                                                    <button class="btn btn-grey btn-sm waves-effect waves-light">Submit</button>
+                                                    <textarea class="form-control" id="exampleFormControlTextarea6" rows="5" placeholder="Escribe algo aqui"></textarea>
                                                 </div>
 
                                             </div>
+                                            <div class=" col-sm-4 mb-4 nombre_comentario">
+                                                <div class="input-group md-form form-sm form-3 pl-0">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text white black-text" id="basic-addon8"><i class="fa fa-user"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control mt-0 black-border rgba-white-strong" placeholder="Introduce tu nombre..." aria-describedby="basic-addon9" required>
+                                                </div>
+                                            </div>
 
                                         </div>
-                                        <!--Grid row-->
+                                        <div class="row justify-content-center">
+                                            <div class="text-right">
+                                                <input type="submit" value="Publicar" class="btn btn-grey btn-sm waves-effect waves-light">
+                                            </div>
+
+                                        </div>
+                                        {!! Form::close() !!}
 
                                     </section>
-                                    <!--/Section: Leave a reply (Not Logged In User)-->
 
-                                    <!--Posts-->
                                     <section class="text-left mt-4">
 
                                         <h4 class="font-weight-bold mt-5 mb-5 text-center">
