@@ -92,8 +92,9 @@ class HomeController extends Controller
 
         $categoria_completa = Categoria::where('nombre_categoria',$categoria)->first();
 
-        $posts = Post::where('categoria_id',$categoria_completa->id)->paginate(3);
+        $posts = Post::where('categoria_id',$categoria_completa->id)->orderBy('created_at','DESC')->paginate(3);
 
+        $this->superadminController->fecha_post($posts);
 
 
         return view('vista_categorias')->with('posts',$posts)->with('categoria_completa',$categoria_completa);
