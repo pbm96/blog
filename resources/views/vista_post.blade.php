@@ -160,7 +160,7 @@
                                         <div class="row">
                                             <div class="col-sm-8">
                                                 <div class="form-group basic-textarea rounded-corners shadow-textarea">
-                                                    <textarea class="form-control"  id="comentario" name="comentario" rows="5" placeholder="Escribe algo aqui" onchange="desactivar_boton()"></textarea>
+                                                    <textarea class="form-control"  id="comentario" name="comentario" rows="5" placeholder="Escribe algo aqui" onkeyup="desactivar_boton()"></textarea>
                                                 </div>
 
                                             </div>
@@ -169,7 +169,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text white black-text" id="basic-addon8"><i class="fa fa-user"></i></span>
                                                     </div>
-                                                    <input type="text" onchange="desactivar_boton()"  name="nombre_usuario" id="nombre_usuario" class="form-control mt-0 black-border rgba-white-strong" placeholder="Introduce tu nombre..." aria-describedby="basic-addon9" >
+                                                    <input type="text" onkeyup="desactivar_boton()"  name="nombre_usuario" id="nombre_usuario" class="form-control mt-0 black-border rgba-white-strong" placeholder="Introduce tu nombre..." aria-describedby="basic-addon9" >
                                                 </div>
                                             </div>
 
@@ -290,6 +290,8 @@
                             "</div>")
 
                         alert('comentario publicado correctamente')
+                        $('#publicar_comentario').prop("disabled", true);
+
 
                     }else{
                         alert('error al publicar comentario')

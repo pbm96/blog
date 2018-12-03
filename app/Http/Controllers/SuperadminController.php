@@ -60,7 +60,9 @@ class SuperadminController extends Controller
         return redirect()->route('perfil_superadmin', $user->id);
 
     }
-    public function nueva_categoria(Request $request){
+
+    public function nueva_categoria(Request $request)
+    {
         $categoria = New Categoria($request->all());
 
         $categoria->save();
@@ -69,58 +71,67 @@ class SuperadminController extends Controller
 
     }
 
-    public function editar_categoria(Request $request, $id){
+    public function editar_categoria(Request $request, $id)
+    {
         $categoria = Categoria::find($id);
 
         $categoria->nombre_categoria = $request->nombre_categoria;
 
         $categoria->save();
 
-        return redirect()->route('perfil_superadmin',auth()->user()->id);
+        return redirect()->route('perfil_superadmin', auth()->user()->id);
     }
-    public function eliminar_categoria($id){
+
+    public function eliminar_categoria($id)
+    {
         $categoria = Categoria::find($id);
         dd($categoria);
 
         $categoria->delete();
 
-        return redirect()->route('perfil_superadmin',auth()->user()->id);
+        return redirect()->route('perfil_superadmin', auth()->user()->id);
 
     }
 
-    public function eliminar_usuario($id){
+    public function eliminar_usuario($id)
+    {
         $user = User::find($id);
 
         $user->delete();
 
-        return redirect()->route('perfil_superadmin',auth()->user()->id);
+        return redirect()->route('perfil_superadmin', auth()->user()->id);
 
 
     }
 
-    public function editar_user_admin( Request $request, $id){
+    public function editar_user_admin(Request $request, $id)
+    {
 
         $user = User::find($id);
 
-        if (isset($request->superadmin)){
+        if (isset($request->superadmin)) {
 
             $user->superadmin = 1;
-        }else{
-            $user->superadmin =0;
+        } else {
+            $user->superadmin = 0;
         }
 
-        if (isset($request->admin)){
+        if (isset($request->admin)) {
 
             $user->admin = 1;
-        }else{
-            $user->admin =0;
+        } else {
+            $user->admin = 0;
         }
-
 
 
         $user->save();
-        return redirect()->route('perfil_superadmin',auth()->user()->id);
+        return redirect()->route('perfil_superadmin', auth()->user()->id);
 
+
+    }
+
+    public function editar_perfil(Request $request, $id)
+    {
 
     }
 

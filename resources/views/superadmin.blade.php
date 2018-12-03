@@ -122,7 +122,15 @@
             transition: left .3s ease,background .3s ease,box-shadow 1s ease;
             transition: left .3s ease,background .3s ease,box-shadow 1s ease,-webkit-box-shadow 1s ease;
         }
-
+        .card.card-cascade.narrower .view.view-cascade {
+            margin-left: 4%;
+            margin-right: 4%;
+            margin-top: -1.25rem;
+        }
+        .card.card-cascade .view.view-cascade.gradient-card-header {
+            padding: 1.6rem 1rem;
+            text-align: center;
+        }
     </style>
 
 @endsection
@@ -243,7 +251,6 @@
 
 
                 <label for="descripcion_post">Texto Entrada</label>
-
                 <textarea name="descripcion_post" class="form-control my-editor"
                           id="descripcion_post ">{{old('descripcion_post')}}</textarea>
                 @if ($errors->has('descripcion_post'))
@@ -255,9 +262,94 @@
                 <input type="submit" value="Crear Entrada">
                 {!! Form::Close() !!}
             </div>
+
+            <!--MI PERFIL-->
+
             <div class="tab-pane fade" id="mi_perfil" role="tabpanel" aria-labelledby="mi_perfil_tab">
-                <p>Mi perfil</p>
+                {!! Form::Open(['route'=>['editar_perfil',auth()->user()->id],'method'=>'PUT',]) !!}
+
+                <section class="section mt-3">
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="card card-cascade narrower">
+                                <div class="view view-cascade gradient-card-header mdb-color lighten-3">
+                                    <h5 class="mb-0 font-weight-bold">Edit Photo</h5>
+                                </div>
+                                <div class="card-body card-body-cascade text-center">
+                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" alt="User Photo" class="z-depth-1 mb-3 mx-auto">
+
+                                    <p class="text-muted"><small>Profile photo will be changed automatically</small></p>
+                                    <div class="row flex-center">
+                                        <button class="btn btn-info btn-rounded btn-sm waves-effect waves-light">Upload New Photo</button><br>
+                                        <button class="btn btn-danger btn-rounded btn-sm waves-effect waves-light">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 mb-4">
+                            <div class="card card-cascade narrower">
+                                <div class="view view-cascade gradient-card-header mdb-color lighten-3">
+                                    <h5 class="mb-0 font-weight-bold">Editar Perfil</h5>
+                                </div>
+                                <div class="card-body card-body-cascade text-center">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="md-form mb-0">
+                                                    <input type="text" id="nombre" name="nombre" class="form-control " value="{{auth()->user()->nombre}}">
+                                                    <label for="nombre" data-error="wrong"  data-success="right" class="active">Nombre</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="md-form mb-0">
+                                                    <input type="text" id="apellidos" name="apellidos" class="form-control " value="{{auth()->user()->apellidos}}">
+                                                    <label for="apellidos">Apellidos</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="md-form mb-0">
+                                                    <input type="email" id="email" value="{{auth()->user()->email}}" class="form-control ">
+                                                    <label for="email" >Email</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="md-form mb-0">
+                                                    <input type="email" id="form76" class="form-control validate">
+                                                    <label for="form76">Password</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="md-form mb-0">
+                                                    <input type="text" id="form77" class="form-control validate">
+                                                    <label for="form77" data-error="wrong" data-success="right">Confirmar Password</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="md-form mb-0">
+                                                    <textarea type="text" id="descripcion_user"  name="descripcion_user" class="md-textarea form-control" rows="3" onfocus="aumentar_descripcion()" onfocusout="disminuir_descripcion()"></textarea>
+                                                    <label for="descripcion_user">Descripcion</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-center my-4">
+                                                <i class="btn btn-info btn-rounded waves-input-wrapper waves-effect waves-light" style="color:rgb(255, 255, 255);background:rgba(0, 0, 0, 0)"><input type="submit" value="Update Account" class="waves-button-input" style="background-color:rgba(0,0,0,0);"></i>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
+            {!! Form::close() !!}
             <div class="tab-pane fade" id="usuarios" role="tabpanel" aria-labelledby="usuarios_tab">
                 <div class="row justify-content-end mr-1">
                     <a class="btn btn-outline-success waves-effect " href="{{route('register')}}">
@@ -449,6 +541,13 @@
             return !!confirm($(this).data('confirm'));
         });
 
+        function aumentar_descripcion() {
+            $('#descripcion_user').prop('rows','10');
+        }
+
+        function disminuir_descripcion() {
+            $('#descripcion_user').prop('rows','3');
+        }
         /** $(document).on('click','.pagination a', function(e){
             e.preventDefault();
              var page = $(this).attr('href').split('page=')[1];
