@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Categoria;
+use App\Comentario;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -68,18 +69,25 @@ class HomeController extends Controller
         $post = Post::where('slug',$slug)->get();
 
         $post[0]->visitas_semanales = $post[0]->visitas_semanales +1;
+
         $post[0]->save();
+
+        $comentarios = Comentario::where('post_id',$post[0]->id)->orderBy('created_at','DESC')->get();
+
+        $this->superadminController->fecha_post($comentarios);
+
+        $this->superadminController->hora_post($comentarios);
 
         $ultimas_noticias = Post::orderBy('created_at','DESC')->take(9)->get();
 
-
          $this->superadminController->fecha_post($post);
+
         $this->superadminController->hora_post($post);
 
         $this->superadminController->fecha_post($ultimas_noticias);
 
 
-        return view('vista_post')->with('post', $post)->with('ultimas_noticias',$ultimas_noticias);
+        return view('vista_post')->with('post', $post)->with('ultimas_noticias',$ultimas_noticias)->with('comentarios',$comentarios);
     }
 
     public function post_populares($posts){
