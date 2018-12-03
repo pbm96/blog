@@ -120,34 +120,31 @@
                                         <!--Main wrapper-->
                                         <div class="comments-list text-center text-md-left">
                                             <div class="text-center my-5">
-                                                <h3 class="font-weight-bold">Comments
-                                                    <span class="badge indigo">3</span>
+                                                <h3 class="font-weight-bold">Comentarios
+                                                    <span class="badge indigo">{{count($comentarios)}}</span>
                                                 </h3>
                                             </div>
                                             <!--First row-->
-                                            <div class="row mb-5">
-                                                <!--Image column-->
-                                                <div class="col-sm-2 col-12 mb-3">
-                                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img (8).jpg" class="avatar rounded-circle z-depth-1-half" alt="sample image">
-                                                </div>
-                                                <!--/.Image column-->
+                                            <div id="caja_comentarios">
+                                            @foreach($comentarios as $comentario)
+                                            <div class="row mb-5 ">
 
-                                                <!--Content column-->
-                                                <div class="col-sm-10 col-12">
+                                                <div class="col-sm-12 card">
+                                                    <div class="ml-3 row mt-2">
                                                     <a>
-                                                        <h5 class="user-name font-weight-bold">John Doe</h5>
+                                                        <h5 class="user-name font-weight-bold">{{$comentario->nombre_usuario}}</h5>
                                                     </a>
-                                                    <div class="card-data">
+                                                    <div class="card-data ml-3 mt-1">
                                                         <ul class="list-unstyled">
                                                             <li class="comment-date font-small">
-                                                                <i class="fa fa-clock-o"></i> 05/10/2015</li>
+                                                                <i class="fa fa-clock-o"></i> {{$comentario->fecha}} {{$comentario->hora}}</li>
                                                         </ul>
                                                     </div>
-                                                    <p class="dark-grey-text article">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                                                        ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+                                                    </div>
+                                                    <p class="dark-grey-text article">{{$comentario->comentario }}</p>
                                                 </div>
-                                                <!--/.Content column-->
+                                            </div>
+                                            @endforeach
                                             </div>
                                             <!--/.First row-->
 
@@ -159,12 +156,11 @@
                                     <hr>
                                     <section class="mb-4 wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-name: fadeIn; animation-delay: 0.2s;">
                                         <h3 class="font-weight-bold text-center my-5">Dejar Comentario</h3>
-                                        {!! Form::Open(['route'=>['escribir_comentario'],'method'=>'POST',]) !!}
 
                                         <div class="row">
                                             <div class="col-sm-8">
                                                 <div class="form-group basic-textarea rounded-corners shadow-textarea">
-                                                    <textarea class="form-control" id="exampleFormControlTextarea6" rows="5" placeholder="Escribe algo aqui"></textarea>
+                                                    <textarea class="form-control"  id="comentario" name="comentario" rows="5" placeholder="Escribe algo aqui" onchange="desactivar_boton()"></textarea>
                                                 </div>
 
                                             </div>
@@ -173,18 +169,17 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text white black-text" id="basic-addon8"><i class="fa fa-user"></i></span>
                                                     </div>
-                                                    <input type="text" class="form-control mt-0 black-border rgba-white-strong" placeholder="Introduce tu nombre..." aria-describedby="basic-addon9" required>
+                                                    <input type="text" onchange="desactivar_boton()"  name="nombre_usuario" id="nombre_usuario" class="form-control mt-0 black-border rgba-white-strong" placeholder="Introduce tu nombre..." aria-describedby="basic-addon9" >
                                                 </div>
                                             </div>
 
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="text-right">
-                                                <input type="submit" value="Publicar" class="btn btn-grey btn-sm waves-effect waves-light">
+                                                <input type="button" id="publicar_comentario" value="Publicar" disabled onclick="enviar_comentario({{$post[0]->id}})" class="btn btn-grey btn-sm waves-effect waves-light">
                                             </div>
 
                                         </div>
-                                        {!! Form::close() !!}
 
                                     </section>
 
@@ -250,3 +245,57 @@
         </div>
     </div>
 @endsection
+@section('scripts')
+    <script>
+        // enviar comentario
+
+         function desactivar_boton() {
+
+            if ($('#comentario').val()!=='' && $('#nombre_usuario').val()!=='' ) {
+
+                $('#publicar_comentario').prop("disabled", false);
+            }else{
+                $('#publicar_comentario').prop("disabled", true);
+
+            }
+        }
+        function enviar_comentario(id){
+            var route = "{{route('escribir_comentario')}}";
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "POST",
+                dataType: "json",
+                data: {comentario: $('#comentario').val(),nombre_usuario:$('#nombre_usuario').val(),post_id:id},
+                url: route,
+                success: function (data) {
+                    if (data.respuesta ===true) {
+
+                        $('#comentario').val('');
+                        $('#nombre_usuario').val('');
+
+                        $('#caja_comentarios').prepend("<div class='row mb-5 '>  <div class='col-sm-12 card'><div class='ml-3 row mt-2'>" +
+                            "<a><h5 class='user-name font-weight-bold'>"+data.comentario['nombre_usuario']+"</h5></a>" +
+                            "<div class='card-data ml-3 mt-1'>" +
+                            "<ul class='list-unstyled'>" +
+                            "<li class='comment-date font-small'>" +
+                            "<i class='fa fa-clock-o'></i> "+data.comentario['fecha']+" "+data.comentario['hora']+
+                            "</li>" +
+                            "</ul>" +
+                            "</div>" +
+                            "</div>" +
+                            "<p class='dark-grey-text article'>"+data.comentario['comentario']+"</p>" +
+                            "</div>" +
+                            "</div>")
+
+                        alert('comentario publicado correctamente')
+
+                    }else{
+                        alert('error al publicar comentario')
+                    }
+                }
+            })
+        }
+    </script>
+    @endsection
