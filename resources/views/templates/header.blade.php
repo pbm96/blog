@@ -7,8 +7,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto p-1">
-                <li class="nav-item pt-1">
-                    <a class="nav-link js-scroll-trigger" href="#">About</a>
+                <li class="nav-item pt-1 dropdown ">
+                    <a class="nav-link  dropdown-toggle" href="#"  data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" id="categorias_link">Categorias</a>
+                    <div class="dropdown-menu dropdown-primary " id="categorias_nav">
+                    </div>
                 </li>
                 <li class="nav-item pt-1">
                     <a class="nav-link js-scroll-trigger" href="#">Sobre mi</a>
@@ -16,7 +19,7 @@
 
                 @guest()
                     <li class="nav-item pt-1">
-                        <a class="nav-link js-scroll-trigger" href="{{route('login')}}">Login</a>
+                        <a class="nav-link js-scroll-trigger" href="{{route('login')}}">Acceder</a>
                     </li>
 
                     @else

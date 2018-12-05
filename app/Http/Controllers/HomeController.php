@@ -32,7 +32,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        $posts = Post::orderBy('created_at','DESC')->paginate(5);
+        $posts = Post::orderBy('created_at','DESC')->paginate(30);
 
             //self::sacar_mes_post($posts);
         $categorias = Categoria::all();
@@ -124,6 +124,13 @@ class HomeController extends Controller
         }
 
 
+    }
+
+    public function pintar_categorias_nav(){
+
+        $categorias = Categoria::all();
+
+        return response()->json($categorias);
     }
 
  /*   public function sacar_mes_post($posts){

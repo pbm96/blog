@@ -69,7 +69,30 @@
         if (footerTop < docHeight) {
             $('#footer').css('margin-top', 10+ (docHeight - footerTop) + 'px');
         }
+        var route = "{{route('pintar_categorias')}}";
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: "GET",
+            dataType: "json",
+            url: route,
+            success: function (data) {
+                url = '{{route('categoria',":nombre_categoria")}}'
+                for(i=0; i<data.length;i++) {
+                    url = url.replace(':nombre_categoria', data[i]['nombre_categoria']);
+
+                    $('#categorias_nav').append('<a class="dropdown-item" href="'+url+'">'+data[i]['nombre_categoria']+'</a>')
+
+                    url = '{{route('categoria',":nombre_categoria")}}'
+
+                }
+            }
+        })
     });
+
+
+
 
     //buscador
     $( "#icono_buscador" ).click(function() {
@@ -81,6 +104,10 @@
             buscador.hide();
         }
     });
+
+
+
+//llamar a categorias
 
 
 
