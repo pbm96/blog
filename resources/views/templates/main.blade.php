@@ -84,7 +84,7 @@
 
                     $('#categorias_nav').append('<a class="dropdown-item" href="'+url+'">'+data[i]['nombre_categoria']+'</a>')
 
-                    $('#enlaces_footer').append('<a class="enlace_footer" href="'+url+'">'+data[i]['nombre_categoria']+'</a>')
+                    $('#enlaces_footer').append('<li class="mb-2"><a class="enlace_footer_central h6 " href="'+url+'">'+data[i]['nombre_categoria']+'</a></li>')
 
                     url = '{{route('categoria',":nombre_categoria")}}'
 
