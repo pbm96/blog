@@ -34,6 +34,7 @@ class HomeController extends Controller
 
         $posts = Post::orderBy('created_at','DESC')->paginate(30);
 
+
             //self::sacar_mes_post($posts);
         $categorias = Categoria::all();
 
@@ -51,15 +52,13 @@ class HomeController extends Controller
 
         $this->superadminController->fecha_post($posts);
 
-        $ultimo_post = $posts->first();
+        //posts populares
+        $posts_populares = self::post_populares($posts);
 
+        $ultimo_post = $posts->first();
 
         // borro el ultimo post del array de posts
         unset($posts[0]);
-
-        //posts populares
-
-        $posts_populares = self::post_populares($posts);
 
 
         return view('welcome')->with('posts',$posts)->with('ultimo_post',$ultimo_post)->with('categorias',$categorias)->with('post_populares', $posts_populares);
@@ -93,7 +92,6 @@ class HomeController extends Controller
     public function post_populares($posts){
 
         return $posts->sortByDesc('visitas_semanales')->take(5);
-
     }
 
     public function categoria($categoria){

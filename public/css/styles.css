@@ -17,3 +17,13 @@ html, body{
 .close{
     float: none;
 }
+@media (max-width: 992px) {
+    .hidden-sm {
+        display: none;
+    }
+}
+@media (min-width: 992px) {
+    .hidden-xl {
+        display: none;
+    }
+}

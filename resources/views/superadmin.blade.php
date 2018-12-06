@@ -131,6 +131,8 @@
             padding: 1.6rem 1rem;
             text-align: center;
         }
+
+
     </style>
 
 @endsection
@@ -218,6 +220,16 @@
             <div class="tab-pane fade" id="crear_post" role="tabpanel" aria-labelledby="crear_post_tab">
                 {!! Form::Open(['route' => 'guardar_post','method'=>'POST', 'enctype'=> 'multipart/data', 'files' => true ,'class'=>'row
   justify-content-center']) !!}
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="imagen_principal" id="imagen_principal" aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" for="imagen_principal">Choose file</label>
+                    </div>
+                </div>
+
                 <label for="titulo_post">Titulo Entrada</label>
                 <input type="text" name="titulo_post" id="titulo_post"
                        class="form-control {{ $errors->has('titulo_post') ? ' invalid' : '' }}"

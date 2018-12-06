@@ -48,10 +48,18 @@ class SuperadminController extends Controller
         ]);*/
 
         $user = auth()->user();
+       $imagen = $request->file('imagen_principal');
+
+       $path= $imagen->path();
+       $tipo = $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $imagen_base64 = 'data:image/' . $tipo . ';base64,' . base64_encode($data);
 
         $entrada = new Post($request->all());
 
         $entrada->user_id = $user->id;
+
+        $entrada->imagen_principal = $imagen_base64;
 
         $entrada->slug = str_slug($request->titulo_post, '-');
 
@@ -85,7 +93,6 @@ class SuperadminController extends Controller
     public function eliminar_categoria($id)
     {
         $categoria = Categoria::find($id);
-        dd($categoria);
 
         $categoria->delete();
 

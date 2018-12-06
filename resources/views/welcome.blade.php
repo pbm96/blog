@@ -22,11 +22,13 @@
     }
 
     .cuerpo_card{
+
+        height:120px ;
         overflow: hidden;
         text-overflow: ellipsis;
-        padding-bottom: 1em;
-        height:110px ;
-        white-space: nowrap;
+        -webkit-box-orient: vertical;
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
 
     }
     .card_secundaria{
@@ -35,7 +37,7 @@
     }
 
     .caja_subtitulo_pequeñas{
-        height: 100px;
+        height: 125px;
         overflow: hidden;
 
     }
@@ -58,7 +60,7 @@
         text-overflow: ellipsis;
         -webkit-box-orient: vertical;
         display: -webkit-box;
-        -webkit-line-clamp: 4;
+        -webkit-line-clamp: 5;
 
     }
     .titulo_card_principal{
@@ -83,7 +85,16 @@
         }
 
     }
-    .i
+    .imagen_post_secundario{
+        height: 210px;
+    }
+    .imagen_destacados_pequeña{
+        height: 140px;
+    }
+    .imagen_destacados_lateral{
+        height: 35.02px ;
+    }
+
 
 
 
@@ -99,16 +110,16 @@
         </section>-->
                     <div id="carousel_principal" class="carousel slide carousel-fade z-depth-1-half carousel_main" data-ride="carousel">
                         <ol class="carousel-indicators">
-                            <li data-target="#carousel_principal" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel_principal" data-slide-to="1" class=""></li>
-                            <li data-target="#carousel_principal" data-slide-to="2" class=""></li>
+                            @foreach($post_populares->take(3) as $key => $post)
+                            <li data-target="#carousel_principal" data-slide-to="{{$key}}" class="{{$loop->first?'active':''}}"></li>
+                                @endforeach
                         </ol>
                         <div class="carousel-inner carousel_principal" role="listbox">
-                        @foreach($post_populares->take(3) as $post)
+                            @foreach($post_populares->take(3) as $post)
 
                             <div class="carousel-item {{$loop->first?'active':''}} carousel_principal">
                                 <div class="view carousel_principal">
-                                    <img src="http://mdbootstrap.com/img/Photos/Others/nature4.jpg" class="img-fluid  imagenes_carousel carousel_principal"  alt="">
+                                    <img src="{{$post->imagen_principal}}" class="img-fluid  imagenes_carousel carousel_principal"  alt="">
                                     <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">
                                         <div class="mask flex-center rgba-black-strong waves-effect waves-light"></div>
                                     </a>
@@ -151,7 +162,7 @@
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="view overlay">
-                                            <img src="http://mdbootstrap.com/img/Photos/Slides/img%20(28).jpg" class="card-img-top imagen_primer_post" alt="">
+                                            <img src="{{$ultimo_post->imagen_principal}}" class="card-img-top imagen_primer_post" alt="">
                                             <a href="{{route('vista_post',[$ultimo_post->categoria->nombre_categoria,$ultimo_post->slug])}}">
                                                 <div class="mask rgba-white-slight waves-effect waves-light"></div>
                                             </a>
@@ -183,9 +194,9 @@
                                 <div class="col-md-6 mb-4">
                                     <div class="card text-left card_secundaria ">
                                         <div class="view overlay">
-                                            <img src="https://mdbootstrap.com/img/Photos/Others/images/14.jpg" class="card-img-top" alt="">
+                                            <img src="{{$post->imagen_principal}}" class="card-img-top imagen_post_secundario" alt="Embedded Image">
                                             <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">
-                                                <div class="mask rgba-white-slight waves-effect waves-light"></div>
+                                                <div class="mask rgba-white-slight waves-effect waves-light "></div>
                                             </a>
                                         </div>
                                         <div class="card-body mx-4 p-0">
@@ -221,8 +232,8 @@
                         </div>
                         @endif
                     </div>
-                    <div class="col-lg-3 col-12 mt-1">
-                        <div class="card">
+                    <div class="col-lg-3 col-12 mt-1 hidden-sm">
+                       <!-- <div class="card">
                             <div class="view overlay">
                                 <img src="https://mdbootstrap.com/img/Photos/Others/girl5.jpg" class="card-img-top" alt="">
                                 <a>
@@ -258,8 +269,9 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
-                        <section class="section widget-content mt-5">
+                        </div> -->
+
+                        <section class="section widget-content ">
                             <div class="card card-body pb-0">
                                 <div class="single-post">
                                     <p class="font-weight-bold dark-grey-text text-center spacing grey lighten-4 py-2 mb-4">
@@ -269,7 +281,7 @@
                                     <div class="row mb-4">
                                         <div class="col-5">
                                             <div class="view overlay">
-                                                <img src="https://mdbootstrap.com/img/Photos/Others/photo13.jpg" class="img-fluid z-depth-1 rounded-0" alt="sample image">
+                                                <img src="{{$post->imagen_principal}}" class="img-fluid z-depth-1 rounded-0 imagen_destacados_lateral" alt="sample image">
                                                 <a  href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">
                                                     <div class="mask rgba-white-slight waves-effect waves-light"></div>
                                                 </a>
@@ -292,7 +304,7 @@
                                 </div>
                             </div>
                         </section>
-                        <section class="archive mb-5">
+                        <!--<section class="archive mb-5">
                             <div class="card card-body pb-0">
                                 <div class="single-post">
 
@@ -312,7 +324,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section>
+                        </section>-->
                         <section class="mb-4">
                             <div class="row mt-4">
                                 <div class="col-md-12 col-lg-12">
@@ -376,7 +388,7 @@
                                             @foreach($post_populares->take(3) as $post)
                                             <div class="carousel-item {{$loop->first?'active':''}}">
                                                 <div class="view">
-                                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/8-col/img%20(126).jpg" class="img-fluid" alt="">
+                                                    <img src="{{$post->imagen_principal}}" class="img-fluid imagen_destacados_pequeña" alt="">
                                                     <a  href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">
                                                         <div class="mask flex-center rgba-stylish-strong waves-effect waves-light"></div>
                                                     </a>

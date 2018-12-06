@@ -28,7 +28,7 @@ Route::get('categoria/{categoria}',['as'=>'categoria','uses'=>'HomeController@ca
 
 Route::get('buscar',['as'=>'buscar','uses'=>'HomeController@buscar']);
 
-Route::get('{categoria}/{slug}', ['as' => 'vista_post', 'uses' => 'HomeController@vista_post']);
+Route::get('post/{categoria}/{slug}', ['as' => 'vista_post', 'uses' => 'HomeController@vista_post']);
 Route::get('pintar-categorias',['as'=>'pintar_categorias','uses'=>'HomeController@pintar_categorias_nav']);
 
 // administrar categorias

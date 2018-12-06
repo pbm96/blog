@@ -18,7 +18,8 @@ class CreatePostsTable extends Migration
             $table->string('slug');
             $table->string('titulo_post');
             $table->string('subtitulo_post');
-            $table->string('descripcion_post');
+            $table->longText('descripcion_post');
+            $table->longText('imagen_principal');
             $table->integer('visitas_semanales')->default(0);
             $table->integer('user_id')->unsigned();
             $table->integer('categoria_id')->unsigned();

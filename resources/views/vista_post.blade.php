@@ -54,16 +54,23 @@
         .nombre_comentario{
             margin-top: -1.6em;
         }
+        .imagen_principal_noticia{
+            width: 100%;
+            height: 658px;
+        }
     }
     @media (max-width: 992px) {
         .imagen_principal_noticia{
             height: 250px;
+            width: 100%;
+
         }
 
     }
-    .imagen_principal_noticia{
-        width: 100%;
+    .imagenes_destacadas{
+        height: 177px;
     }
+
 
 
 
@@ -75,7 +82,7 @@
 
     <section>
         <div >
-            <img src="http://mdbootstrap.com/img/Photos/Others/nature4.jpg" class="imagen_principal_noticia">
+            <img src="{{$post[0]->imagen_principal}}" class="imagen_principal_noticia">
         </div>
     </section>
     <div class="container-fluid mb-5">
@@ -183,7 +190,7 @@
 
                                     </section>
 
-                                    <section class="text-left mt-4">
+                                    <section class="text-left mt-4 hidden-sm">
 
                                         <h4 class="font-weight-bold mt-5 mb-5 text-center">
                                             <strong>Últimas noticias</strong>
@@ -206,7 +213,7 @@
                                                                 <div class="col-lg-4 my-3 ">
                                                                     <div class="card">
                                                                         <div class="view overlay">
-                                                                            <img src="http://mdbootstrap.com/img/Photos/Others/img (40).jpg" class="card-img-top" alt="sample image">
+                                                                            <img src="{{$noticia->imagen_principal}}" class="card-img-top imagenes_destacadas" alt="sample image">
                                                                             <a href="{{route('vista_post',[$noticia->categoria->nombre_categoria,$noticia->slug])}}">
                                                                                 <div class="mask rgba-white-slight waves-effect waves-light"></div>
                                                                             </a>
@@ -289,9 +296,9 @@
                             "</div>" +
                             "</div>")
 
-                        alert('comentario publicado correctamente')
                         $('#publicar_comentario').prop("disabled", true);
 
+                        alert('comentario publicado correctamente')
 
                     }else{
                         alert('error al publicar comentario')
