@@ -2,23 +2,19 @@
 
     <div class="footer-left">
 
-        <h3>Company<span>logo</span></h3>
+        <h3>TECNO<span>FORYOU</span></h3>
 
-        <p class="footer-links">
-            <a href="#">Home</a>
-            ·
-            <a href="#">Blog</a>
-            ·
-            <a href="#">Pricing</a>
-            ·
-            <a href="#">About</a>
-            ·
-            <a href="#">Faq</a>
-            ·
-            <a href="#">Contact</a>
+        <p class="footer-links" id="enlaces_footer">
+            <a href="{{route('home')}}" class="enlace_footer">Home</a>
+
+            <a href="#" class="enlace_footer">About</a>
+
+            <a href="#" class="enlace_footer">Mapa Web</a>
+
+
         </p>
 
-        <p class="footer-company-name">Company Name © 2015</p>
+        <p class="footer-company-name">Tecnoforyou © 2018</p>
     </div>
 
     <div class="footer-center">

@@ -34,6 +34,9 @@
         margin-top: 7em;
         border-radius: 0.7em;
     }
+    .imagen_post_secundario{
+        height: 210px;
+    }
 
 </style>
 @endsection
@@ -63,7 +66,7 @@
                                             <div class="col-md-4 mb-4">
                                                 <div class="card text-left card_secundaria ">
                                                     <div class="view overlay">
-                                                        <img src="https://mdbootstrap.com/img/Photos/Others/images/14.jpg" class="card-img-top" alt="">
+                                                        <img src="{{$post->imagen_principal}}" class="card-img-top imagen_post_secundario" alt="">
                                                         <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">
                                                             <div class="mask rgba-white-slight waves-effect waves-light"></div>
                                                         </a>

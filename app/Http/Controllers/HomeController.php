@@ -98,7 +98,7 @@ class HomeController extends Controller
 
         $categoria_completa = Categoria::where('nombre_categoria',$categoria)->first();
 
-        $posts = Post::where('categoria_id',$categoria_completa->id)->orderBy('created_at','DESC')->paginate(3);
+        $posts = Post::where('categoria_id',$categoria_completa->id)->orderBy('created_at','DESC')->paginate(30);
 
         $this->superadminController->fecha_post($posts);
 
@@ -110,7 +110,7 @@ class HomeController extends Controller
         $buscar = Input::get('buscar');
         $posts = Post::where('titulo_post', 'like', '%'.$buscar.'%')
             ->orWhere('descripcion_post', 'like', '%'.$buscar.'%')
-            ->orderBy('created_at', 'desc')->paginate(6);
+            ->orderBy('created_at', 'desc')->paginate(30);
 
         if (sizeof($posts)> 0){
             return view('vista_categorias')->with('posts',$posts)->with('buscar',$buscar);

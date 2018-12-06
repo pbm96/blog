@@ -84,15 +84,14 @@
 
                     $('#categorias_nav').append('<a class="dropdown-item" href="'+url+'">'+data[i]['nombre_categoria']+'</a>')
 
+                    $('#enlaces_footer').append('<a class="enlace_footer" href="'+url+'">'+data[i]['nombre_categoria']+'</a>')
+
                     url = '{{route('categoria',":nombre_categoria")}}'
 
                 }
             }
         })
     });
-
-
-
 
     //buscador
     $( "#icono_buscador" ).click(function() {
@@ -106,6 +105,8 @@
     });
 
 
+    //google adsense
+
 
 //llamar a categorias
 
@@ -113,6 +114,14 @@
 
 
 
+</script>
+<!-- google adsense-->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-7435489657420119",
+        enable_page_level_ads: true
+    });
 </script>
 @yield('scripts')
 </body>

@@ -53,7 +53,7 @@
         -webkit-box-orient: vertical;
         display: -webkit-box;
         -webkit-line-clamp: 2;
-        height: 45px;
+        height: 50px;
     }
     #subtitulo_card_pequeña{
         overflow: hidden;
@@ -95,6 +95,22 @@
         height: 35.02px ;
     }
 
+    .publicidad_lateral{
+        height: 300px ;
+        background-color: #FFFFFF;
+    }
+
+    .publicidad_superior_inferior{
+        height: 80px ;
+        background-color: #FFFFFF;
+    }
+
+    @media (min-width: 992px) {
+        .imagen_primer_post{
+            height: 300px ;
+        }
+    }
+
 
 
 
@@ -102,7 +118,7 @@
 @endsection
 
 @section('cabezera')
-    <header >
+    <header>
         <!--<section>
             <div class="">
                 <img src="http://mdbootstrap.com/img/Photos/Others/nature4.jpg" style="width: 100%;height: 500px">
@@ -150,12 +166,14 @@
     </header>
     @endsection
 @section('contenido')
-
     <section>
         <div class="container-fluid grey lighten-4">
             <div class="container">
-                <div class="row pt-5">
-                    <div class="col-lg-8 col-12 mt-1 mx-lg-4">
+                <div class="row pt-4">
+                    <div class="publicidad_superior_inferior col-sm-12 ">
+                        publicidad
+                    </div>
+                    <div class="col-lg-8 col-12 mt-4 mx-lg-4">
                         <section class="section extra-margins pb-3 text-center text-lg-left">
                             <div class="row mb-4">
                                 @if(isset($ultimo_post))
@@ -232,7 +250,7 @@
                         </div>
                         @endif
                     </div>
-                    <div class="col-lg-3 col-12 mt-1 hidden-sm">
+                    <div class="col-lg-3 col-12 mt-4 hidden-sm">
                        <!-- <div class="card">
                             <div class="view overlay">
                                 <img src="https://mdbootstrap.com/img/Photos/Others/girl5.jpg" class="card-img-top" alt="">
@@ -270,7 +288,6 @@
                                 </ul>
                             </div>
                         </div> -->
-
                         <section class="section widget-content ">
                             <div class="card card-body pb-0">
                                 <div class="single-post">
@@ -304,6 +321,9 @@
                                 </div>
                             </div>
                         </section>
+                        <section class="mb-4 mt-4 publicidad_lateral">
+                            publicidad
+                        </section>
                         <!--<section class="archive mb-5">
                             <div class="card card-body pb-0">
                                 <div class="single-post">
@@ -325,30 +345,7 @@
                                 </div>
                             </div>
                         </section>-->
-                        <section class="mb-4">
-                            <div class="row mt-4">
-                                <div class="col-md-12 col-lg-12">
-                                    <div class="card text-left mb-3">
-                                        <div class="view overlay">
-                                            <div class="embed-responsive embed-responsive-16by9">
-                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen=""></iframe>
-                                            </div>
-                                            <a>
-                                                <div class="mask rgba-white-slight waves-effect waves-light"></div>
-                                            </a>
-                                        </div>
-                                        <div class="card-body mx-2">
-                                            <a>
-                                                <h5 class="card-title text-center my-2">
-                                                    <strong>Visit my YouTube channel!</strong>
-                                                </h5>
-                                            </a>
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
                         <section class="section mb-5">
                             <div class="card card-body pb-0">
                                 <div class="single-post">
@@ -421,6 +418,9 @@
                             </div>
                         </section>
                     </div>
+                </div>
+                <div class="publicidad_superior_inferior col-sm-12 mb-4">
+                    publicidad
                 </div>
             </div>
         </div>
