@@ -85,6 +85,9 @@
         }
 
     }
+    .titulo_destacados_pequeño{
+        bottom: 10px;
+    }
     .imagen_post_secundario{
         height: 210px;
     }
@@ -390,7 +393,7 @@
                                                         <div class="mask flex-center rgba-stylish-strong waves-effect waves-light"></div>
                                                     </a>
                                                 </div>
-                                                <div class="carousel-caption">
+                                                <div class="carousel-caption titulo_destacados_pequeño">
                                                     <div class="animated fadeInDown">
                                                         <h4 class="h4-responsive titulo_post_popular">
                                                             <a  href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}" class="white-text font-weight-bold">{{$post->titulo_post}}</a>
