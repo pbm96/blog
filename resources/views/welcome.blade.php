@@ -113,7 +113,10 @@
             height: 300px ;
         }
     }
-
+    .imagen_mia{
+        height: 270px;
+        width: 100%;
+    }
 
 
 
@@ -176,7 +179,7 @@
                     <div class="publicidad_superior_inferior col-sm-12 publicidad">
                         publicidad
                     </div>
-                    <div class="col-lg-8 col-12 mt-4 mx-lg-4">
+                    <div class="col-lg-8 col-sm-12 mt-4 mx-lg-4">
                         <section class="section extra-margins pb-3 text-center text-lg-left">
                             <div class="row mb-4">
                                 @if(isset($ultimo_post))
@@ -254,9 +257,9 @@
                         @endif
                     </div>
                     <div class="col-lg-3 col-12 mt-4 hidden-sm">
-                       <!-- <div class="card">
+                       <div class="card mb-4">
                             <div class="view overlay">
-                                <img src="https://mdbootstrap.com/img/Photos/Others/girl5.jpg" class="card-img-top" alt="">
+                                <img src="{{$user->imagen}}" class="card-img-top imagen_mia" alt="">
                                 <a>
                                     <div class="mask rgba-white-slight waves-effect waves-light"></div>
                                 </a>
@@ -267,8 +270,8 @@
                                 </h5>
 
                                 <p class="mt-3 dark-grey-text font-small text-center">
-                                    <em>Hello, I'm Anna. I love travel around the world and take photos of landscapes and local
-                                        people.
+                                    <em>Mi nombre es Pablo Bonillo, soy estudiante de Ingenieria informatica, desarrollador web y creador de Tecnoforyou...
+                                        <a class="teal-text" href="{{route('sobre_mi')}}">+Info</a>
                                     </em>
                                 </p>
 
@@ -290,7 +293,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div> -->
+                        </div>
                         <section class="section widget-content ">
                             <div class="card card-body pb-0 mb-4">
                                 <div class="single-post">

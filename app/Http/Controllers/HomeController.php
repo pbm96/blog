@@ -39,6 +39,8 @@ class HomeController extends Controller
             //self::sacar_mes_post($posts);
         $categorias = Categoria::all();
 
+        $user = User::where('nombre','pablo')->where('apellidos','bonillo molina')->first();
+
 
          $posts_categorias = Post::groupBy('categoria_id')->select('categoria_id', DB::raw('count(*) as total'))->pluck('total','categoria_id')->all();
 
@@ -62,7 +64,7 @@ class HomeController extends Controller
         unset($posts[0]);
 
 
-        return view('welcome')->with('posts',$posts)->with('ultimo_post',$ultimo_post)->with('categorias',$categorias)->with('post_populares', $posts_populares);
+        return view('welcome')->with('posts',$posts)->with('ultimo_post',$ultimo_post)->with('categorias',$categorias)->with('post_populares', $posts_populares)->with('user', $user);
     }
 
     public function vista_post($categoria,$slug){
