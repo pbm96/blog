@@ -25,12 +25,12 @@
                     @else
 
                     <li class="nav-item avatar dropdown pl-4">
-                        <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light" id="perfil_link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg"  class="rounded-circle z-depth-0 imagen_perfil" alt="avatar image">
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-5">
-                            <a class="dropdown-item waves-effect waves-light" href="{{route('perfil_superadmin',auth()->user()->id)}}">Panel Administrador</a>
-                            <a class="dropdown-item  waves-effect waves-light" href="{{ route('logout') }}"
+                        <div class="dropdown-menu dropdown-primary " id="perfil_nav">
+                            <a class="dropdown-item" href="{{route('perfil_superadmin',auth()->user()->id)}}">Panel Administrador</a>
+                            <a class="dropdown-item " href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}

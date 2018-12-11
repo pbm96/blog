@@ -173,7 +173,7 @@
         <div class="container-fluid grey lighten-4">
             <div class="container">
                 <div class="row pt-4">
-                    <div class="publicidad_superior_inferior col-sm-12 ">
+                    <div class="publicidad_superior_inferior col-sm-12 publicidad">
                         publicidad
                     </div>
                     <div class="col-lg-8 col-12 mt-4 mx-lg-4">
@@ -215,7 +215,7 @@
                                 <div class="col-md-6 mb-4">
                                     <div class="card text-left card_secundaria ">
                                         <div class="view overlay">
-                                            <img src="{{$post->imagen_principal}}" class="card-img-top imagen_post_secundario" alt="Embedded Image">
+                                            <img src="{{$post->imagen_principal}}" class="card-img-top imagen_post_secundario" alt="">
                                             <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">
                                                 <div class="mask rgba-white-slight waves-effect waves-light "></div>
                                             </a>
@@ -292,7 +292,7 @@
                             </div>
                         </div> -->
                         <section class="section widget-content ">
-                            <div class="card card-body pb-0">
+                            <div class="card card-body pb-0 mb-4">
                                 <div class="single-post">
                                     <p class="font-weight-bold dark-grey-text text-center spacing grey lighten-4 py-2 mb-4">
                                         <strong>ARTICULOS POPULARES</strong>
@@ -324,7 +324,7 @@
                                 </div>
                             </div>
                         </section>
-                        <section class="mb-4 mt-4 publicidad_lateral">
+                        <section class="mb-4 mt-4 publicidad_lateral publicidad">
                             publicidad
                         </section>
                         <!--<section class="archive mb-5">
@@ -422,7 +422,7 @@
                         </section>
                     </div>
                 </div>
-                <div class="publicidad_superior_inferior col-sm-12 mb-4">
+                <div class="publicidad_superior_inferior col-sm-12 mb-4 publicidad">
                     publicidad
                 </div>
             </div>

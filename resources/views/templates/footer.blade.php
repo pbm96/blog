@@ -7,13 +7,13 @@
         <p class="footer-links">
             <a href="{{route('home')}}" class="enlace_footer_lateral">Home</a>
             |
-            <a href="#" class="enlace_footer_lateral">About</a>
+            <a href="{{route('about')}}" class="enlace_footer_lateral">About</a>
             |
-            <a href="#" class="enlace_footer_lateral">Mapa Web</a>
+            <a href="{{route('mapa_web')}}" class="enlace_footer_lateral">Mapa Web</a>
             |
-            <a href="#" class="enlace_footer_lateral">Licencia</a>
+            <a href="{{route('licencia')}}" class="enlace_footer_lateral">Licencia</a>
             |
-            <a href="#" class="enlace_footer_lateral">Politica de cookies</a>
+            <a href="{{route('cookies')}}" class="enlace_footer_lateral">Politica de cookies</a>
 
         </p>
         <div class="mb-3">

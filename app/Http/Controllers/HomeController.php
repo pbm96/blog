@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Categoria;
 use App\Comentario;
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -130,28 +131,44 @@ class HomeController extends Controller
 
         return response()->json($categorias);
     }
+    public function cookies(){
+        return view('cookies');
+    }
+    public function licencia(){
+        return view('licencia');
+    }
 
- /*   public function sacar_mes_post($posts){
-        $meses= [];
-        $mes_incluido = false;
-        foreach ($posts as $post){
-            $mes = $post->created_at->month;
+    public function about(){
+        $user = User::where('nombre','pablo')->where('apellidos','Bonillo Molina')->first();
 
-            if (empty($meses)){
-                array_push($meses,$mes);
-            }else {
+        return view('about')->with('user',$user);
+    }
+    public function mapa_web(){
+        return view('about');
+    }
 
-                for ($i = 0; $i < sizeof($meses); $i++) {
-                    if ($mes != $meses[$i]) {
-                        $mes_incluido = true;
-                    }
-                }
-                if ($mes_incluido == true){
-                    array_push($meses, $mes);
-                }
-            }
 
-        }
-        dd($meses);
-    }*/
+    /*   public function sacar_mes_post($posts){
+           $meses= [];
+           $mes_incluido = false;
+           foreach ($posts as $post){
+               $mes = $post->created_at->month;
+
+               if (empty($meses)){
+                   array_push($meses,$mes);
+               }else {
+
+                   for ($i = 0; $i < sizeof($meses); $i++) {
+                       if ($mes != $meses[$i]) {
+                           $mes_incluido = true;
+                       }
+                   }
+                   if ($mes_incluido == true){
+                       array_push($meses, $mes);
+                   }
+               }
+
+           }
+           dd($meses);
+       }*/
 }

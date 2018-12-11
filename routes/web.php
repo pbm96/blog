@@ -52,6 +52,12 @@ Route::put('editar-perfil/{id}',['as'=>'editar_perfil','uses'=>'SuperadminContro
 Route::post('escribir-comentario',['as'=>'escribir_comentario','uses'=>'ComentariosController@escribir_comentario']);
 
 
+Route::get('cookies', ['as' => 'cookies', 'uses' => 'HomeController@cookies']);
+Route::get('licencia', ['as' => 'licencia', 'uses' => 'HomeController@licencia']);
+Route::get('about', ['as' => 'about', 'uses' => 'HomeController@about']);
+Route::get('mapa-web', ['as' => 'mapa_web', 'uses' => 'HomeController@mapa_web']);
+
+
 
 //Route::get('/ajax/products',['as'=>'post_ajax','uses'=>'SuperadminController@posts_ajax']);
 

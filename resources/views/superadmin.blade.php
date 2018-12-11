@@ -254,7 +254,9 @@
                                 </div>
                             </div>
                         </div>
+
                 </section>
+            </div>
 
 
             <!-- Crear entrada-->

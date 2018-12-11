@@ -6,12 +6,12 @@ header {
     header {
         padding-top: 68px ;
     }
-    #categorias_nav{
+    #categorias_nav, #perfil_nav{
         margin-top: 0.7em;
         text-align: center;
         margin-left: -1.5em;
     }
-    #categorias_link::after{
+    #categorias_link::after ,#perfil_link::after {
         display: none;
     }
 }
@@ -36,13 +36,17 @@ header {
 
 
 .dropdown .dropdown-menu.dropdown-primary .dropdown-item.active, .dropdown .dropdown-menu.dropdown-primary .dropdown-item:active, .dropdown .dropdown-menu.dropdown-primary .dropdown-item:hover, .dropleft .dropdown-menu.dropdown-primary .dropdown-item.active, .dropleft .dropdown-menu.dropdown-primary .dropdown-item:active, .dropleft .dropdown-menu.dropdown-primary .dropdown-item:hover, .dropright .dropdown-menu.dropdown-primary .dropdown-item.active, .dropright .dropdown-menu.dropdown-primary .dropdown-item:active, .dropright .dropdown-menu.dropdown-primary .dropdown-item:hover, .dropup .dropdown-menu.dropdown-primary .dropdown-item.active, .dropup .dropdown-menu.dropdown-primary .dropdown-item:active, .dropup .dropdown-menu.dropdown-primary .dropdown-item:hover {
-    background-color: #4285f4!important;
+    background-color: #d4d4d4 !important;
     -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
     box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
     -webkit-border-radius: .125rem;
     border-radius: .125rem;
+    font-weight: bold;
 }
 
 .dropdown .dropdown-menu, .dropleft .dropdown-menu, .dropright .dropdown-menu, .dropup .dropdown-menu {
     padding: .5rem;
+}
+.navbar{
+    background-color:#292c2f !important ;
 }

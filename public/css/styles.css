@@ -38,3 +38,14 @@ html, body{
     font: normal 25px 'Cookie', cursive;
 
 }
+
+.publicidad{
+    display: none;
+}
+a{
+    color: #292c2f ;
+}
+a:hover{
+    color: #909090 ;
+
+}
