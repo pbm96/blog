@@ -147,6 +147,12 @@ class HomeController extends Controller
         return view('about');
     }
 
+    public function sobre_mi(){
+        $user = User::where('nombre','pablo')->where('apellidos','Bonillo Molina')->first();
+
+        return view('sobre_mi')->with('user',$user);
+    }
+
 
     /*   public function sacar_mes_post($posts){
            $meses= [];

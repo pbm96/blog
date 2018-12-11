@@ -14,7 +14,7 @@
                     </div>
                 </li>
                 <li class="nav-item pt-1">
-                    <a class="nav-link js-scroll-trigger" href="#">Sobre mi</a>
+                    <a class="nav-link js-scroll-trigger" href="{{route('sobre_mi')}}">Sobre mi</a>
                 </li>
 
                 @guest()
@@ -26,7 +26,7 @@
 
                     <li class="nav-item avatar dropdown pl-4">
                         <a class="nav-link dropdown-toggle waves-effect waves-light" id="perfil_link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg"  class="rounded-circle z-depth-0 imagen_perfil" alt="avatar image">
+                            <img src="{{auth()->user()->imagen}}"  class="rounded-circle z-depth-0 imagen_perfil" alt="avatar image">
                         </a>
                         <div class="dropdown-menu dropdown-primary " id="perfil_nav">
                             <a class="dropdown-item" href="{{route('perfil_superadmin',auth()->user()->id)}}">Panel Administrador</a>

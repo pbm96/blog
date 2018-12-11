@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('nombre');
             $table->string('apellidos');
             $table->longText('descripcion_user');
+            $table->longText('imagen')->nullable();
+
             $table->string('email')->unique();
             $table->boolean('superadmin');
             $table->boolean('admin');

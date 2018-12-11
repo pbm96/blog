@@ -56,6 +56,8 @@ Route::get('cookies', ['as' => 'cookies', 'uses' => 'HomeController@cookies']);
 Route::get('licencia', ['as' => 'licencia', 'uses' => 'HomeController@licencia']);
 Route::get('about', ['as' => 'about', 'uses' => 'HomeController@about']);
 Route::get('mapa-web', ['as' => 'mapa_web', 'uses' => 'HomeController@mapa_web']);
+Route::get('autor', ['as' => 'sobre_mi', 'uses' => 'HomeController@sobre_mi']);
+
 
 
 
