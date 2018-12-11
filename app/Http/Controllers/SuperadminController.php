@@ -50,10 +50,7 @@ class SuperadminController extends Controller
         $user = auth()->user();
        $imagen = $request->file('imagen_principal');
 
-       $path= $imagen->path();
-       $tipo = $type = pathinfo($path, PATHINFO_EXTENSION);
-        $data = file_get_contents($path);
-        $imagen_base64 = 'data:image/' . $tipo . ';base64,' . base64_encode($data);
+        $imagen_base64 = self::imagen_base_64($imagen);
 
         $entrada = new Post($request->all());
 
@@ -141,6 +138,42 @@ class SuperadminController extends Controller
     {
 
     }
+    public function modificar_post_vista($id){
+        $post = Post::find($id);
+
+        $categorias_select = Categoria::orderBy('nombre_categoria', 'ASC')->pluck('nombre_categoria', 'id');
+
+        return view('modificar_post')->with('post',$post)->with('categorias_select',$categorias_select);
+
+    }
+    public function modificar_post(Request $request, $id){
+
+        $post = Post::find($id);
+
+        if($request->hasFile('imagen_principal')){
+            $imagen = $request->file('imagen_principal');
+
+            $imagen_base64 = self::imagen_base_64($imagen);
+
+
+            $request->imagen_principal = $imagen_base64;
+
+        }else{
+            $request->imagen_principal = $post->imagen_principal;
+        }
+        $post->fill($request->all());
+
+        if (isset($imagen_base64)){
+            $post->imagen_principal = $imagen_base64;
+
+        }
+        $post->save();
+
+        return redirect()->route('perfil_superadmin', auth()->user()->id);
+    }
+    public function eliminar_post($id){
+
+    }
 
     public function obtener_posts($id)
     {
@@ -171,6 +204,16 @@ class SuperadminController extends Controller
             $minutos = $minutos < 10 ? '0' . $minutos : $minutos;
             $post->hora = $hora . ':' . $minutos;
         }
+    }
+
+    public function imagen_base_64($imagen){
+
+        $path= $imagen->path();
+        $tipo = $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $imagen_base64 = 'data:image/' . $tipo . ';base64,' . base64_encode($data);
+
+        return $imagen_base64;
     }
 
 

@@ -131,7 +131,37 @@
             padding: 1.6rem 1rem;
             text-align: center;
         }
+        #titulo_card_pequeña{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            height: 45px;
 
+        }
+        #subtitulo_card_pequeña{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+        }
+
+        .card_secundaria{
+            height: 516px;
+
+        }
+
+        .caja_subtitulo_pequeñas{
+            height: 100px;
+            overflow: hidden;
+
+        }
+
+        .imagen_post_secundario{
+            height: 210px;
+        }
 
     </style>
 
@@ -170,50 +200,61 @@
         <div class="tab-content pt-5" id="myTabContentEx">
             <div class="tab-pane fade active show col-sm-12" id="mis_posts" role="tabpanel"
                  aria-labelledby="mis_posts_tab">
-                @foreach($posts->chunk(3) as $postChunk)
-                    <div class="row">
-                        @foreach( $postChunk as $post)
-                            <div class="col-sm-4 mb-4">
-                                <div class="card">
-                                    <!-- Card image -->
-                                    <div class="view overlay">
-                                        <img class="card-img-top"
-                                             src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%28131%29.jpg"
-                                             alt="Card image cap">
-                                        <a>
-                                            <div class="mask rgba-white-slight"></div>
-                                        </a>
+                <section class="mt-5">
+                    <div class="container-fluid grey lighten-4">
+                            <div class="row pt-3">
+                                <div class="col-lg-12 col-12 mt-1 ">
+                                    <section class="section extra-margins pb-3 text-center text-lg-left">
+                                        @if(isset($posts))
+                                            @foreach($posts->chunk(3) as $postchunck)
+                                                <div class="row text-center">
+                                                    @foreach($postchunck as $post)
+                                                        <div class="col-md-4 mb-4">
+                                                            <div class="card text-left card_secundaria ">
+                                                                <div class="view overlay">
+                                                                    <img src="{{$post->imagen_principal}}" class="card-img-top imagen_post_secundario" alt="">
+                                                                    <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">
+                                                                        <div class="mask rgba-white-slight waves-effect waves-light"></div>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="card-body mx-4 p-0">
+                                                                    <a href="" class="teal-text text-center text-uppercase font-small">
+                                                                    </a><h6 class="mb-3 mt-3"><a href="" class="teal-text text-center text-uppercase font-small">
+                                                                            <strong>{{$post->categoria->nombre_categoria}}</strong>
+                                                                        </a><a class="dark-grey-text font-small"> - {{$post->fecha}}</a>
+                                                                    </h6>
+                                                                    <div class=" titulo_caja_pequeña">
+                                                                        <h5 title="{{$post->titulo_post}}" id="titulo_card_pequeña" >
+                                                                            <strong>{{$post->titulo_post}}</strong>
+                                                                        </h5>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div class="caja_subtitulo_pequeñas">
+                                                                        <p class="dark-grey-text mb-4 " id="subtitulo_card_pequeña">{{$post->subtitulo_post}}</p>
+                                                                    </div>
+                                                                    <p class="text-right mb-0 text-uppercase font-small spacing font-weight-bold">
+                                                                        <a class="btn btn-outline-danger" href="{{route('eliminar_post',$post->id)}}"><i class="fa fa-trash"></i></a>
+                                                                        <a class="btn btn-outline-info" href="{{route('modificar_post_vista',$post->id)}}"><i class="fa fa-pencil"></i></a>
+                                                                        <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">leer más
+                                                                            <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                                                                        </a>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            @endforeach
+
+                                    </section>
+                                    <div class="row justify-content-around">
+                                        <div class="">{{ $posts->render() }}</div>
                                     </div>
-
-                                    <!-- Card content -->
-                                    <div class="card-body">
-
-                                        <!-- Social shares button -->
-                                        <a class="activator waves-effect waves-light mr-4 "><i
-                                                    class="fa fa-share-alt"></i></a>
-                                        <h4 class="card-title ">{{$post->titulo_post}}</h4>
-
-
-                                        <hr>
-                                        <!-- Text -->
-                                        <p class="card-text">{{$post->subtitulo_post}}</p>
-                                        <!-- Link -->
-                                        <a class="ml-4 fecha  text-muted ">{{$post->fecha}}</a>
-                                        <a href="#!" class="black-text d-flex justify-content-end"><h5>Read more <i
-                                                        class="fa fa-angle-double-right"></i></h5></a>
-
-                                    </div>
-
+                                    @endif
                                 </div>
                             </div>
-                        @endforeach
-                    </div>
-                @endforeach
-
-                <div class="row justify-content-around">
-                    <div class="">{{ $posts->render() }}</div>
-                </div>
-            </div>
+                        </div>
+                </section>
 
 
             <!-- Crear entrada-->
