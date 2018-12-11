@@ -63,11 +63,12 @@
             margin: .375rem;
             padding-top: .7rem;
             padding-bottom: .7rem;
-            box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
-            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
         }
-        .borrar:hover{
-            box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+
+        .borrar:hover {
+            box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
             outline: 0;
         }
 
@@ -75,11 +76,13 @@
         .switch label {
             cursor: pointer;
         }
+
         .switch label input[type=checkbox] {
             opacity: 0;
             width: 0;
             height: 0;
         }
+
         .switch label .lever {
             content: "";
             display: inline-block;
@@ -96,13 +99,16 @@
             -o-transition: background .3s ease;
             transition: background .3s ease;
         }
-        .switch label input[type=checkbox]:checked+.lever {
+
+        .switch label input[type=checkbox]:checked + .lever {
             background-color: #dccfe2;
         }
-        .switch label input[type=checkbox]:checked+.lever:after {
+
+        .switch label input[type=checkbox]:checked + .lever:after {
             background-color: #a6c;
             left: 1.5rem;
         }
+
         .switch label .lever:after {
             content: "";
             position: absolute;
@@ -112,26 +118,29 @@
             border-radius: 1.3125rem;
             left: -.3125rem;
             top: -.1875rem;
-            -webkit-box-shadow: 0 0.0625rem 0.1875rem 0.0625rem rgba(0,0,0,.4);
-            box-shadow: 0 0.0625rem 0.1875rem 0.0625rem rgba(0,0,0,.4);
+            -webkit-box-shadow: 0 0.0625rem 0.1875rem 0.0625rem rgba(0, 0, 0, .4);
+            box-shadow: 0 0.0625rem 0.1875rem 0.0625rem rgba(0, 0, 0, .4);
             width: 1.3125rem;
             height: 1.3125rem;
-            -webkit-transition: left .3s ease,background .3s ease,-webkit-box-shadow 1s ease;
-            transition: left .3s ease,background .3s ease,-webkit-box-shadow 1s ease;
-            -o-transition: left .3s ease,background .3s ease,box-shadow 1s ease;
-            transition: left .3s ease,background .3s ease,box-shadow 1s ease;
-            transition: left .3s ease,background .3s ease,box-shadow 1s ease,-webkit-box-shadow 1s ease;
+            -webkit-transition: left .3s ease, background .3s ease, -webkit-box-shadow 1s ease;
+            transition: left .3s ease, background .3s ease, -webkit-box-shadow 1s ease;
+            -o-transition: left .3s ease, background .3s ease, box-shadow 1s ease;
+            transition: left .3s ease, background .3s ease, box-shadow 1s ease;
+            transition: left .3s ease, background .3s ease, box-shadow 1s ease, -webkit-box-shadow 1s ease;
         }
+
         .card.card-cascade.narrower .view.view-cascade {
             margin-left: 4%;
             margin-right: 4%;
             margin-top: -1.25rem;
         }
+
         .card.card-cascade .view.view-cascade.gradient-card-header {
             padding: 1.6rem 1rem;
             text-align: center;
         }
-        #titulo_card_pequeña{
+
+        #titulo_card_pequeña {
             overflow: hidden;
             text-overflow: ellipsis;
             -webkit-box-orient: vertical;
@@ -140,7 +149,8 @@
             height: 45px;
 
         }
-        #subtitulo_card_pequeña{
+
+        #subtitulo_card_pequeña {
             overflow: hidden;
             text-overflow: ellipsis;
             -webkit-box-orient: vertical;
@@ -148,21 +158,39 @@
             -webkit-line-clamp: 4;
         }
 
-        .card_secundaria{
+        .card_secundaria {
             height: 516px;
 
         }
 
-        .caja_subtitulo_pequeñas{
+        .caja_subtitulo_pequeñas {
             height: 100px;
             overflow: hidden;
 
         }
 
-        .imagen_post_secundario{
+        .imagen_post_secundario {
             height: 210px;
         }
 
+        .foto_user_perfil {
+            height: 130px;
+            width: 130px;
+        }
+        .upload-btn-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+
+        .upload-btn-wrapper input[type=file] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
     </style>
 
 @endsection
@@ -202,58 +230,70 @@
                  aria-labelledby="mis_posts_tab">
                 <section class="mt-5">
                     <div class="container-fluid grey lighten-4">
-                            <div class="row pt-3">
-                                <div class="col-lg-12 col-12 mt-1 ">
-                                    <section class="section extra-margins pb-3 text-center text-lg-left">
-                                        @if(isset($posts))
-                                            @foreach($posts->chunk(3) as $postchunck)
-                                                <div class="row text-center">
-                                                    @foreach($postchunck as $post)
-                                                        <div class="col-md-4 mb-4">
-                                                            <div class="card text-left card_secundaria ">
-                                                                <div class="view overlay">
-                                                                    <img src="{{$post->imagen_principal}}" class="card-img-top imagen_post_secundario" alt="">
-                                                                    <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">
-                                                                        <div class="mask rgba-white-slight waves-effect waves-light"></div>
+                        <div class="row pt-3">
+                            <div class="col-lg-12 col-12 mt-1 ">
+                                <section class="section extra-margins pb-3 text-center text-lg-left">
+                                    @if(isset($posts))
+                                        @foreach($posts->chunk(3) as $postchunck)
+                                            <div class="row text-center">
+                                                @foreach($postchunck as $post)
+                                                    <div class="col-md-4 mb-4">
+                                                        <div class="card text-left card_secundaria ">
+                                                            <div class="view overlay">
+                                                                <img src="{{$post->imagen_principal}}"
+                                                                     class="card-img-top imagen_post_secundario" alt="">
+                                                                <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">
+                                                                    <div class="mask rgba-white-slight waves-effect waves-light"></div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="card-body mx-4 p-0">
+                                                                <a href=""
+                                                                   class="teal-text text-center text-uppercase font-small">
+                                                                </a><h6 class="mb-3 mt-3"><a href=""
+                                                                                             class="teal-text text-center text-uppercase font-small">
+                                                                        <strong>{{$post->categoria->nombre_categoria}}</strong>
+                                                                    </a><a class="dark-grey-text font-small">
+                                                                        - {{$post->fecha}}</a>
+                                                                </h6>
+                                                                <div class=" titulo_caja_pequeña">
+                                                                    <h5 title="{{$post->titulo_post}}"
+                                                                        id="titulo_card_pequeña">
+                                                                        <strong>{{$post->titulo_post}}</strong>
+                                                                    </h5>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="caja_subtitulo_pequeñas">
+                                                                    <p class="dark-grey-text mb-4 "
+                                                                       id="subtitulo_card_pequeña">{{$post->subtitulo_post}}</p>
+                                                                </div>
+                                                                <p class="text-right mb-0 text-uppercase font-small spacing font-weight-bold">
+                                                                    <a class="btn btn-outline-danger"
+                                                                       href="{{route('eliminar_post',$post->id)}}"><i
+                                                                                class="fa fa-trash"></i></a>
+                                                                    <a class="btn btn-outline-info"
+                                                                       href="{{route('modificar_post_vista',$post->id)}}"><i
+                                                                                class="fa fa-pencil"></i></a>
+                                                                    <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">leer
+                                                                        más
+                                                                        <i class="fa fa-chevron-circle-right"
+                                                                           aria-hidden="true"></i>
                                                                     </a>
-                                                                </div>
-                                                                <div class="card-body mx-4 p-0">
-                                                                    <a href="" class="teal-text text-center text-uppercase font-small">
-                                                                    </a><h6 class="mb-3 mt-3"><a href="" class="teal-text text-center text-uppercase font-small">
-                                                                            <strong>{{$post->categoria->nombre_categoria}}</strong>
-                                                                        </a><a class="dark-grey-text font-small"> - {{$post->fecha}}</a>
-                                                                    </h6>
-                                                                    <div class=" titulo_caja_pequeña">
-                                                                        <h5 title="{{$post->titulo_post}}" id="titulo_card_pequeña" >
-                                                                            <strong>{{$post->titulo_post}}</strong>
-                                                                        </h5>
-                                                                    </div>
-                                                                    <hr>
-                                                                    <div class="caja_subtitulo_pequeñas">
-                                                                        <p class="dark-grey-text mb-4 " id="subtitulo_card_pequeña">{{$post->subtitulo_post}}</p>
-                                                                    </div>
-                                                                    <p class="text-right mb-0 text-uppercase font-small spacing font-weight-bold">
-                                                                        <a class="btn btn-outline-danger" href="{{route('eliminar_post',$post->id)}}"><i class="fa fa-trash"></i></a>
-                                                                        <a class="btn btn-outline-info" href="{{route('modificar_post_vista',$post->id)}}"><i class="fa fa-pencil"></i></a>
-                                                                        <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">leer más
-                                                                            <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                                                                        </a>
-                                                                    </p>
-                                                                </div>
+                                                                </p>
                                                             </div>
                                                         </div>
-                                                    @endforeach
-                                                </div>
-                                            @endforeach
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        @endforeach
 
-                                    </section>
-                                    <div class="row justify-content-around">
-                                        <div class="">{{ $posts->render() }}</div>
-                                    </div>
-                                    @endif
+                                </section>
+                                <div class="row justify-content-around">
+                                    <div class="">{{ $posts->render() }}</div>
                                 </div>
+                                @endif
                             </div>
                         </div>
+                    </div>
 
                 </section>
             </div>
@@ -268,7 +308,8 @@
                         <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                     </div>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="imagen_principal" id="imagen_principal" aria-describedby="inputGroupFileAddon01">
+                        <input type="file" class="custom-file-input" name="imagen_principal" id="imagen_principal"
+                               aria-describedby="inputGroupFileAddon01">
                         <label class="custom-file-label" for="imagen_principal">Choose file</label>
                     </div>
                 </div>
@@ -314,50 +355,72 @@
             </span>
                 @endif
 
-                <input type="submit" value="Crear Entrada">
+                <input type="submit" value="Crear Entrada" class="btn btn-success">
                 {!! Form::Close() !!}
             </div>
 
             <!--MI PERFIL-->
 
             <div class="tab-pane fade" id="mi_perfil" role="tabpanel" aria-labelledby="mi_perfil_tab">
-                {!! Form::Open(['route'=>['editar_perfil',auth()->user()->id],'method'=>'PUT',]) !!}
 
                 <section class="section mt-3">
                     <div class="row">
                         <div class="col-lg-4 mb-4">
                             <div class="card card-cascade narrower">
                                 <div class="view view-cascade gradient-card-header mdb-color lighten-3">
-                                    <h5 class="mb-0 font-weight-bold">Edit Photo</h5>
+                                    <h5 class="mb-0 font-weight-bold">Editar Foto</h5>
                                 </div>
                                 <div class="card-body card-body-cascade text-center">
-                                    <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" alt="User Photo" class="z-depth-1 mb-3 mx-auto">
-
-                                    <p class="text-muted"><small>Profile photo will be changed automatically</small></p>
+                                     <div class="row">
+                                    <img src="{{auth()->user()->imagen==null?'https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg':auth()->user()->imagen}}"
+                                         alt="User Photo" class="z-depth-1 mb-3 mx-auto foto_user_perfil">
+                                     </div>
+                                    {!! Form::Open(['route' => ['editar_foto_perfil',auth()->user()->id],'method'=>'PUT', 'enctype'=> 'multipart/data', 'files' => true ]) !!}
+                                    <div class="upload-btn-wrapper ">
+                                        <button class="btn btn-info">Cargar Imagen</button>
+                                        <input type="file" name="imagen" />
+                                    </div>
                                     <div class="row flex-center">
-                                        <button class="btn btn-info btn-rounded btn-sm waves-effect waves-light">Upload New Photo</button><br>
-                                        <button class="btn btn-danger btn-rounded btn-sm waves-effect waves-light">Delete</button>
+                                        <button class="btn btn-success btn-rounded btn-sm waves-effect waves-light">
+                                            Guardar Imagen
+                                        </button>
+                                        {!! Form::Close() !!}
+
+                                        <br>
+                                        {!! Form::Open(['route'=>['eliminar_foto_perfil',auth()->user()->id],'method'=>'DELETE',]) !!}
+
+                                        <button class="btn btn-danger btn-rounded btn-sm waves-effect waves-light">
+                                            Borrar
+                                        </button>
+                                        {!! Form::Close() !!}
+
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-lg-8 mb-4">
                             <div class="card card-cascade narrower">
                                 <div class="view view-cascade gradient-card-header mdb-color lighten-3">
                                     <h5 class="mb-0 font-weight-bold">Editar Perfil</h5>
                                 </div>
+                                {!! Form::Open(['route'=>['editar_perfil',auth()->user()->id],'method'=>'PUT',]) !!}
+
                                 <div class="card-body card-body-cascade text-center">
                                     <form>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="md-form mb-0">
-                                                    <input type="text" id="nombre" name="nombre" class="form-control " value="{{auth()->user()->nombre}}">
-                                                    <label for="nombre" data-error="wrong"  data-success="right" class="active">Nombre</label>
+                                                    <input type="text" id="nombre" name="nombre" class="form-control "
+                                                           value="{{auth()->user()->nombre}}">
+                                                    <label for="nombre" data-error="wrong" data-success="right"
+                                                           class="active">Nombre</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="md-form mb-0">
-                                                    <input type="text" id="apellidos" name="apellidos" class="form-control " value="{{auth()->user()->apellidos}}">
+                                                    <input type="text" id="apellidos" name="apellidos"
+                                                           class="form-control " value="{{auth()->user()->apellidos}}">
                                                     <label for="apellidos">Apellidos</label>
                                                 </div>
                                             </div>
@@ -365,8 +428,9 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="md-form mb-0">
-                                                    <input type="email" id="email" value="{{auth()->user()->email}}" class="form-control ">
-                                                    <label for="email" >Email</label>
+                                                    <input type="email" id="email" value="{{auth()->user()->email}}"
+                                                           class="form-control ">
+                                                    <label for="email">Email</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -380,21 +444,27 @@
                                             <div class="col-md-6">
                                                 <div class="md-form mb-0">
                                                     <input type="text" id="form77" class="form-control validate">
-                                                    <label for="form77" data-error="wrong" data-success="right">Confirmar Password</label>
+                                                    <label for="form77" data-error="wrong" data-success="right">Confirmar
+                                                        Password</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="md-form mb-0">
-                                                    <textarea type="text" id="descripcion_user"  name="descripcion_user" class="md-textarea form-control" rows="3" onfocus="aumentar_descripcion()" onfocusout="disminuir_descripcion()"></textarea>
                                                     <label for="descripcion_user">Descripcion</label>
+                                                    <textarea type="text" id="descripcion_user" name="descripcion_user"
+                                                              class="my-editor form-control">{{auth()->user()->descripcion_user}}</textarea>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12 text-center my-4">
-                                                <i class="btn btn-info btn-rounded waves-input-wrapper waves-effect waves-light" style="color:rgb(255, 255, 255);background:rgba(0, 0, 0, 0)"><input type="submit" value="Update Account" class="waves-button-input" style="background-color:rgba(0,0,0,0);"></i>
+                                                <i class="btn btn-info btn-rounded waves-input-wrapper waves-effect waves-light"
+                                                   style="color:rgb(255, 255, 255);background:rgba(0, 0, 0, 0)"><input
+                                                            type="submit" value="Update Account"
+                                                            class="waves-button-input"
+                                                            style="background-color:rgba(0,0,0,0);"></i>
                                             </div>
                                         </div>
                                     </form>
@@ -438,7 +508,8 @@
                                     <div class="switch ">
                                         <label>
                                             Off
-                                            <input type="checkbox" {{$user->admin==1?'checked':''}} name="admin" value="1" id="check{{$user->id}}" >
+                                            <input type="checkbox" {{$user->admin==1?'checked':''}} name="admin"
+                                                   value="1" id="check{{$user->id}}">
                                             <span class="lever"></span> On
                                         </label>
                                     </div>
@@ -453,14 +524,17 @@
                                     <div class="switch ">
                                         <label>
                                             Off
-                                            <input type="checkbox" {{$user->superadmin==1?'checked':''}} name="superadmin" value="1" id="check{{$user->id}}">
+                                            <input type="checkbox"
+                                                   {{$user->superadmin==1?'checked':''}} name="superadmin" value="1"
+                                                   id="check{{$user->id}}">
                                             <span class="lever"></span> On
                                         </label>
                                     </div>
                                 </section>
                             </div>
                             <div class="row justify-content-end mr-4">
-                            <input type="submit" class=" btn-outline-success waves-effect p-2 justify-content-end" value="Guardar">
+                                <input type="submit" class=" btn-outline-success waves-effect p-2 justify-content-end"
+                                       value="Guardar">
                             </div>
                             {!! Form::close() !!}
                         </div>
@@ -527,7 +601,7 @@
 
         var editor_config = {
             path_absolute: "/",
-            height: 500,
+            height: 300,
             selector: "textarea.my-editor",
             plugins: [
                 "advlist autolink lists link image charmap print preview hr anchor pagebreak",
@@ -571,6 +645,7 @@
             }
 
         }
+
         function editar_usuario(id) {
             var caja = $('#editar_usuario' + id)
             if (caja.css("display") === 'none') {
@@ -597,12 +672,13 @@
         });
 
         function aumentar_descripcion() {
-            $('#descripcion_user').prop('rows','10');
+            $('#descripcion_user').prop('rows', '10');
         }
 
         function disminuir_descripcion() {
-            $('#descripcion_user').prop('rows','3');
+            $('#descripcion_user').prop('rows', '3');
         }
+
         /** $(document).on('click','.pagination a', function(e){
             e.preventDefault();
              var page = $(this).attr('href').split('page=')[1];

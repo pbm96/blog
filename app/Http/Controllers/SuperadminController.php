@@ -136,8 +136,39 @@ class SuperadminController extends Controller
 
     public function editar_perfil(Request $request, $id)
     {
+        $user = User::find($id);
+
+        $user->fill($request->all());
+
+        $user->save();
+
+        return redirect()->route('perfil_superadmin', auth()->user()->id);
 
     }
+    public function editar_foto_perfil(Request $request, $id){
+            if ($request->hasFile('imagen')){
+                $user = User::find($id);
+
+                $user->imagen = self::imagen_base_64($request->imagen);
+
+                $user->save();
+            }
+
+        return redirect()->route('perfil_superadmin', auth()->user()->id);
+
+    }
+
+    public function eliminar_foto_perfil($id){
+        $user = User::find($id);
+        if ($user->imagen !=null) {
+            $user->imagen = null;
+            $user->save();
+
+        }
+
+        return redirect()->route('perfil_superadmin', auth()->user()->id);
+    }
+
     public function modificar_post_vista($id){
         $post = Post::find($id);
 

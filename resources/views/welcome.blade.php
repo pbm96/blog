@@ -222,7 +222,7 @@
                                         </div>
                                         <div class="card-body mx-4 p-0">
                                             <a href="" class="teal-text text-center text-uppercase font-small">
-                                            </a><h6 class="mb-3 mt-3"><a href="" class="teal-text text-center text-uppercase font-small">
+                                            </a><h6 class="mb-3 mt-3"><a href="{{route('categoria',$post->categoria->nombre_categoria)}}" class="teal-text text-center text-uppercase font-small">
                                                     <strong>{{$post->categoria->nombre_categoria}}</strong>
                                                 </a><a class="dark-grey-text font-small"> - {{$post->fecha}}</a>
                                             </h6>
@@ -362,7 +362,7 @@
                                                 <a href="{{route('categoria',$categoria->nombre_categoria)}}">
                                                     <p class="mb-0">{{$categoria->nombre_categoria}}</p>
                                                 </a>
-                                                <span class="badge teal badge-pill font-small"> {{empty($categoria->count)?0:$categoria->count}}</span>
+                                                <span class="badge  badge-pill font-small" style="background-color: rgba(0, 0, 0, 0.7)"> {{empty($categoria->count)?0:$categoria->count}}</span>
                                             </li>
                                         @endforeach
                                             @endif
