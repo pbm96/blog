@@ -47,7 +47,7 @@
     <section class="mt-5">
         <div class="container-fluid grey lighten-4">
             <div class="container">
-                <div class="titulo_categoria  col-sm-12  grey lighten-2">
+                <div class="titulo_categoria  col-sm-12  grey lighten-2 ">
                     @if(isset($buscar))
                         <h3 class="p-3 text-uppercase font-weight-bold">{{$buscar}}</h3>
 

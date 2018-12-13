@@ -142,10 +142,16 @@
                         <div class="container">
 
                             <!--Section heading-->
-                            <h1 class="text-center h1 pt-4 mb-3">
+
+                            <nav aria-label="breadcrumb "  class="row justify-content-end">
+                                <ol class="breadcrumb white">
+                                    <li class="breadcrumb-item"><a class="black-text" href="{{route('home')}}">Home</a></li>
+                                    <li class="breadcrumb-item"><a class="black-text" href="{{route('categoria',$post[0]->categoria->nombre_categoria)}}">{{$post[0]->categoria->nombre_categoria}}</a></li>
+                                </ol>
+                            </nav>
+                            <h1 class="text-center h1">
                                 <strong>{{$post[0]->titulo_post}}</strong>
                             </h1>
-
                             <div class="row">
                                 <div class="col-md-12 col-xl-12 d-flex justify-content-center">
                                     <p class="font-small dark-grey-text mb-1">
