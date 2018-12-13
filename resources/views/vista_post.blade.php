@@ -2,14 +2,33 @@
 @section('titulo_pagina', $post[0]->titulo_post)
 
 @section('estilos')
-<style>
+    {{--}}<meta name="twitter:title" 				content="Game of Thrones Season 6: Tease"/>
+    <meta name="twitter:description" 		content="The first thing Game Of Thrones released to tease its upcoming sixth season was a poster featuring Jon Snow."/>
+    <meta name="twitter:image" 				content="http://mahcode.com/share_article/teaser-jon-snow.jpg"/>
+    <meta name="twitter:site" 				content="@itsmahcode"/>
+    <meta name="twitter:creator" 			content="@itsmahcode"/>
+    <meta name="twitter:via" 				content="itsmahcode"/>
+    <meta name="twitter:card" 				content="photo"/>
+    <meta name="twitter:url" 				content="http://mahcode.com/share_article/"/>{{--}}
+
+
+   <meta name="description" 				content="{{$post[0]->subtitulo}}">
+   <meta name="author" 					content="Tecnoforyou">
+   <meta property="og:locale" 				content="es_Es"/>
+   <meta property="og:type" 				content="article"/>
+   <meta property="og:title" 				content="{{$post[0]->titulo}}"/>
+   <meta property="og:description" 		content="{{$post[0]->subtitulo}}"/>
+   <meta property="og:url" 				content="{{route('vista_post',[$post[0]->categoria->nombre_categoria,$post[0]->slug])}}"/>
+   <meta property="og:site_name" 			content="Tecnoforyou.com"/>
+   <meta property="article:publisher" 		content="https://www.facebook.com/Mahcode-849841581779986"/>
+   <meta property="article:published_time" content="{{$post[0]->created_at}}"/>
+   <meta property="og:image" 				content="{{$post[0]->imagen_principal}}"/>
+
+   <style>
     .comments-list .avatar, .reply-form .avatar {
         max-width: 100px;
     }
-    .btn-gplus {
-        background-color: #dd4b39!important;
-        color: #fff!important;
-    }
+
     .btn-tw {
         background-color: #55acee!important;
         color: #fff!important;
@@ -70,9 +89,35 @@
     .imagenes_destacadas{
         height: 177px;
     }
+    .btn-floating i {
+        font-size: 1.25rem;
+        line-height: 47px;
+    }
+    .btn-floating {
+        -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+        box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+        width: 47px;
+        height: 47px;
+        position: relative;
+        z-index: 1;
+        vertical-align: middle;
+        display: inline-block;
+        overflow: hidden;
+        -webkit-transition: all .2s ease-in-out;
+        -o-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out;
+        margin: 10px;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        padding: 0;
+        cursor: pointer;
+        text-align: center;
+    }
 
-
-
+    .btn-floating:hover {
+        -webkit-box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
+        box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
+    }
 
 </style>
 @endsection
@@ -86,8 +131,6 @@
         </div>
     </section>
     <div class="container-fluid mb-5">
-
-        <!--Grid row-->
         <div class="row cuerpo_noticia" >
 
             <!--Grid column-->
@@ -119,6 +162,11 @@
                                 <div class="col-md-12 col-xl-12">
 
                                     {!! $post[0]->descripcion_post !!}
+                                    <div class="botones_compartir row justify-content-center">
+                                    <a class=" btn-fb btn-floating"><i class="fa fa-facebook"></i></a>
+                                    <a class=" btn-tw btn-floating"><i class="fa fa-twitter"></i></a>
+                                    </div>
+
                                     <hr class="mt-5">
 
                                     <!--Comments-->
@@ -305,6 +353,15 @@
                     }
                 }
             })
+        }
+        $('.btn-fb ').click(function(){
+            open_window('http://www.facebook.com/sharer/sharer.php?u={{route('vista_post',[$post[0]->categoria->nombre_categoria,$post[0]->slug])}}');
+        });
+        $('.btn-tw').click(function(){
+            open_window('http://twitter.com/share?text={{$post[0]->titulo_post}}&url={{route('vista_post',[$post[0]->categoria->nombre_categoria,$post[0]->slug])}}');
+        });
+        function open_window(url, name){
+            window.open(url, name);
         }
     </script>
     @endsection

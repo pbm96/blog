@@ -193,6 +193,7 @@ class SuperadminController extends Controller
             $request->imagen_principal = $post->imagen_principal;
         }
         $post->fill($request->all());
+        $post->slug =str_slug($request->titulo_post, '-');
 
         if (isset($imagen_base64)){
             $post->imagen_principal = $imagen_base64;

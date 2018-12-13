@@ -117,9 +117,57 @@
         height: 270px;
         width: 100%;
     }
+    .btn-floating i {
+        display: inline-block;
+        width: inherit;
+        text-align: center;
+        color: #fff;
+    }
 
-
-
+    .btn-floating i {
+        font-size: 1.25rem;
+        line-height: 47px;
+    }
+    .btn-floating {
+        -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+        box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+        width: 47px;
+        height: 47px;
+        position: relative;
+        z-index: 1;
+        vertical-align: middle;
+        display: inline-block;
+        overflow: hidden;
+        -webkit-transition: all .2s ease-in-out;
+        -o-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out;
+        margin: 10px;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        padding: 0;
+        cursor: pointer;
+    }
+    .card .btn-action {
+        margin-top: -1.44rem;
+        margin-bottom: -1.44rem;
+    }
+    .btn-floating:hover {
+        -webkit-box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
+        box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
+    }
+    .btn-compartir{
+      margin-right: 5em ;
+        margin-top: -0.85rem;
+        display: none;
+    }
+    .btn-tw {
+        background-color: #55acee!important;
+        color: #fff!important;
+    }
+    .btn-fb {
+        background-color: #3b5998!important;
+        color: #fff!important;
+    }
 </style>
 @endsection
 
@@ -191,6 +239,11 @@
                                                 <div class="mask rgba-white-slight waves-effect waves-light"></div>
                                             </a>
                                         </div>
+                                        {{--}} <a class="btn-floating btn-action ml-auto mr-4 teal  waves-effect waves-light" id="boton_compartir{{$ultimo_post->id}}" onclick="mostrar_botones_compartir({{$ultimo_post->id}})"><i class="fa fa-share-alt  "></i></a>
+                                     <div class="ml-auto btn-compartir" id="caja_compartir{{$ultimo_post->id}}">
+                                           <a class="btn-floating btn-action   btn-fb waves-effect waves-light"><i class="fa fa-facebook"></i></a>
+                                           <a class="btn-floating btn-action  btn-tw waves-effect waves-light"><i class="fa fa-twitter "></i></a>
+                                       </div>{{--}}
                                         <div class="card-body principal_card mx-4">
                                             <h4 title="{{$ultimo_post->titulo_post}}" class="card-title titulo_card_principal ">
                                                 <strong>{{$ultimo_post->titulo_post}}</strong>
@@ -223,6 +276,13 @@
                                                 <div class="mask rgba-white-slight waves-effect waves-light "></div>
                                             </a>
                                         </div>
+
+                                       {{--}} <a class="btn-floating btn-action ml-auto mr-4 teal waves-effect waves-light" id="boton_compartir{{$post->id}}" onclick="mostrar_botones_compartir({{$post->id}})"><i class="fa fa-share-alt "></i></a>
+                                        <div class="ml-auto btn-compartir" id="caja_compartir{{$post->id}}">
+                                            <a class="btn-floating btn-action   btn-fb waves-effect waves-light"><i class="fa fa-facebook"></i></a>
+                                            <a class="btn-floating btn-action  btn-tw waves-effect waves-light"   href="https://twitter.com/intent/tweet?text=Hello%20world"><i class="fa fa-twitter "></i></a>
+                                        </div>{{--}}
+
                                         <div class="card-body mx-4 p-0">
                                             <a href="" class="teal-text text-center text-uppercase font-small">
                                             </a><h6 class="mb-3 mt-3"><a href="{{route('categoria',$post->categoria->nombre_categoria)}}" class="teal-text text-center text-uppercase font-small">
@@ -365,7 +425,7 @@
                                                 <a href="{{route('categoria',$categoria->nombre_categoria)}}">
                                                     <p class="mb-0">{{$categoria->nombre_categoria}}</p>
                                                 </a>
-                                                <span class="badge  badge-pill font-small" style="background-color: rgba(0, 0, 0, 0.7)"> {{empty($categoria->count)?0:$categoria->count}}</span>
+                                                <span class="badge teal  badge-pill font-small" > {{empty($categoria->count)?0:$categoria->count}}</span>
                                             </li>
                                         @endforeach
                                             @endif
@@ -435,5 +495,16 @@
 
 @endsection
 @section('scripts')
+<script>
+    /*function mostrar_botones_compartir(id) {
 
+        if ($('#caja_compartir'+id).css('display')==='none') {
+            $('#caja_compartir'+id).css('display', 'block')
+        }
+        else{
+
+            $('#caja_compartir'+id).css('display', 'none')
+        }
+    }*/
+</script>
 @endsection
