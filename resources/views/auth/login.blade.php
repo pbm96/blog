@@ -9,7 +9,7 @@
                 <div class="card">
 
                     <h5 class="card-header info-color white-text text-center py-4">
-                        <strong>Sign in</strong>
+                        <strong>Acceder</strong>
                     </h5>
 
                     <!--Card content-->
@@ -57,7 +57,7 @@
                                 </div>
                                 <div>
 
-                                    <a class=" " href="{{ route('password.request') }}">Olvidaste tu
+                                    <a class=" " {{--}}}href="{{ route('password.request') }}"{{--}}>Olvidaste tu
                                         contraseña?</a>
                                 </div>
                             </div>
