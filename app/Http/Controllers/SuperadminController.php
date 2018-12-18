@@ -11,12 +11,12 @@ use Illuminate\Support\Str;
 class SuperadminController extends Controller
 {
 
-    public function __construct(UsersController $usersController,HomeController $homeController)
+    public function __construct(UsersController $usersController, HomeController $homeController)
     {
         $this->middleware('auth');
         $this->middleware('superadmin');
-        $this->usersController= $usersController;
-        $this->homeController= $homeController;
+        $this->usersController = $usersController;
+        $this->homeController = $homeController;
     }
 
 
@@ -51,7 +51,7 @@ class SuperadminController extends Controller
         ]);*/
 
         $user = auth()->user();
-       $imagen = $request->file('imagen_principal');
+        $imagen = $request->file('imagen_principal');
 
         $imagen_base64 = $this->usersController->imagen_base_64($imagen);
 
@@ -137,19 +137,22 @@ class SuperadminController extends Controller
 
     }
 
-    public function modificar_post_vista($id){
+    public function modificar_post_vista($id)
+    {
         $post = Post::find($id);
 
         $categorias_select = Categoria::orderBy('nombre_categoria', 'ASC')->pluck('nombre_categoria', 'id');
 
-        return view('modificar_post')->with('post',$post)->with('categorias_select',$categorias_select);
+        return view('modificar_post')->with('post', $post)->with('categorias_select', $categorias_select);
 
     }
-    public function modificar_post(Request $request, $id){
+
+    public function modificar_post(Request $request, $id)
+    {
 
         $post = Post::find($id);
 
-        if($request->hasFile('imagen_principal')){
+        if ($request->hasFile('imagen_principal')) {
             $imagen = $request->file('imagen_principal');
 
             $imagen_base64 = $this->usersController->imagen_base_64($imagen);
@@ -157,13 +160,13 @@ class SuperadminController extends Controller
 
             $request->imagen_principal = $imagen_base64;
 
-        }else{
+        } else {
             $request->imagen_principal = $post->imagen_principal;
         }
         $post->fill($request->all());
-        $post->slug =str_slug($request->titulo_post, '-');
+        $post->slug = str_slug($request->titulo_post, '-');
 
-        if (isset($imagen_base64)){
+        if (isset($imagen_base64)) {
             $post->imagen_principal = $imagen_base64;
 
         }
@@ -171,7 +174,9 @@ class SuperadminController extends Controller
 
         return redirect()->route('perfil_superadmin', auth()->user()->id);
     }
-    public function eliminar_post($id){
+
+    public function eliminar_post($id)
+    {
 
     }
 
@@ -181,9 +186,6 @@ class SuperadminController extends Controller
 
         return $posts;
     }
-
-
-
 
 
     /*public function posts_ajax(){

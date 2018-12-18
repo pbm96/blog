@@ -10,13 +10,17 @@ class Comentario extends Model
     use Notifiable;
 
     protected $fillable = [
-        'nombre_usuario','post_id','comentario'
+        'user_id','post_id','comentario'
     ];
 
 
     public function post()
     {
         return $this->belongsTo('App\Post');
+    }
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 
 

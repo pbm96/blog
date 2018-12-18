@@ -24,25 +24,25 @@ class HomeController extends Controller
     public function index()
     {
 
-        $posts = Post::orderBy('created_at','DESC')->paginate(30);
+        $posts = Post::orderBy('created_at', 'DESC')->paginate(30);
 
 
-            //self::sacar_mes_post($posts);
+        //self::sacar_mes_post($posts);
         $categorias = Categoria::all();
 
-        $user = User::where('nombre','pablo')->where('apellidos','bonillo molina')->first();
+        $user = User::where('nombre', 'pablo')->where('apellidos', 'bonillo molina')->first();
 
 
-         $posts_categorias = Post::groupBy('categoria_id')->select('categoria_id', DB::raw('count(*) as total'))->pluck('total','categoria_id')->all();
+        $posts_categorias = Post::groupBy('categoria_id')->select('categoria_id', DB::raw('count(*) as total'))->pluck('total', 'categoria_id')->all();
 
-         foreach ($categorias as  $categoria){
-             foreach ($posts_categorias as $key => $count){
-                if ($key == $categoria->id){
+        foreach ($categorias as $categoria) {
+            foreach ($posts_categorias as $key => $count) {
+                if ($key == $categoria->id) {
                     $categoria->count = $count;
                 }
-             }
+            }
 
-         }
+        }
 
         self::fecha_post($posts);
 
@@ -55,62 +55,66 @@ class HomeController extends Controller
         unset($posts[0]);
 
 
-        return view('welcome')->with('posts',$posts)->with('ultimo_post',$ultimo_post)->with('categorias',$categorias)->with('post_populares', $posts_populares)->with('user', $user);
+        return view('welcome')->with('posts', $posts)->with('ultimo_post', $ultimo_post)->with('categorias', $categorias)->with('post_populares', $posts_populares)->with('user', $user);
     }
 
-    public function vista_post($categoria,$slug){
-        $post = Post::where('slug',$slug)->get();
+    public function vista_post($categoria, $slug)
+    {
+        $post = Post::where('slug', $slug)->get();
 
-        $post[0]->visitas_semanales = $post[0]->visitas_semanales +1;
+        $post[0]->visitas_semanales = $post[0]->visitas_semanales + 1;
 
         $post[0]->save();
 
-        $comentarios = Comentario::where('post_id',$post[0]->id)->orderBy('created_at','DESC')->get();
+        $comentarios = Comentario::where('post_id', $post[0]->id)->orderBy('created_at', 'DESC')->get();
 
         self::fecha_post($comentarios);
 
         self::hora_post($comentarios);
 
-        $ultimas_noticias = Post::orderBy('created_at','DESC')->take(9)->get();
+        $ultimas_noticias = Post::orderBy('created_at', 'DESC')->take(9)->get();
 
-         self::fecha_post($post);
+        self::fecha_post($post);
 
         self::hora_post($post);
 
         self::fecha_post($ultimas_noticias);
 
 
-        return view('vista_post')->with('post', $post)->with('ultimas_noticias',$ultimas_noticias)->with('comentarios',$comentarios);
+        return view('vista_post')->with('post', $post)->with('ultimas_noticias', $ultimas_noticias)->with('comentarios', $comentarios);
     }
 
-    public function post_populares($posts){
+    public function post_populares($posts)
+    {
 
         return $posts->sortByDesc('visitas_semanales')->take(5);
     }
 
-    public function categoria($categoria){
+    public function categoria($categoria)
+    {
 
-        $categoria_completa = Categoria::where('nombre_categoria',$categoria)->first();
+        $categoria_completa = Categoria::where('nombre_categoria', $categoria)->first();
 
-        $posts = Post::where('categoria_id',$categoria_completa->id)->orderBy('created_at','DESC')->paginate(30);
+        $posts = Post::where('categoria_id', $categoria_completa->id)->orderBy('created_at', 'DESC')->paginate(30);
 
         self::fecha_post($posts);
 
 
-        return view('vista_categorias')->with('posts',$posts)->with('categoria_completa',$categoria_completa);
+        return view('vista_categorias')->with('posts', $posts)->with('categoria_completa', $categoria_completa);
     }
 
-    public function buscar(){
+    public function buscar()
+    {
         $buscar = Input::get('buscar');
-        $posts = Post::where('titulo_post', 'like', '%'.$buscar.'%')
-            ->orWhere('descripcion_post', 'like', '%'.$buscar.'%')
+        $posts = Post::where('titulo_post', 'like', '%' . $buscar . '%')
+            ->orWhere('descripcion_post', 'like', '%' . $buscar . '%')
             ->orderBy('created_at', 'desc')->paginate(30);
 
-        if (sizeof($posts)> 0){
-            return view('vista_categorias')->with('posts',$posts)->with('buscar',$buscar);
+        if (sizeof($posts) > 0) {
+            return view('vista_categorias')->with('posts', $posts)->with('buscar', $buscar);
 
-        }else{
-            Session::flash('mensaje', 'No se ha encontrado ningun resultado de '.$buscar);
+        } else {
+            Session::flash('mensaje', 'No se ha encontrado ningun resultado de ' . $buscar);
             Session::flash('alert-class', 'alert-danger');
             return redirect()->route('home');
         }
@@ -118,32 +122,41 @@ class HomeController extends Controller
 
     }
 
-    public function pintar_categorias_nav(){
+    public function pintar_categorias_nav()
+    {
 
         $categorias = Categoria::all();
 
         return response()->json($categorias);
     }
-    public function cookies(){
+
+    public function cookies()
+    {
         return view('cookies');
     }
-    public function licencia(){
+
+    public function licencia()
+    {
         return view('licencia');
     }
 
-    public function about(){
-        $user = User::where('nombre','pablo')->where('apellidos','Bonillo Molina')->first();
+    public function about()
+    {
+        $user = User::where('nombre', 'pablo')->where('apellidos', 'Bonillo Molina')->first();
 
-        return view('about')->with('user',$user);
+        return view('about')->with('user', $user);
     }
-    public function mapa_web(){
+
+    public function mapa_web()
+    {
         return view('about');
     }
 
-    public function sobre_mi(){
-        $user = User::where('nombre','pablo')->where('apellidos','Bonillo Molina')->first();
+    public function sobre_mi()
+    {
+        $user = User::where('nombre', 'pablo')->where('apellidos', 'Bonillo Molina')->first();
 
-        return view('sobre_mi')->with('user',$user);
+        return view('sobre_mi')->with('user', $user);
     }
 
     public function fecha_post($posts)
@@ -169,7 +182,6 @@ class HomeController extends Controller
             $post->hora = $hora . ':' . $minutos;
         }
     }
-
 
 
     /*   public function sacar_mes_post($posts){

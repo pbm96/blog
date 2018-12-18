@@ -177,12 +177,12 @@
             height: 130px;
             width: 130px;
         }
+
         .upload-btn-wrapper {
             position: relative;
             overflow: hidden;
             display: inline-block;
         }
-
 
         .upload-btn-wrapper input[type=file] {
             font-size: 100px;
@@ -371,14 +371,14 @@
                                     <h5 class="mb-0 font-weight-bold">Editar Foto</h5>
                                 </div>
                                 <div class="card-body card-body-cascade text-center">
-                                     <div class="row">
-                                    <img src="{{$user->imagen==null?'https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg':$user->imagen}}"
-                                         alt="User Photo" class="z-depth-1 mb-3 mx-auto foto_user_perfil">
-                                     </div>
+                                    <div class="row">
+                                        <img src="{{$user->imagen==null?'https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg':$user->imagen}}"
+                                             alt="User Photo" class="z-depth-1 mb-3 mx-auto foto_user_perfil">
+                                    </div>
                                     {!! Form::Open(['route' => ['editar_foto_perfil',$user->id],'method'=>'PUT', 'enctype'=> 'multipart/data', 'files' => true ]) !!}
                                     <div class="upload-btn-wrapper ">
                                         <button class="btn btn-info">Cargar Imagen</button>
-                                        <input type="file" name="imagen" />
+                                        <input type="file" name="imagen"/>
                                     </div>
                                     <div class="row flex-center">
                                         <button class="btn btn-success btn-rounded btn-sm waves-effect waves-light">
@@ -670,7 +670,6 @@
         $('.confirm').on('click', function (e) {
             return !!confirm($(this).data('confirm'));
         });
-
 
 
         /** $(document).on('click','.pagination a', function(e){

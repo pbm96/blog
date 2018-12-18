@@ -128,6 +128,19 @@
             box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19);
         }
 
+        .comentarios_ocultos {
+            display: none;
+        }
+
+        .btn-plus {
+            background-color: #4285f4;
+        }
+        .btn-publicar:hover{
+            color: #FFFFFF !important;
+
+        }
+
+
     </style>
 @endsection
 
@@ -174,7 +187,10 @@
                                         las {{$post[0]->hora}}</p>
                                 </div>
                             </div>
-
+                            <div class="botones_compartir row justify-content-center">
+                                <a class=" btn-fb btn-floating"><i class="fa fa-facebook"></i></a>
+                                <a class=" btn-tw btn-floating"><i class="fa fa-twitter"></i></a>
+                            </div>
                             <!--Grid row-->
                             <div class="row pt-lg-5 pt-3">
 
@@ -182,43 +198,49 @@
                                 <div class="col-md-12 col-xl-12">
 
                                     {!! $post[0]->descripcion_post !!}
-                                    <div class="botones_compartir row justify-content-center">
-                                        <a class=" btn-fb btn-floating"><i class="fa fa-facebook"></i></a>
-                                        <a class=" btn-tw btn-floating"><i class="fa fa-twitter"></i></a>
-                                    </div>
 
-                                    <hr class="mt-5">
+
+                                    <hr class="mt-5" id="vuelta_comentarios">
 
                                     <!--Comments-->
                                     <section>
 
                                         <!--Main wrapper-->
-                                        <div class="comments-list text-center text-md-left">
+                                        <div class="comments-list text-center text-md-left" >
                                             <div class="text-center my-5">
                                                 <h3 class="font-weight-bold">Comentarios
-                                                    <span class="badge indigo">{{count($comentarios)}}</span>
+                                                    <span class=" badge btn-plus count_comentarios" >{{count($comentarios)}}</span>
                                                 </h3>
                                             </div>
 
                                             <!--First row-->
                                             <div id="caja_comentarios">
-                                                @foreach($comentarios as $comentario)
-                                                    <div class="row mb-5 ">
+                                                @foreach($comentarios as $key =>$comentario)
 
-                                                        <div class="col-sm-12 card">
-                                                            <div class="ml-3 row mt-2">
+                                                    <div class="row mb-5 {{$key >=4?'comentarios_ocultos':''}} "
+                                                         id="comentario{{$comentario->id}}">
+                                                        <div class="col-sm-8 card offset-sm-2 ">
+                                                            <div class="ml-1 row mt-2">
                                                                 <a>
-                                                                    <h5 class="user-name font-weight-bold">{{$comentario->nombre_usuario}}</h5>
+                                                                    <h5 class="user-name font-weight-bold">{{$comentario->user->nombre}} {{$comentario->user->apellidos}} </h5>
                                                                 </a>
                                                                 <div class="card-data ml-3 mt-1">
                                                                     <ul class="list-unstyled">
                                                                         <li class="comment-date font-small">
-                                                                            <i class="fa fa-clock-o"></i> {{$comentario->fecha}} {{$comentario->hora}}
+                                                                            <i class="fa fa-clock-o"></i> {{$comentario->fecha}}  {{$comentario->hora}}
                                                                         </li>
                                                                     </ul>
                                                                 </div>
+                                                                @if(auth()->user())
+                                                                    @if($comentario->user->id == auth()->user()->id)
+                                                                        <div class="ml-auto mr-4">
+                                                                            <a onclick="eliminar_comentario({{$comentario->id}})"  class='borrar_comentario' data-toggle='popover' data-placement='right' data-content='Borrar comentario'><i
+                                                                                        class="fa fa-trash text-danger" ></i></a>
+                                                                        </div>
+                                                                    @endif
+                                                                @endif
                                                             </div>
-                                                            <p class="dark-grey-text article">{{$comentario->comentario }}</p>
+                                                            <div class="dark-grey-text article ml-3 pb-3">{!! $comentario->comentario !!} </div>
                                                         </div>
                                                     </div>
                                                 @endforeach
@@ -227,7 +249,18 @@
 
                                         </div>
                                         <!--/.Main wrapper-->
+                                        <div class=" row justify-content-center">
+                                            <a class=" btn-plus btn-floating" onclick="mostrar_mas_comentarios()"
+                                               data-container="body" id="mas_comentarios" data-toggle="popover"
+                                               data-placement="right" data-content="Mostrar más comentarios"><i
+                                                        class="fa fa-plus text-white"></i></a>
+                                            <a class=" btn-plus btn-floating d-none" href="#vuelta_comentarios"
+                                               onclick="mostrar_menos_comentarios()" data-container="body"
+                                               id="menos_comentarios" data-toggle="popover" data-placement="right"
+                                               data-content="Mostrar menos comentarios"><i
+                                                        class="fa fa-minus  text-white"></i></a>
 
+                                        </div>
                                     </section>
                                     <!--/Comments-->
                                     <hr>
@@ -236,47 +269,29 @@
                                         <h3 class="font-weight-bold text-center my-5">Dejar Comentario</h3>
 
                                         <div class="row">
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-8 offset-sm-2">
                                                 <div class="form-group basic-textarea rounded-corners shadow-textarea">
-                                                    <textarea class="form-control" id="comentario" name="comentario"
-                                                              rows="5" placeholder="Escribe algo aqui" maxlength="500"
-                                                              onkeyup="desactivar_boton()"></textarea>
-                                                </div>
-
-                                            </div>
-                                            <div class=" col-sm-4 mb-4 nombre_comentario">
-                                                <div class="input-group md-form form-sm form-3 pl-0">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text white black-text"
-                                                              id="basic-addon8"><i class="fa fa-user"></i></span>
-                                                    </div>
-                                                    <input type="text" onkeyup="desactivar_boton()"
-                                                           name="nombre_usuario" id="nombre_usuario"
-                                                           class="form-control mt-0 black-border rgba-white-strong"
-                                                           placeholder="Introduce tu nombre..."
-                                                           aria-describedby="basic-addon9">
+                                                    @guest
+                                                        <label for="comentario">Hay que estar
+                                                            <strong>Registrado</strong> para poder comentar.</label>
+                                                    @endguest
+                                                    <textarea type="text" id="comentario" name="comentario"
+                                                              class=" my-editor form-control"></textarea>
 
                                                 </div>
-                                                <div class="input-group md-form form-sm form-3 pl-0">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text white black-text"
-                                                              id="basic-addon8"><i class="fa fa-at"></i></span>
-                                                    </div>
-                                                    <input type="email" onkeyup="desactivar_boton()"
-                                                           name="correo_usuario" id="correo_usuario"
-                                                           class="form-control mt-0 black-border rgba-white-strong"
-                                                           placeholder="Introduce tu correo..."
-                                                           aria-describedby="basic-addon9">
 
-                                                </div>
                                             </div>
 
                                         </div>
                                         <div class="row justify-content-center">
                                             <div class="text-right">
-                                                <input type="button" id="publicar_comentario" value="Publicar" disabled
-                                                       onclick="enviar_comentario({{$post[0]->id}})"
-                                                       class="btn btn-grey btn-sm waves-effect waves-light">
+                                                @guest
+                                                    <a class="btn btn-info" href="{{route('login')}}">Acceder</a>
+                                                @else
+                                                    <a  id="publicar_comentario"
+                                                           onclick="enviar_comentario({{$post[0]->id}})" href="#vuelta_comentarios"
+                                                           class="btn btn-publicar btn-plus ">Publicar</a>
+                                                @endguest
                                             </div>
 
                                         </div>
@@ -353,21 +368,15 @@
     </div>
 @endsection
 @section('scripts')
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+
     <script>
         // enviar comentario
 
-        function desactivar_boton() {
-
-            if ($('#comentario').val() !== '' && $('#nombre_usuario').val() !== '' && $('#correo_usuario').val() !== '') {
-
-                $('#publicar_comentario').prop("disabled", false);
-            } else {
-                $('#publicar_comentario').prop("disabled", true);
-
-            }
-        }
 
         function enviar_comentario(id) {
+            tinymce.triggerSave();
+
             var route = "{{route('escribir_comentario')}}";
             $.ajax({
                 headers: {
@@ -380,13 +389,12 @@
                 success: function (data) {
                     if (data.respuesta === true) {
 
-                        $('#comentario').val('');
-                        $('#nombre_usuario').val('');
-                        $('#correo_usuario').val('');
+                        var tinymce_editor_id = 'comentario';
+                        tinymce.get(tinymce_editor_id).setContent('');
+                        var id_comentario = data.comentario['id'];
 
-
-                        $('#caja_comentarios').prepend("<div class='row mb-5 '>  <div class='col-sm-12 card'><div class='ml-3 row mt-2'>" +
-                            "<a><h5 class='user-name font-weight-bold'>" + data.comentario['nombre_usuario'] + "</h5></a>" +
+                        $('#caja_comentarios').prepend("<div class='row mb-5 ' id='comentario"+id_comentario+"'>  <div class='col-sm-8 offset-sm-2 card'><div class='ml-1 row mt-2'>" +
+                            "<a><h5 class='user-name font-weight-bold'>" + data.nombre + "</h5></a>" +
                             "<div class='card-data ml-3 mt-1'>" +
                             "<ul class='list-unstyled'>" +
                             "<li class='comment-date font-small'>" +
@@ -394,14 +402,56 @@
                             "</li>" +
                             "</ul>" +
                             "</div>" +
+                            "<div class='ml-auto mr-4'>" +
+                            " <a onclick='eliminar_comentario("+id_comentario+")'  class='borrar_comentario' data-toggle='popover' data-placement='right' data-content='Borrar comentario'>" +
+                            "<i class='fa fa-trash text-danger'></i>" +
+                            " </a>" +
                             "</div>" +
-                            "<p class='dark-grey-text article'>" + data.comentario['comentario'] + "</p>" +
                             "</div>" +
-                            "</div>")
+                            "<div class='dark-grey-text article ml-3 pb-3'>" + data.comentario['comentario'] + "</div>" +
+                            "</div>" +
+                            "</div>");
 
-                        $('#publicar_comentario').prop("disabled", true);
+                        $('.count_comentarios').text(data[1]);
+
+                        var id_comentario_anterior = id_comentario-4;
+                        $('#comentario'+id_comentario_anterior).addClass('comentarios_ocultos');
+
 
                         alert('comentario publicado correctamente')
+
+                    } else {
+                        if (data.respuesta === 'comentario_blanco') {
+                            alert('No se puede dejar el comentario en blanco')
+
+                        } else {
+                            alert('error al publicar comentario')
+
+                        }
+                    }
+                }
+            })
+        }
+
+        function eliminar_comentario(id) {
+            tinymce.triggerSave();
+
+            var route = "{{route('eliminar_comentario',':id')}}";
+            route = route.replace(':id', id);
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "DELETE",
+                dataType: "json",
+                url: route,
+                success: function (data) {
+                    if (data.respuesta === true) {
+                        $('#comentario' + id).remove();
+                        $('.count_comentarios').text(data[1]);
+                        var id_comentario_siguiente = id_comentario+1;
+                        $('#comentario'+id_comentario_anterior).addClass('comentarios_ocultos');
+                        alert('Comentario borrado')
 
                     } else {
                         alert('error al publicar comentario')
@@ -420,5 +470,44 @@
         function open_window(url, name) {
             window.open(url, name);
         }
+
+
+        var editor_config = {
+            path_absolute: "/",
+            height: 300,
+            selector: "textarea.my-editor",
+            plugins: [
+                "searchreplace wordcount visualblocks visualchars code fullscreen",
+
+            ],
+            relative_urls: false,
+
+        };
+
+        tinymce.init(editor_config);
+
+        $("#mas_comentarios").popover({trigger: "hover"});
+        $("#menos_comentarios").popover({trigger: "hover"});
+        $(".borrar_comentario").popover({trigger: "hover"});
+
+
+
+        function mostrar_mas_comentarios() {
+            $('.comentarios_ocultos').css('display', 'block')
+            $('#mas_comentarios').addClass('d-none');
+
+            $('#menos_comentarios').removeClass('d-none');
+
+        }
+
+        function mostrar_menos_comentarios() {
+            $('.comentarios_ocultos').css('display', 'none')
+            $('#menos_comentarios').addClass('d-none');
+
+            $('#mas_comentarios').removeClass('d-none');
+
+
+        }
+
     </script>
 @endsection

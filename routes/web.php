@@ -12,7 +12,6 @@
 */
 
 
-
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
@@ -29,13 +28,12 @@ Route::put('modificar-post/{id}', ['as' => 'modificar_post', 'uses' => 'Superadm
 Route::delete('eliminar-post/{id}', ['as' => 'eliminar_post', 'uses' => 'SuperadminController@modificar_post']);
 
 
+Route::get('categoria/{categoria}', ['as' => 'categoria', 'uses' => 'HomeController@categoria']);
 
-Route::get('categoria/{categoria}',['as'=>'categoria','uses'=>'HomeController@categoria']);
-
-Route::get('buscar',['as'=>'buscar','uses'=>'HomeController@buscar']);
+Route::get('buscar', ['as' => 'buscar', 'uses' => 'HomeController@buscar']);
 
 Route::get('post/{categoria}/{slug}', ['as' => 'vista_post', 'uses' => 'HomeController@vista_post']);
-Route::get('pintar-categorias',['as'=>'pintar_categorias','uses'=>'HomeController@pintar_categorias_nav']);
+Route::get('pintar-categorias', ['as' => 'pintar_categorias', 'uses' => 'HomeController@pintar_categorias_nav']);
 
 
 // administrar categorias
@@ -48,13 +46,14 @@ Route::delete('eliminar-categoria/{id}', ['as' => 'eliminar_categoria', 'uses' =
 Route::delete('eliminar-usuario/{id}', ['as' => 'eliminar_usuario', 'uses' => 'SuperadminController@eliminar_usuario']);
 Route::put('modificar-usuario/{id}', ['as' => 'editar_usuario_admin', 'uses' => 'SuperadminController@editar_user_admin']);
 
-Route::put('editar-perfil/{id}',['as'=>'editar_perfil','uses'=>'UsersController@editar_perfil']);
-Route::put('editar-foto-perfil/{id}',['as'=>'editar_foto_perfil','uses'=>'UsersController@editar_foto_perfil']);
-Route::delete('eliminar-foto-perfil/{id}',['as'=>'eliminar_foto_perfil','uses'=>'UsersController@eliminar_foto_perfil']);
+Route::put('editar-perfil/{id}', ['as' => 'editar_perfil', 'uses' => 'UsersController@editar_perfil']);
+Route::put('editar-foto-perfil/{id}', ['as' => 'editar_foto_perfil', 'uses' => 'UsersController@editar_foto_perfil']);
+Route::delete('eliminar-foto-perfil/{id}', ['as' => 'eliminar_foto_perfil', 'uses' => 'UsersController@eliminar_foto_perfil']);
 
 
+Route::post('escribir-comentario', ['as' => 'escribir_comentario', 'uses' => 'ComentariosController@escribir_comentario']);
+Route::delete('eliminar-comentario/{id}', ['as' => 'eliminar_comentario', 'uses' => 'ComentariosController@eliminar_comentario']);
 
-Route::post('escribir-comentario',['as'=>'escribir_comentario','uses'=>'ComentariosController@escribir_comentario']);
 
 
 Route::get('cookies', ['as' => 'cookies', 'uses' => 'HomeController@cookies']);
@@ -65,7 +64,7 @@ Route::get('autor', ['as' => 'sobre_mi', 'uses' => 'HomeController@sobre_mi']);
 
 
 //users normales
-Route::get('mi-perfil/{id}', ['as' =>'perfil_user', 'uses' => 'UsersController@perfil']);
+Route::get('mi-perfil/{id}', ['as' => 'perfil_user', 'uses' => 'UsersController@perfil']);
 
 
 
