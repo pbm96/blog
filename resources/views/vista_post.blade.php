@@ -135,7 +135,8 @@
         .btn-plus {
             background-color: #4285f4;
         }
-        .btn-publicar:hover{
+
+        .btn-publicar:hover {
             color: #FFFFFF !important;
 
         }
@@ -206,10 +207,10 @@
                                     <section>
 
                                         <!--Main wrapper-->
-                                        <div class="comments-list text-center text-md-left" >
+                                        <div class="comments-list text-center text-md-left">
                                             <div class="text-center my-5">
                                                 <h3 class="font-weight-bold">Comentarios
-                                                    <span class=" badge btn-plus count_comentarios" >{{count($comentarios)}}</span>
+                                                    <span class=" badge btn-plus count_comentarios">{{count($comentarios)}}</span>
                                                 </h3>
                                             </div>
 
@@ -234,8 +235,12 @@
                                                                 @if(auth()->user())
                                                                     @if($comentario->user->id == auth()->user()->id)
                                                                         <div class="ml-auto mr-4">
-                                                                            <a onclick="eliminar_comentario({{$comentario->id}})"  class='borrar_comentario' data-toggle='popover' data-placement='right' data-content='Borrar comentario'><i
-                                                                                        class="fa fa-trash text-danger" ></i></a>
+                                                                            <a onclick="eliminar_comentario({{$comentario->id}})"
+                                                                               class='borrar_comentario'
+                                                                               data-toggle='popover'
+                                                                               data-placement='right'
+                                                                               data-content='Borrar comentario'><i
+                                                                                        class="fa fa-trash text-danger"></i></a>
                                                                         </div>
                                                                     @endif
                                                                 @endif
@@ -249,18 +254,20 @@
 
                                         </div>
                                         <!--/.Main wrapper-->
-                                        <div class=" row justify-content-center">
-                                            <a class=" btn-plus btn-floating" onclick="mostrar_mas_comentarios()"
-                                               data-container="body" id="mas_comentarios" data-toggle="popover"
-                                               data-placement="right" data-content="Mostrar más comentarios"><i
-                                                        class="fa fa-plus text-white"></i></a>
-                                            <a class=" btn-plus btn-floating d-none" href="#vuelta_comentarios"
-                                               onclick="mostrar_menos_comentarios()" data-container="body"
-                                               id="menos_comentarios" data-toggle="popover" data-placement="right"
-                                               data-content="Mostrar menos comentarios"><i
-                                                        class="fa fa-minus  text-white"></i></a>
 
-                                        </div>
+                                            <div class=" row justify-content-center caja_botones_comentarios {{count($comentarios)<=4?'d-none':''}}">
+                                                <a class=" btn-plus btn-floating" onclick="mostrar_mas_comentarios()"
+                                                   data-container="body" id="mas_comentarios" data-toggle="popover"
+                                                   data-placement="right" data-content="Mostrar más comentarios"><i
+                                                            class="fa fa-plus text-white"></i></a>
+                                                <a class=" btn-plus btn-floating d-none " href="#vuelta_comentarios"
+                                                   onclick="mostrar_menos_comentarios()" data-container="body"
+                                                   id="menos_comentarios" data-toggle="popover" data-placement="right"
+                                                   data-content="Mostrar menos comentarios"><i
+                                                            class="fa fa-minus  text-white"></i></a>
+
+                                            </div>
+
                                     </section>
                                     <!--/Comments-->
                                     <hr>
@@ -288,9 +295,10 @@
                                                 @guest
                                                     <a class="btn btn-info" href="{{route('login')}}">Acceder</a>
                                                 @else
-                                                    <a  id="publicar_comentario"
-                                                           onclick="enviar_comentario({{$post[0]->id}})" href="#vuelta_comentarios"
-                                                           class="btn btn-publicar btn-plus ">Publicar</a>
+                                                    <a id="publicar_comentario"
+                                                       onclick="enviar_comentario({{$post[0]->id}})"
+                                                       href="#vuelta_comentarios"
+                                                       class="btn btn-publicar btn-plus ">Publicar</a>
                                                 @endguest
                                             </div>
 
@@ -393,7 +401,7 @@
                         tinymce.get(tinymce_editor_id).setContent('');
                         var id_comentario = data.comentario['id'];
 
-                        $('#caja_comentarios').prepend("<div class='row mb-5 ' id='comentario"+id_comentario+"'>  <div class='col-sm-8 offset-sm-2 card'><div class='ml-1 row mt-2'>" +
+                        $('#caja_comentarios').prepend("<div class='row mb-5 ' id='comentario" + id_comentario + "'>  <div class='col-sm-8 offset-sm-2 card'><div class='ml-1 row mt-2'>" +
                             "<a><h5 class='user-name font-weight-bold'>" + data.nombre + "</h5></a>" +
                             "<div class='card-data ml-3 mt-1'>" +
                             "<ul class='list-unstyled'>" +
@@ -403,7 +411,7 @@
                             "</ul>" +
                             "</div>" +
                             "<div class='ml-auto mr-4'>" +
-                            " <a onclick='eliminar_comentario("+id_comentario+")'  class='borrar_comentario' data-toggle='popover' data-placement='right' data-content='Borrar comentario'>" +
+                            " <a onclick='eliminar_comentario(" + id_comentario + ")'  class='borrar_comentario' data-toggle='popover' data-placement='right' data-content='Borrar comentario'>" +
                             "<i class='fa fa-trash text-danger'></i>" +
                             " </a>" +
                             "</div>" +
@@ -414,10 +422,12 @@
 
                         $('.count_comentarios').text(data[1]);
 
-                        var id_comentario_anterior = id_comentario-4;
-                        $('#comentario'+id_comentario_anterior).addClass('comentarios_ocultos');
+                        var id_comentario_anterior = id_comentario - 4;
+                        $('#comentario' + id_comentario_anterior).addClass('comentarios_ocultos');
 
-
+                        if (data[1] > 4){
+                            $('.caja_botones_comentarios').removeClass('d-none')
+                        }
                         alert('comentario publicado correctamente')
 
                     } else {
@@ -449,8 +459,12 @@
                     if (data.respuesta === true) {
                         $('#comentario' + id).remove();
                         $('.count_comentarios').text(data[1]);
-                        var id_comentario_siguiente = id_comentario+1;
-                        $('#comentario'+id_comentario_anterior).addClass('comentarios_ocultos');
+
+                        if (data[1] <= 4){
+                            $('.caja_botones_comentarios').addClass('d-none')
+                        }
+                        var id_comentario_siguiente = id_comentario + 1;
+                        $('#comentario' + id_comentario_anterior).addClass('comentarios_ocultos');
                         alert('Comentario borrado')
 
                     } else {
@@ -473,7 +487,6 @@
 
 
         var editor_config = {
-            path_absolute: "/",
             height: 300,
             selector: "textarea.my-editor",
             plugins: [
@@ -489,7 +502,6 @@
         $("#mas_comentarios").popover({trigger: "hover"});
         $("#menos_comentarios").popover({trigger: "hover"});
         $(".borrar_comentario").popover({trigger: "hover"});
-
 
 
         function mostrar_mas_comentarios() {
