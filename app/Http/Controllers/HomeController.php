@@ -14,16 +14,7 @@ use phpDocumentor\Reflection\Types\Self_;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
 
-    public function __construct( SuperadminController $superadminController)
-    {
-        $this->superadminController = $superadminController;
-    }
 
     /**
      * Show the application dashboard.
@@ -53,7 +44,7 @@ class HomeController extends Controller
 
          }
 
-        $this->superadminController->fecha_post($posts);
+        self::fecha_post($posts);
 
         //posts populares
         $posts_populares = self::post_populares($posts);
@@ -76,17 +67,17 @@ class HomeController extends Controller
 
         $comentarios = Comentario::where('post_id',$post[0]->id)->orderBy('created_at','DESC')->get();
 
-        $this->superadminController->fecha_post($comentarios);
+        self::fecha_post($comentarios);
 
-        $this->superadminController->hora_post($comentarios);
+        self::hora_post($comentarios);
 
         $ultimas_noticias = Post::orderBy('created_at','DESC')->take(9)->get();
 
-         $this->superadminController->fecha_post($post);
+         self::fecha_post($post);
 
-        $this->superadminController->hora_post($post);
+        self::hora_post($post);
 
-        $this->superadminController->fecha_post($ultimas_noticias);
+        self::fecha_post($ultimas_noticias);
 
 
         return view('vista_post')->with('post', $post)->with('ultimas_noticias',$ultimas_noticias)->with('comentarios',$comentarios);
@@ -103,7 +94,7 @@ class HomeController extends Controller
 
         $posts = Post::where('categoria_id',$categoria_completa->id)->orderBy('created_at','DESC')->paginate(30);
 
-        $this->superadminController->fecha_post($posts);
+        self::fecha_post($posts);
 
 
         return view('vista_categorias')->with('posts',$posts)->with('categoria_completa',$categoria_completa);
@@ -154,6 +145,31 @@ class HomeController extends Controller
 
         return view('sobre_mi')->with('user',$user);
     }
+
+    public function fecha_post($posts)
+    {
+        foreach ($posts as $post) {
+            $mes = $post->created_at->month;
+            $año = $post->created_at->year;
+            $dia = $post->created_at->day;
+
+            $post->fecha = $dia . '/' . $mes . '/' . $año;
+        }
+
+        return ($posts);
+    }
+
+    public function hora_post($posts)
+    {
+        foreach ($posts as $post) {
+            $hora = $post->created_at->hour;
+            $hora = $hora < 10 ? '0' . $hora : $hora;
+            $minutos = $post->created_at->minute;
+            $minutos = $minutos < 10 ? '0' . $minutos : $minutos;
+            $post->hora = $hora . ':' . $minutos;
+        }
+    }
+
 
 
     /*   public function sacar_mes_post($posts){

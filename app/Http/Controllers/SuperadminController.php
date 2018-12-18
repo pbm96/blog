@@ -11,11 +11,14 @@ use Illuminate\Support\Str;
 class SuperadminController extends Controller
 {
 
-    public function __construct()
+    public function __construct(UsersController $usersController,HomeController $homeController)
     {
         $this->middleware('auth');
         $this->middleware('superadmin');
+        $this->usersController= $usersController;
+        $this->homeController= $homeController;
     }
+
 
     public function panel($id)
     {
@@ -31,7 +34,7 @@ class SuperadminController extends Controller
 
             $users = User::all();
 
-            self::fecha_post($posts);
+            $this->homeController->fecha_post($posts);
 
             return view('superadmin')->with('user', $user)->with('categorias_select', $categorias_select)->with('posts', $posts)->with('categorias', $categorias)->with('users', $users);
         }
@@ -50,7 +53,7 @@ class SuperadminController extends Controller
         $user = auth()->user();
        $imagen = $request->file('imagen_principal');
 
-        $imagen_base64 = self::imagen_base_64($imagen);
+        $imagen_base64 = $this->usersController->imagen_base_64($imagen);
 
         $entrada = new Post($request->all());
 
@@ -134,41 +137,6 @@ class SuperadminController extends Controller
 
     }
 
-    public function editar_perfil(Request $request, $id)
-    {
-        $user = User::find($id);
-
-        $user->fill($request->all());
-
-        $user->save();
-
-        return redirect()->route('perfil_superadmin', auth()->user()->id);
-
-    }
-    public function editar_foto_perfil(Request $request, $id){
-            if ($request->hasFile('imagen')){
-                $user = User::find($id);
-
-                $user->imagen = self::imagen_base_64($request->imagen);
-
-                $user->save();
-            }
-
-        return redirect()->route('perfil_superadmin', auth()->user()->id);
-
-    }
-
-    public function eliminar_foto_perfil($id){
-        $user = User::find($id);
-        if ($user->imagen !=null) {
-            $user->imagen = null;
-            $user->save();
-
-        }
-
-        return redirect()->route('perfil_superadmin', auth()->user()->id);
-    }
-
     public function modificar_post_vista($id){
         $post = Post::find($id);
 
@@ -184,7 +152,7 @@ class SuperadminController extends Controller
         if($request->hasFile('imagen_principal')){
             $imagen = $request->file('imagen_principal');
 
-            $imagen_base64 = self::imagen_base_64($imagen);
+            $imagen_base64 = $this->usersController->imagen_base_64($imagen);
 
 
             $request->imagen_principal = $imagen_base64;
@@ -214,39 +182,8 @@ class SuperadminController extends Controller
         return $posts;
     }
 
-    public function fecha_post($posts)
-    {
-        foreach ($posts as $post) {
-            $mes = $post->created_at->month;
-            $año = $post->created_at->year;
-            $dia = $post->created_at->day;
 
-            $post->fecha = $dia . '/' . $mes . '/' . $año;
-        }
 
-        return ($posts);
-    }
-
-    public function hora_post($posts)
-    {
-        foreach ($posts as $post) {
-            $hora = $post->created_at->hour;
-            $hora = $hora < 10 ? '0' . $hora : $hora;
-            $minutos = $post->created_at->minute;
-            $minutos = $minutos < 10 ? '0' . $minutos : $minutos;
-            $post->hora = $hora . ':' . $minutos;
-        }
-    }
-
-    public function imagen_base_64($imagen){
-
-        $path= $imagen->path();
-        $tipo = $type = pathinfo($path, PATHINFO_EXTENSION);
-        $data = file_get_contents($path);
-        $imagen_base64 = 'data:image/' . $tipo . ';base64,' . base64_encode($data);
-
-        return $imagen_base64;
-    }
 
 
     /*public function posts_ajax(){

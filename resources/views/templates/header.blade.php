@@ -29,7 +29,12 @@
                             <img src="{{auth()->user()->imagen==null?'https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg':auth()->user()->imagen}}" class="rounded-circle z-depth-0 imagen_perfil" alt="avatar image">
                         </a>
                         <div class="dropdown-menu dropdown-primary " id="perfil_nav">
+                            @if(auth()->user()->superadmin == 1 || auth()->user()->admin ==1)
                             <a class="dropdown-item" href="{{route('perfil_superadmin',auth()->user()->id)}}">Panel Administrador</a>
+                            @else
+                                <a class="dropdown-item" href="{{route('perfil_user',auth()->user()->id)}}">Mi usuario</a>
+
+                            @endif
                             <a class="dropdown-item " href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

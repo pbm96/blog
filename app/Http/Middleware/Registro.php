@@ -16,7 +16,7 @@ class Registro
      * @return mixed
      */
 
-    public function handle($request, Closure $next)
+   /* public function handle($request, Closure $next)
     {
 
         $users = User::all();
@@ -31,5 +31,5 @@ class Registro
             return redirect('/');
         }
 
-    }
+    }*/
 }
