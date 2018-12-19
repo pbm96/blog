@@ -25,7 +25,10 @@ Route::post('guardar-post', ['as' => 'guardar_post', 'uses' => 'SuperadminContro
 Route::get('modificar-post-vista/{id}', ['as' => 'modificar_post_vista', 'uses' => 'SuperadminController@modificar_post_vista']);
 Route::put('modificar-post/{id}', ['as' => 'modificar_post', 'uses' => 'SuperadminController@modificar_post']);
 
-Route::delete('eliminar-post/{id}', ['as' => 'eliminar_post', 'uses' => 'SuperadminController@modificar_post']);
+Route::get('Resetear-visitas', ['as' => 'resetear_visitas', 'uses' => 'SuperadminController@resetear_visitas']);
+
+
+Route::get('eliminar-post/{id}', ['as' => 'eliminar_post', 'uses' => 'SuperadminController@eliminar_post']);
 
 
 Route::get('categoria/{categoria}', ['as' => 'categoria', 'uses' => 'HomeController@categoria']);

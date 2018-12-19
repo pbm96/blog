@@ -33,9 +33,6 @@ class Post extends Model
         return $this->hasMany('App\Comentario');
     }
 
-    static function posts_user($id){
 
-        return Post::where('user_id',$id);
-    }
 
 }

@@ -30,7 +30,7 @@ class SuperadminController extends Controller
 
             $categorias = Categoria::all();
 
-            $posts = self::obtener_posts($user->id);
+            $posts = Post::where('user_id',$user->id)->paginate(30);
 
             $users = User::all();
 
@@ -175,17 +175,33 @@ class SuperadminController extends Controller
         return redirect()->route('perfil_superadmin', auth()->user()->id);
     }
 
+    public function resetear_visitas(){
+
+        $posts = Post::all();
+
+        foreach ($posts as $post){
+
+            $post->visitas_semanales = 0;
+
+            $post->save();
+
+        }
+        return redirect()->route('perfil_superadmin', auth()->user()->id);
+
+
+    }
+
     public function eliminar_post($id)
     {
+        $post = Post::find($id);
+
+        $post->delete();
+
+        return redirect()->route('perfil_superadmin', auth()->user()->id);
+
 
     }
 
-    public function obtener_posts($id)
-    {
-        $posts = Post::posts_user($id)->paginate(9);
-
-        return $posts;
-    }
 
 
     /*public function posts_ajax(){

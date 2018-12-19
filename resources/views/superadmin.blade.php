@@ -224,6 +224,9 @@
                 <a class="nav-link" id="categorias_tab" data-toggle="tab" href="#categorias" role="tab"
                    aria-controls="categorias" aria-selected="false">Categorias</a>
             </li>
+            <li class="nav-item ml-auto">
+                <a class="nav-link confirm" href="{{route('resetear_visitas')}}" data-confirm="Se resetearan todas las visitas, Quieres continuar?" id="reset_visitas" data-toggle='popover' data-placement='right' data-content='Resetear visitas posts'><i class="fa fa-undo"></i></a>
+            </li>
         </ul>
         <div class="tab-content pt-5" id="myTabContentEx">
             <div class="tab-pane fade active show col-sm-12" id="mis_posts" role="tabpanel"
@@ -267,9 +270,9 @@
                                                                        id="subtitulo_card_pequeña">{{$post->subtitulo_post}}</p>
                                                                 </div>
                                                                 <p class="text-right mb-0 text-uppercase font-small spacing font-weight-bold">
-                                                                    <a class="btn btn-outline-danger"
+                                                                    <a class="btn btn-outline-danger confirm" data-confirm="Quieres Eliminar el post?"
                                                                        href="{{route('eliminar_post',$post->id)}}"><i
-                                                                                class="fa fa-trash"></i></a>
+                                                                                class="fa fa-trash "></i></a>
                                                                     <a class="btn btn-outline-info"
                                                                        href="{{route('modificar_post_vista',$post->id)}}"><i
                                                                                 class="fa fa-pencil"></i></a>
@@ -667,9 +670,8 @@
 
         }
 
-        $('.confirm').on('click', function (e) {
-            return !!confirm($(this).data('confirm'));
-        });
+
+        $("#reset_visitas").popover({trigger: "hover"});
 
 
         /** $(document).on('click','.pagination a', function(e){

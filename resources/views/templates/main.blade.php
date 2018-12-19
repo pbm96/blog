@@ -62,6 +62,7 @@
 <script>
     $(document).ready(function() {
 
+        /* bajar footer*/
         var docHeight = $(window).height();
         var footerHeight = $('#footer').height();
         var footerTop = $('#footer').position().top + footerHeight;
@@ -69,6 +70,10 @@
         if (footerTop < docHeight) {
             $('#footer').css('margin-top', 10+ (docHeight - footerTop) + 'px');
         }
+
+
+
+        /*pintar categorias en footer y header*/
         var route = "{{route('pintar_categorias')}}";
         $.ajax({
             headers: {
@@ -102,6 +107,12 @@
         } else{
             buscador.hide();
         }
+    });
+    /**
+     * funcion para confirmar una accion
+     */
+    $('.confirm').on('click', function (e) {
+        return !!confirm($(this).data('confirm'));
     });
 
 
