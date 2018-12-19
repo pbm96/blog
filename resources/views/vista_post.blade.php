@@ -166,7 +166,7 @@
 
                             <!--Section heading-->
 
-                            <nav aria-label="breadcrumb " class="row justify-content-end">
+                            <nav aria-label="breadcrumb " class="row justify-content-sm-start">
                                 <ol class="breadcrumb white">
                                     <li class="breadcrumb-item"><a class="black-text" href="{{route('home')}}">Home</a>
                                     </li>
@@ -255,18 +255,18 @@
                                         </div>
                                         <!--/.Main wrapper-->
 
-                                            <div class=" row justify-content-center caja_botones_comentarios {{count($comentarios)<=4?'d-none':''}}">
-                                                <a class=" btn-plus btn-floating" onclick="mostrar_mas_comentarios()"
-                                                   data-container="body" id="mas_comentarios" data-toggle="popover"
-                                                   data-placement="right" data-content="Mostrar más comentarios"><i
-                                                            class="fa fa-plus text-white"></i></a>
-                                                <a class=" btn-plus btn-floating d-none " href="#vuelta_comentarios"
-                                                   onclick="mostrar_menos_comentarios()" data-container="body"
-                                                   id="menos_comentarios" data-toggle="popover" data-placement="right"
-                                                   data-content="Mostrar menos comentarios"><i
-                                                            class="fa fa-minus  text-white"></i></a>
+                                        <div class=" row justify-content-center caja_botones_comentarios {{count($comentarios)<=4?'d-none':''}}">
+                                            <a class=" btn-plus btn-floating" onclick="mostrar_mas_comentarios()"
+                                               data-container="body" id="mas_comentarios" data-toggle="popover"
+                                               data-placement="right" data-content="Mostrar más comentarios"><i
+                                                        class="fa fa-plus text-white"></i></a>
+                                            <a class=" btn-plus btn-floating d-none " href="#vuelta_comentarios"
+                                               onclick="mostrar_menos_comentarios()" data-container="body"
+                                               id="menos_comentarios" data-toggle="popover" data-placement="right"
+                                               data-content="Mostrar menos comentarios"><i
+                                                        class="fa fa-minus  text-white"></i></a>
 
-                                            </div>
+                                        </div>
 
                                     </section>
                                     <!--/Comments-->
@@ -425,7 +425,7 @@
                         var id_comentario_anterior = id_comentario - 4;
                         $('#comentario' + id_comentario_anterior).addClass('comentarios_ocultos');
 
-                        if (data[1] > 4){
+                        if (data[1] > 4) {
                             $('.caja_botones_comentarios').removeClass('d-none')
                         }
                         alert('comentario publicado correctamente')
@@ -460,7 +460,7 @@
                         $('#comentario' + id).remove();
                         $('.count_comentarios').text(data[1]);
 
-                        if (data[1] <= 4){
+                        if (data[1] <= 4) {
                             $('.caja_botones_comentarios').addClass('d-none')
                         }
                         var id_comentario_siguiente = id_comentario + 1;
