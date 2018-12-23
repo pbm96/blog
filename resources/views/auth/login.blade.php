@@ -1,5 +1,7 @@
 @extends('templates.main')
-
+@section('titulo_pagina', 'Acceder')
+@section('estilos')
+    @endsection
 @section('contenido')
 
     <!-- Material form login -->
@@ -8,7 +10,7 @@
             <div class="col-sm-6">
                 <div class="card">
 
-                    <h5 class="card-header info-color white-text text-center py-4">
+                    <h5 class="card-header  text-center py-4 negro_principal" >
                         <strong>Acceder</strong>
                     </h5>
 
@@ -57,8 +59,9 @@
                                 </div>
                                 <div>
 
-                                    <a class=" " {{--}}}href="{{ route('password.request') }}"{{--}}>Olvidaste tu
-                                        contraseña?</a>
+                                    {{--}}} <a class=" " href="{{ route('password.request') }}">Olvidaste tu
+                                        contraseña?</a>{{--}}
+                                    <a href="{{route('register')}}" class="">No estas Registrado? <strong class="text-info">REGISTRATE</strong></a>
                                 </div>
                             </div>
 

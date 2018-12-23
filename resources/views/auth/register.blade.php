@@ -1,5 +1,10 @@
 @extends('templates.main')
 
+@section('titulo_pagina', 'Registro')
+
+@section('estilos')
+
+@endsection
 @section('contenido')
 
     <div class="container mt-5 pt-5">
@@ -10,7 +15,7 @@
                     <!-- Material form register -->
                     <div class="card">
 
-                        <h5 class="card-header info-color white-text text-center py-4">
+                        <h5 class="card-header text-center py-4 negro_principal">
                             <strong>Registro</strong>
                         </h5>
 
@@ -29,9 +34,9 @@
                                             <input id="nombre" type="text"
                                                    class="form-control{{ $errors->has('nombre') ? ' invalid' : '' }}"
                                                    name="nombre" value="{{ old('nombre') }}" required autofocus>
-                                            <label for="nombre" class="">Nombre</label>
+                                            <label for="nombre" class="">Nombre*</label>
                                             @if ($errors->has('nombre'))
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="invalid-feedback  d-block text-left" role="alert">
                                         <strong>{{ $errors->first('nombre') }}</strong>
                                     </span>
                                             @endif
@@ -42,11 +47,11 @@
                                         <!-- Last name -->
                                         <div class="md-form">
                                             <input id="apellidos" type="text"
-                                                   class="form-control{{ $errors->has('apellidos') ? ' is-invalid' : '' }}"
+                                                   class="form-control{{ $errors->has('apellidos') ? ' invalid' : '' }}"
                                                    name="apellidos" value="{{ old('apellidos') }}" required>
-                                            <label for="apellidos" class="">Apellidos</label>
+                                            <label for="apellidos" class="">Apellidos*</label>
                                             @if ($errors->has('apellidos'))
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="invalid-feedback  d-block text-left" role="alert">
                                         <strong>{{ $errors->first('apellidos') }}</strong>
                                     </span>
                                             @endif
@@ -59,10 +64,10 @@
                                         <textarea id="descripcion" rows="5" cols="20"
                                                   class="form-control{{ $errors->has('descripcion') ? ' invalid' : '' }}"
                                                   name="descripcion"
-                                                  placeholder="Descripcion...">{{ old('descripcion') }}</textarea>
+                                                  placeholder="Añade una descripcion sobre ti...(Opcional)">{{ old('descripcion') }}</textarea>
 
                                         @if ($errors->has('descripcion'))
-                                            <span class="invalid-feedback" role="alert">
+                                            <span class="invalid-feedback  d-block text-left" role="alert">
                                         <strong>{{ $errors->first('descripcion') }}</strong>
                                     </span>
                                         @endif
@@ -75,11 +80,11 @@
                                            name="email" value="{{ old('email') }}" required>
 
                                     @if ($errors->has('email'))
-                                        <span class="invalid-feedback" role="alert">
+                                        <span class="invalid-feedback d-block text-left" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                     </span>
                                     @endif
-                                    <label for="email">E-mail</label>
+                                    <label for="email">E-mail*</label>
                                 </div>
 
                                 <!-- Password -->
@@ -87,13 +92,13 @@
                                     <div class="col">
                                         <!-- First name -->
                                         <div class="md-form">
-                                            <label for="password" class="">Contraseña</label>
+                                            <label for="password" class="">Contraseña*</label>
                                             <input id="password" type="password"
-                                                   class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                                   class="form-control{{ $errors->has('password') ? ' invalid' : '' }}"
                                                    name="password" required>
 
                                             @if ($errors->has('password'))
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="invalid-feedback  d-block text-left" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                             @endif
@@ -103,7 +108,7 @@
                                     <div class="col">
                                         <!-- Last name -->
                                         <div class="md-form">
-                                            <label for="password-confirm" class="">Confirmar Contraseña</label>
+                                            <label for="password-confirm" class="">Confirmar Contraseña*</label>
                                             <input id="password-confirm" type="password" class="form-control"
                                                    name="password_confirmation" required>
 

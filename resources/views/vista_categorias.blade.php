@@ -3,40 +3,7 @@
 
 @section('estilos')
 <style>
-    #titulo_card_pequeña{
-        overflow: hidden;
-        text-overflow: ellipsis;
-        -webkit-box-orient: vertical;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        height: 45px;
 
-    }
-    #subtitulo_card_pequeña{
-        overflow: hidden;
-        text-overflow: ellipsis;
-        -webkit-box-orient: vertical;
-        display: -webkit-box;
-        -webkit-line-clamp: 4;
-    }
-
-    .card_secundaria{
-        height: 516px;
-
-    }
-
-    .caja_subtitulo_pequeñas{
-        height: 100px;
-        overflow: hidden;
-
-    }
-    .titulo_categoria{
-        margin-top: 7em;
-        border-radius: 0.7em;
-    }
-    .imagen_post_secundario{
-        height: 210px;
-    }
 
 </style>
 @endsection

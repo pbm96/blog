@@ -25,121 +25,6 @@
     <meta property="og:image" content="{{$post[0]->imagen_principal}}"/>
 
     <style>
-        .comments-list .avatar, .reply-form .avatar {
-            max-width: 100px;
-        }
-
-        .btn-tw {
-            background-color: #55acee !important;
-            color: #fff !important;
-        }
-
-        .btn-fb {
-            background-color: #3b5998 !important;
-            color: #fff !important;
-        }
-
-        .carousel-multi-item {
-            margin-bottom: 5rem;
-        }
-
-        .titulo_card_pequeña {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            -webkit-box-orient: vertical;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            height: 56px;
-        }
-
-        .carousel-multi-item .carousel-indicators li {
-            height: 1.25rem;
-            width: 1.25rem;
-            max-width: 1.25rem;
-            background-color: #4285f4;
-            margin-bottom: -3rem;
-        }
-
-        .carousel-multi-item .carousel-indicators .active {
-            height: 1.56rem;
-            width: 1.56rem;
-            max-width: 1.56rem;
-            background-color: #4285f4;
-            -webkit-border-radius: 50%;
-            border-radius: 50%;
-        }
-
-        @media (min-width: 992px) {
-            .cuerpo_noticia {
-                margin-top: -100px;
-            }
-
-            .nombre_comentario {
-                margin-top: -1.6em;
-            }
-
-            .imagen_principal_noticia {
-                width: 100%;
-                height: 658px;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .imagen_principal_noticia {
-                height: 250px;
-                width: 100%;
-
-            }
-
-        }
-
-        .imagenes_destacadas {
-            height: 177px;
-        }
-
-        .btn-floating i {
-            font-size: 1.25rem;
-            line-height: 47px;
-        }
-
-        .btn-floating {
-            -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
-            box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
-            width: 47px;
-            height: 47px;
-            position: relative;
-            z-index: 1;
-            vertical-align: middle;
-            display: inline-block;
-            overflow: hidden;
-            -webkit-transition: all .2s ease-in-out;
-            -o-transition: all .2s ease-in-out;
-            transition: all .2s ease-in-out;
-            margin: 10px;
-            -webkit-border-radius: 50%;
-            border-radius: 50%;
-            padding: 0;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .btn-floating:hover {
-            -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19);
-            box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19);
-        }
-
-        .comentarios_ocultos {
-            display: none;
-        }
-
-        .btn-plus {
-            background-color: #4285f4;
-        }
-
-        .btn-publicar:hover {
-            color: #FFFFFF !important;
-
-        }
 
 
     </style>
@@ -339,7 +224,7 @@
                                                                             </a>
                                                                         </div>
                                                                         <div class="card-body">
-                                                                            <h4 class="card-title titulo_card_pequeña"
+                                                                            <h4 class="card-title titulo_card_pequeña_vista_post"
                                                                                 title="{{$noticia->titulo_post}}">
                                                                                 <strong>{{$noticia->titulo_post}}</strong>
                                                                             </h4>

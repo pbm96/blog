@@ -2,29 +2,6 @@
 @section('titulo_pagina', 'Panel-admin')
 
 @section('estilos')
-    <style>
-        @media (min-width: 768px) {
-            .imagen_sobre_mi {
-                margin-top: -10em;
-            }
-            .imagen_sobre_mi_caja {
-                text-align: right;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .imagen_sobre_mi_caja {
-                text-align: center;
-                margin-bottom: 1em;
-
-            }
-        }
-
-        .imagen_sobre_mi {
-            height: 130px;
-            width: 100px;
-        }
-    </style>
 @endsection
 
 

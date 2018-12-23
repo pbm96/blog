@@ -2,37 +2,7 @@
 @section('titulo_pagina', 'Mi-perfil')
 
 @section('estilos')
-    <style>
-        .foto_user_perfil {
-            height: 130px;
-            width: 130px;
-        }
 
-        .upload-btn-wrapper {
-            position: relative;
-            overflow: hidden;
-            display: inline-block;
-        }
-
-        .upload-btn-wrapper input[type=file] {
-            font-size: 100px;
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-        }
-
-        .card.card-cascade.narrower .view.view-cascade {
-            margin-left: 4%;
-            margin-right: 4%;
-            margin-top: -1.25rem;
-        }
-
-        .card.card-cascade .view.view-cascade.gradient-card-header {
-            padding: 1.6rem 1rem;
-            text-align: center;
-        }
-    </style>
 @endsection
 
 
@@ -40,9 +10,9 @@
     <div class="container " style="margin-top: 8em">
         <section class="section mt-3">
             <div class="row">
-                <div class="col-lg-4 mb-4">
+                <div class="col-lg-4 mb-5">
                     <div class="card card-cascade narrower">
-                        <div class="view view-cascade gradient-card-header mdb-color lighten-3">
+                        <div class="view view-cascade gradient-card-header negro_principal ">
                             <h5 class="mb-0 font-weight-bold">Editar Foto</h5>
                         </div>
                         <div class="card-body card-body-cascade text-center">
@@ -74,9 +44,9 @@
                     </div>
                 </div>
 
-                <div class="col-lg-8 mb-4 mt-md-2">
+                <div class="col-lg-8 mb-4 ">
                     <div class="card card-cascade narrower">
-                        <div class="view view-cascade gradient-card-header mdb-color lighten-3">
+                        <div class="view view-cascade gradient-card-header negro_principal lighten-3">
                             <h5 class="mb-0 font-weight-bold">Editar Perfil</h5>
                         </div>
                         {!! Form::Open(['route'=>['editar_perfil',auth()->user()->id],'method'=>'PUT',]) !!}
@@ -150,7 +120,7 @@
                 </div>
             </div>
         </section>
-    </div>/
+    </div>
 @endsection
 @section('scripts')
     <script>
