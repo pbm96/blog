@@ -155,7 +155,7 @@
             text-overflow: ellipsis;
             -webkit-box-orient: vertical;
             display: -webkit-box;
-            -webkit-line-clamp: 4;
+            -webkit-line-clamp: 5;
         }
 
         .card_secundaria {
@@ -164,7 +164,7 @@
         }
 
         .caja_subtitulo_pequeñas {
-            height: 100px;
+            height: 125px;
             overflow: hidden;
 
         }
@@ -270,12 +270,12 @@
                                                                        id="subtitulo_card_pequeña">{{$post->subtitulo_post}}</p>
                                                                 </div>
                                                                 <p class="text-right mb-0 text-uppercase font-small spacing font-weight-bold">
-                                                                    <a class="btn btn-outline-danger confirm" data-confirm="Quieres Eliminar el post?"
+                                                                    <a class=" p-2 confirm" data-confirm="Quieres Eliminar el post?"
                                                                        href="{{route('eliminar_post',$post->id)}}"><i
-                                                                                class="fa fa-trash "></i></a>
-                                                                    <a class="btn btn-outline-info"
+                                                                                class="fa fa-trash text-danger fa-2x "></i></a>
+                                                                    <a class=" p-2"
                                                                        href="{{route('modificar_post_vista',$post->id)}}"><i
-                                                                                class="fa fa-pencil"></i></a>
+                                                                                class="fa fa-pencil text-info fa-2x" ></i></a>
                                                                     <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">leer
                                                                         más
                                                                         <i class="fa fa-chevron-circle-right"

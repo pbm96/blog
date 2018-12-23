@@ -18,6 +18,7 @@ class CreateComentariosTable extends Migration
             $table->integer('post_id')->unsigned();
             $table->string('user_id')->unsigned();
             $table->string('comentario');
+            $table->boolean('revisado')->default(0);
 
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

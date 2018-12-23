@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Categoria;
+use App\Comentario;
 use App\Post;
 use App\User;
 use Illuminate\Http\Request;
@@ -36,7 +37,9 @@ class SuperadminController extends Controller
 
             $this->homeController->fecha_post($posts);
 
-            return view('superadmin')->with('user', $user)->with('categorias_select', $categorias_select)->with('posts', $posts)->with('categorias', $categorias)->with('users', $users);
+            $comentarios_sin_revisar = Comentario::where('revisado',0);
+
+            return view('superadmin')->with('user', $user)->with('categorias_select', $categorias_select)->with('posts', $posts)->with('categorias', $categorias)->with('users', $users)->with('comentarios_sin_revisar',$comentarios_sin_revisar);
         }
     }
 
