@@ -514,7 +514,40 @@ ESTILOS SOBRE MI
     height: 115px;
 }
 
+.js-cookie-consent {
+    z-index: 99999;
+    color: #FFFFFF;
+    width: 100%;
 
+    margin-right: auto;
+    margin-left: auto;
+    position: fixed;
+    background-color: #292c2f !important;
+    bottom: 0;
+    text-align: center;
+    padding: 15px;
+}
+.js-cookie-consent a{
+    color: #00aced;
+}
+.js-cookie-consent a:hover{
+    color: #c6c6c6;
+}
+.js-cookie-consent-agree {
+    padding: .30rem 1.14rem;
+    font-size: .81rem;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    margin: .375rem;
+    border: 0;
+    border-radius: .125rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    white-space: normal;
+    word-wrap: break-word;
+    background-color: #4285f4;
+    color: #FFFFFF;
+}
 
 
 

@@ -56,7 +56,7 @@
             <div class="md-form my-0 ml-3 " id="buscador">
 
                 {!! Form::Open(['route' => 'buscar','method'=>'GET',]) !!}
-                <input class="form-control mr-sm-2 caja_buscador" type="text" placeholder="Search"
+                <input class="form-control mr-sm-2 caja_buscador" type="text" placeholder="Buscar..."
                        value="{{old('buscar')}}" name="buscar" aria-label="Search">
                 {!!  Form::close() !!}
 

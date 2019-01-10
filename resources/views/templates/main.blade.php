@@ -45,7 +45,11 @@
 
     @yield('contenido')
 
+   <div > @include('cookieConsent::index')</div>
+
 </main>
+
+
 
     @extends('templates.footer')
 
