@@ -16,15 +16,16 @@ class CreateComentariosTable extends Migration
         Schema::create('comentarios', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('post_id')->unsigned();
-            $table->string('user_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->string('comentario');
-            $table->boolean('revisado')->default(0);
+            $table->boolean('revisado')->default(false);
 
+            $table->timestamps();
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
 
-            $table->timestamps();
+
         });
     }
 

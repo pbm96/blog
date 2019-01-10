@@ -264,7 +264,6 @@
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
     <script>
-        // enviar comentario
 
 
         function enviar_comentario(id) {
