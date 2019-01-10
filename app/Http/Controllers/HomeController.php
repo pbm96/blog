@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use Jenssegers\Agent\Agent;
 use phpDocumentor\Reflection\Types\Self_;
 
 class HomeController extends Controller
@@ -54,8 +55,15 @@ class HomeController extends Controller
         // borro el ultimo post del array de posts
         unset($posts[0]);
 
+        $agent = new Agent();
 
-        return view('welcome')->with('posts', $posts)->with('ultimo_post', $ultimo_post)->with('categorias', $categorias)->with('post_populares', $posts_populares)->with('user', $user);
+        if ($agent->isMobile()){
+            $dispositivo  ='movil';
+        }else{
+            $dispositivo = 'ordenador';
+        }
+
+        return view('welcome')->with('posts', $posts)->with('ultimo_post', $ultimo_post)->with('categorias', $categorias)->with('post_populares', $posts_populares)->with('user', $user)->with('dispositivo', $dispositivo);
     }
 
     public function vista_post($categoria, $slug)
