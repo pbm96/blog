@@ -3,10 +3,6 @@
 @section('titulo_pagina', 'Home')
 
 @section('estilos')
-<style>
-
-
-</style>
 @endsection
 
 @section('cabezera')
