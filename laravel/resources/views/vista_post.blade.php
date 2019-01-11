@@ -336,7 +336,7 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                type: "DELETE",
+                type: "GET",
                 dataType: "json",
                 url: route,
                 success: function (data) {
@@ -347,8 +347,8 @@
                         if (data[1] <= 4) {
                             $('.caja_botones_comentarios').addClass('d-none')
                         }
-                        var id_comentario_siguiente = id_comentario + 1;
-                        $('#comentario' + id_comentario_anterior).addClass('comentarios_ocultos');
+                       // var id_comentario_siguiente = id_comentario + 1;
+                        //$('#comentario' + id_comentario_anterior).addClass('comentarios_ocultos');
                         alert('Comentario borrado')
 
                     } else {

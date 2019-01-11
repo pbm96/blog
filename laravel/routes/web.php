@@ -55,7 +55,7 @@ Route::delete('eliminar-foto-perfil/{id}', ['as' => 'eliminar_foto_perfil', 'use
 
 
 Route::post('escribir-comentario', ['as' => 'escribir_comentario', 'uses' => 'ComentariosController@escribir_comentario']);
-Route::delete('eliminar-comentario/{id}', ['as' => 'eliminar_comentario', 'uses' => 'ComentariosController@eliminar_comentario']);
+Route::get('eliminar-comentario/{id}', ['as' => 'eliminar_comentario', 'uses' => 'ComentariosController@eliminar_comentario']);
 
 
 
