@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4967ea4-fe06-4986-9e27-abe19a7a3361" name="Default Changelist" comment="">
-
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/lfm.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/lfm.php" afterDir="false" />
-
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,8 +55,8 @@
         <counts>
           <entry key="artisan" value="1" />
           <entry key="css" value="41" />
-
           <entry key="env" value="2" />
+          <entry key="gitignore" value="1" />
           <entry key="html" value="1" />
           <entry key="ini-development" value="1" />
           <entry key="js" value="6" />
@@ -75,7 +71,6 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-
           <entry key=".env file" value="2" />
           <entry key="Blade" value="140" />
           <entry key="CSS" value="41" />
@@ -83,7 +78,7 @@
           <entry key="JSON" value="5" />
           <entry key="JavaScript" value="6" />
           <entry key="PHP" value="135" />
-          <entry key="PLAIN_TEXT" value="4" />
+          <entry key="PLAIN_TEXT" value="5" />
           <entry key="RNG Compact" value="2" />
           <entry key="XML" value="1" />
         </counts>
@@ -93,6 +88,7 @@
           <entry key="css" value="1115" />
           <entry key="dummy" value="1" />
           <entry key="env" value="28" />
+          <entry key="gitignore" value="6" />
           <entry key="js" value="88" />
           <entry key="json" value="8" />
           <entry key="php" value="33484" />
@@ -100,14 +96,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-
           <entry key=".env file" value="28" />
           <entry key="Blade" value="20663" />
           <entry key="CSS" value="1115" />
           <entry key="JSON" value="8" />
           <entry key="JavaScript" value="88" />
           <entry key="PHP" value="12821" />
-          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="PLAIN_TEXT" value="7" />
         </counts>
       </usages-collector>
     </session>
@@ -116,37 +111,17 @@
     <favorites_list name="blog" />
   </component>
   <component name="FileEditorManager">
-
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/config/lfm.php">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1575">
-              <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.env">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/app.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="235" selection-start-line="235" selection-end-line="235" />
+            <state relative-caret-position="315">
+              <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
-
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -201,8 +176,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-
-        <option value="$PROJECT_DIR$/public/css/editor.css" />
         <option value="$PROJECT_DIR$/public/js/editor.js" />
         <option value="$PROJECT_DIR$/public/css/admin.css" />
         <option value="$PROJECT_DIR$/resources/views/crear_post.blade.php" />
@@ -253,6 +226,7 @@
         <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/config/lfm.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -366,7 +340,6 @@
       <path value="$PROJECT_DIR$/vendor/nexmo/client" />
     </include_path>
   </component>
-
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-430" />
     <option name="y" value="-20" />
@@ -387,11 +360,6 @@
             <path>
               <item name="blog" type="b2602c69:ProjectViewProjectNode" />
               <item name="blog" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="blog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="blog" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -464,7 +432,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="222894000" />
+    <option name="totallyTimeSpent" value="223385000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -477,6 +445,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49787235" visible="true" weight="0.18389262" />
       <window_info id="Structure" order="1" sideWeight="0.50212765" side_tool="true" weight="0.1785235" />
@@ -509,7 +478,6 @@
     <entry file="file://$PROJECT_DIR$/public/robots.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-
     <entry file="file://$PROJECT_DIR$/../../php/pci.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-792" />
@@ -616,13 +584,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/storage/logs/laravel-2018-12-23.log" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/auth/login.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-273">
@@ -799,6 +760,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1575">
           <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
         </state>
       </provider>
     </entry>
