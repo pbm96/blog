@@ -11,20 +11,20 @@
     <section class="container bg-light mb-4 p-3 " style="margin-top: 7em">
         <div class="mb-4">
             <h2 class="text-uppercase font-weight-bold">Qué son las cookies y por qué las utilizamos en
-                Tecnoforyou</h2>
+                tecnozone</h2>
             <p>Una cookie es un fichero que se descarga en el dispositivo del usuario al acceder a determinadas
                 páginas
                 web para almacenar y recuperar información sobre la navegación que se efectúa desde dicho
                 equipo.</p>
 
             <p> Las cookies permiten a dicha web, entre otras cosas, almacenar y recuperar información sobre las
-                decisiones y hábitos del usuario. En Tecnoforyou las utilizamos para personalizar la experiencia
+                decisiones y hábitos del usuario. En tecnozone las utilizamos para personalizar la experiencia
                 dentro
                 de nuestras webs, identificar y recordar al usuario registrado y facilitar la navegación.</p>
 
             <p>Es importante destacar que el uso de cookies no proporciona datos personales del usuario, que de cara
                 a
-                Tecnoforyou permanece anónimo.</p>
+                tecnozone permanece anónimo.</p>
 
             <p>El usuario puede configurar su navegador para no aceptar el uso de cookies, en cuyo caso la
                 personalización de la experiencia no se aplicaría aunque sí podrá seguir accediendo a los contenidos
@@ -43,7 +43,7 @@
                 primeras expiran cuando el usuario cierra el navegador. Las segundas expiran en función cuando se
                 cumpla
                 el objetivo para el que sirven (por ejemplo, para que el usuario se mantenga identificado en
-                Tecnoforyou) o bien cuando se borran manualmente.
+                tecnozone) o bien cuando se borran manualmente.
             </p>
             <p>
                 Adicionalmente, en función de su objetivo, las Cookies pueden clasificarse de la siguiente forma:
@@ -83,7 +83,7 @@
                 analítica
                 en el dispositivo del usuario. Esta cookie que sólo se genera en la visita, servirá en próximas
                 visitas
-                a los servicios de Tecnoforyou para identificar de forma anónima al visitante. Los objetivos
+                a los servicios de tecnozone para identificar de forma anónima al visitante. Los objetivos
                 principales
                 que se persiguen son:</p>
             <ul>
@@ -126,7 +126,7 @@
                 </li>
             </ul>
 
-            <h2 class="text-uppercase">Qué cookies utilizamos en Tecnoforyou
+            <h2 class="text-uppercase">Qué cookies utilizamos en tecnozone
             </h2>
 
             <ul>

@@ -13,13 +13,13 @@
 
 
     <meta name="description" content="{{$post[0]->subtitulo}}">
-    <meta name="author" content="Tecnoforyou">
+    <meta name="author" content="tecnozone">
     <meta property="og:locale" content="es_Es"/>
     <meta property="og:type" content="article"/>
     <meta property="og:title" content="{{$post[0]->titulo}}"/>
     <meta property="og:description" content="{{$post[0]->subtitulo}}"/>
     <meta property="og:url" content="{{route('vista_post',[$post[0]->categoria->nombre_categoria,$post[0]->slug])}}"/>
-    <meta property="og:site_name" content="Tecnoforyou.com"/>
+    <meta property="og:site_name" content="tecnozone.com"/>
     <meta property="article:publisher" content="https://www.facebook.com/Mahcode-849841581779986"/>
     <meta property="article:published_time" content="{{$post[0]->created_at}}"/>
     <meta property="og:image" content="{{$post[0]->imagen_principal}}"/>
