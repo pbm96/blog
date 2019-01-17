@@ -2,7 +2,7 @@
 
     <div class="footer-left">
 
-        <h3>TECNO<span>FORYOU</span></h3>
+        <h3>TECNO<span>ZONE</span></h3>
 
         <p class="footer-links">
             <a href="{{route('home')}}" class="enlace_footer_lateral">Home</a>
@@ -18,10 +18,10 @@
         </p>
         <div class="mb-3">
             <i class="fa fa-envelope "> </i>
-            <a href="mailto:pablo.bonillo@tecnoforyou.com" class="h6">pablo.bonillo@tecnoforyou.com</a>
+            <a href="mailto:pablo.bonillo@tecnozone.com" class="h6">pablo.bonillo@tecnozone.es</a>
 
         </div>
-        <p class="footer-company-name">Tecnoforyou © 2018</p>
+        <p class="footer-company-name">tecnozone © {{now()->year}}</p>
     </div>
 
     <div class="footer-center">
@@ -39,15 +39,15 @@
     <div class="footer-right">
 
         <p class="footer-company-about">
-            <span>Sobre Tecnoforyou</span>
-            Tecnoforyou se crea para todos los apasionados de la tecnología enfocada a ofrecer reviews y analizar los
+            <span>Sobre tecnozone</span>
+            tecnozone se crea para todos los apasionados de la tecnología enfocada a ofrecer reviews y analizar los
             productos más recientes del mercado comparandolos con modelos similares.
         </p>
 
         <div class="footer-icons">
 
             <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="https://twitter.com/TecnozoneE"><i class="fa fa-twitter"></i></a>
             <a href="#"><i class="fa fa-linkedin"></i></a>
             <a href="https://github.com/pbm96" target="_blank"><i class="fa fa-github"></i></a>
 

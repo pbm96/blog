@@ -222,7 +222,7 @@
                                 </h5>
 
                                 <p class="mt-3 dark-grey-text font-small text-center">
-                                    <em>Mi nombre es Pablo Bonillo, soy estudiante de Ingenieria informatica, desarrollador web y creador de Tecnoforyou...
+                                    <em>Mi nombre es Pablo Bonillo, soy estudiante de Ingenieria informatica, desarrollador web y creador de tecnozone...
                                         <a class="teal-text" href="{{route('sobre_mi')}}">+Info</a>
                                     </em>
                                 </p>
