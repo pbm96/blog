@@ -14,7 +14,7 @@
         "laraveles/spanish": "^1.1",
         "nesbot/carbon": "^1.25",
         "spatie/laravel-cookie-consent": "^2.6",
-        "unisharp/laravel-filemanager": "~1.8"
+        "unisharp/laravel-filemanager": "^1.9"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

@@ -72,7 +72,7 @@ return [
     'rename_file' => false,
 
     // If rename_file set to false and this set to true, then non-alphanumeric characters in filename will be replaced.
-    'alphanumeric_filename' => false,
+    'alphanumeric_filename' => true,
 
     // If true, non-alphanumeric folder name will be rejected.
     'alphanumeric_directory' => false,
