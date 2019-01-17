@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4967ea4-fe06-4986-9e27-abe19a7a3361" name="Default Changelist" comment="">
+
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/lfm.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/lfm.php" afterDir="false" />
+
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,6 +59,7 @@
         <counts>
           <entry key="artisan" value="1" />
           <entry key="css" value="41" />
+
           <entry key="env" value="2" />
           <entry key="html" value="1" />
           <entry key="ini-development" value="1" />
@@ -72,6 +75,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+
           <entry key=".env file" value="2" />
           <entry key="Blade" value="140" />
           <entry key="CSS" value="41" />
@@ -96,6 +100,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
+
           <entry key=".env file" value="28" />
           <entry key="Blade" value="20663" />
           <entry key="CSS" value="1115" />
@@ -111,6 +116,7 @@
     <favorites_list name="blog" />
   </component>
   <component name="FileEditorManager">
+
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/lfm.php">
@@ -140,6 +146,7 @@
         </entry>
       </file>
     </leaf>
+
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -194,6 +201,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+
         <option value="$PROJECT_DIR$/public/css/editor.css" />
         <option value="$PROJECT_DIR$/public/js/editor.js" />
         <option value="$PROJECT_DIR$/public/css/admin.css" />
@@ -358,6 +366,7 @@
       <path value="$PROJECT_DIR$/vendor/nexmo/client" />
     </include_path>
   </component>
+
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-430" />
     <option name="y" value="-20" />
@@ -468,7 +477,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49787235" visible="true" weight="0.18389262" />
       <window_info id="Structure" order="1" sideWeight="0.50212765" side_tool="true" weight="0.1785235" />
@@ -501,6 +509,7 @@
     <entry file="file://$PROJECT_DIR$/public/robots.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+
     <entry file="file://$PROJECT_DIR$/../../php/pci.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-792" />
