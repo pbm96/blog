@@ -10,7 +10,7 @@
     <section class="container bg-light" style="margin-top: 7em">
 
 <br>
-        <p><strong class="text-uppercase">Tecnoforyou</strong>  se encuentra bajo una Licencia <a rel="license" target="_blank" class="text-info" href="http://creativecommons.org/licenses/by-nc-sa/3.0/es/">Creative Commons Reconocimiento-NoComercial-CompartirIgual 3.0 España</a></p>
+        <p><strong class="text-uppercase">tecnozone</strong>  se encuentra bajo una Licencia <a rel="license" target="_blank" class="text-info" href="http://creativecommons.org/licenses/by-nc-sa/3.0/es/">Creative Commons Reconocimiento-NoComercial-CompartirIgual 3.0 España</a></p>
         <h2>Usted es libre de:</h2>
 
         <ul>

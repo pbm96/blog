@@ -24,10 +24,10 @@
                             <hr>
                             {!! $user->descripcion_user !!}-->
                               <h3 class="dark-grey-text pb-2 font-weight-bold">
-                                  <strong>Qué es Tecnoforyou</strong>
+                                  <strong>Qué es tecnozone</strong>
                               </h3>
                             <hr>
-                            <p>Tecnoforyou es un proyecto personal enfocado a ser un blog de tecnología, en el que se podrán encontar
+                            <p>tecnozone es un proyecto personal enfocado a ser un blog de tecnología, en el que se podrán encontar
                                 análisis de  los últimos productos del mercado, en concreto el mercado de los smartphones y de la informática en general
                                 (portátiles, componentes, periféricos...), Así como opiniones personales y comparaciones sobre dichos productos.
 
@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <p class="text-uppercase pt-2">{{$user->nombre}} {{$user->apellidos}}</p>
-                                    <p class="pt-3">Creador y editor de Tecnoforyou</p>
+                                    <p class="pt-3">Creador y editor de tecnozone</p>
                                 </div>
                                 </div>
                             </div>

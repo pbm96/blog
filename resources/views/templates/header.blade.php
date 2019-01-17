@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top " id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger tecnoforyou" href="{{route('home')}}"><span
-                    class="tecno">TECNO</span><span class="foryou">FORYOU</span></a>
+        <a class="navbar-brand js-scroll-trigger tecnozone" href="{{route('home')}}"><span
+                    class="tecno">TECNO</span><span class="foryou">ZONE</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
