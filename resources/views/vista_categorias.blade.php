@@ -2,10 +2,6 @@
 @section('titulo_pagina', 'Panel-admin')
 
 @section('estilos')
-<style>
-
-
-</style>
 @endsection
 
 

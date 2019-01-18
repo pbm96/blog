@@ -157,7 +157,9 @@ class HomeController extends Controller
 
     public function mapa_web()
     {
-        return view('about');
+        $categorias = Categoria::all();
+
+        return view('sitemap')->with('categorias',$categorias);
     }
 
     public function sobre_mi()
