@@ -25,14 +25,12 @@ class HomeController extends Controller
     public function index()
     {
 
-        $posts = Post::orderBy('created_at', 'DESC')->paginate(30);
-
+        $posts = Post::where('publicado',true)->orderBy('created_at', 'DESC')->paginate(30);
 
         //self::sacar_mes_post($posts);
         $categorias = Categoria::all();
 
         $user = User::where('nombre', 'pablo')->where('apellidos', 'bonillo molina')->first();
-
 
         $posts_categorias = Post::groupBy('categoria_id')->select('categoria_id', DB::raw('count(*) as total'))->pluck('total', 'categoria_id')->all();
 
