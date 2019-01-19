@@ -32,7 +32,7 @@ class HomeController extends Controller
 
         $user = User::where('nombre', 'pablo')->where('apellidos', 'bonillo molina')->first();
 
-        $posts_categorias = Post::groupBy('categoria_id')->select('categoria_id', DB::raw('count(*) as total'))->pluck('total', 'categoria_id')->all();
+        $posts_categorias = Post::where('publicado',1)->groupBy('categoria_id')->select('categoria_id', DB::raw('count(*) as total'))->pluck('total', 'categoria_id')->all();
 
         foreach ($categorias as $categoria) {
             foreach ($posts_categorias as $key => $count) {
@@ -101,7 +101,7 @@ class HomeController extends Controller
 
         $categoria_completa = Categoria::where('nombre_categoria', $categoria)->first();
 
-        $posts = Post::where('categoria_id', $categoria_completa->id)->orderBy('created_at', 'DESC')->paginate(30);
+        $posts = Post::where('categoria_id', $categoria_completa->id)->where('publicado',1)->orderBy('created_at', 'DESC')->paginate(30);
 
         self::fecha_post($posts);
 
@@ -113,10 +113,14 @@ class HomeController extends Controller
     {
         $buscar = Input::get('buscar');
         $posts = Post::where('titulo_post', 'like', '%' . $buscar . '%')
+            ->where('publicado',1)
             ->orWhere('descripcion_post', 'like', '%' . $buscar . '%')
+            ->where('publicado',1)
             ->orderBy('created_at', 'desc')->paginate(30);
 
         if (sizeof($posts) > 0) {
+            self::fecha_post($posts);
+
             return view('vista_categorias')->with('posts', $posts)->with('buscar', $buscar);
 
         } else {

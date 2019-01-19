@@ -13,7 +13,7 @@
 
 
         <div class="row  mr-5 mt-5">
-            <a href="{{route('perfil_superadmin',auth()->user()->id)}}" class="">Panel Administracion</a>
+            <a href="{{route('perfil_superadmin',auth()->user()->id)}}" class="mt-5 ml-3" >Panel Administracion</a>
             <div class="form-check mt-5 ml-auto">
                 <input type="checkbox" class="form-check-input" id="publicado" name="publicado"
                        value="1" {{$post->publicado==1?'checked':''}}>
