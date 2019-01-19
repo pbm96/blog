@@ -14,6 +14,10 @@
                    aria-controls="mis_posts" aria-selected="true">Mis Posts</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" id="borradores_tab" data-toggle="tab" href="#borradores" role="tab"
+                   aria-controls="borradores" aria-selected="true">Borradores</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" id="crear_post_tab" data-toggle="tab" href="#crear_post" role="tab"
                    aria-controls="crear_post" aria-selected="false">Crear Post</a>
             </li>
@@ -34,7 +38,10 @@
                    aria-controls="categorias" aria-selected="false">Categorias</a>
             </li>
             <li class="nav-item ml-auto">
-                <a class="nav-link confirm" href="{{route('resetear_visitas')}}" data-confirm="Se resetearan todas las visitas, Quieres continuar?" id="reset_visitas" data-toggle='popover' data-placement='right' data-content='Resetear visitas posts'><i class="fa fa-undo"></i></a>
+                <a class="nav-link confirm" href="{{route('resetear_visitas')}}"
+                   data-confirm="Se resetearan todas las visitas, Quieres continuar?" id="reset_visitas"
+                   data-toggle='popover' data-placement='right' data-content='Resetear visitas posts'><i
+                            class="fa fa-undo"></i></a>
             </li>
         </ul>
         <div class="tab-content pt-5" id="myTabContentEx">
@@ -45,8 +52,8 @@
                         <div class="row pt-3">
                             <div class="col-lg-12 col-12 mt-1 ">
                                 <section class="section extra-margins pb-3 text-center text-lg-left">
-                                    @if(isset($posts))
-                                        @foreach($posts->chunk(3) as $postchunck)
+                                    @if(isset($posts_publicados))
+                                        @foreach($posts_publicados->chunk(3) as $postchunck)
                                             <div class="row text-center">
                                                 @foreach($postchunck as $post)
                                                     <div class="col-md-4 mb-4">
@@ -79,12 +86,13 @@
                                                                        id="subtitulo_card_pequeña">{{$post->subtitulo_post}}</p>
                                                                 </div>
                                                                 <p class="text-right mb-0 text-uppercase font-small spacing font-weight-bold">
-                                                                    <a class=" p-2 confirm" data-confirm="Quieres Eliminar el post?"
+                                                                    <a class=" p-2 confirm"
+                                                                       data-confirm="Quieres Eliminar el post?"
                                                                        href="{{route('eliminar_post',$post->id)}}"><i
                                                                                 class="fa fa-trash text-danger fa-2x "></i></a>
                                                                     <a class=" p-2"
                                                                        href="{{route('modificar_post_vista',$post->id)}}"><i
-                                                                                class="fa fa-pencil text-info fa-2x" ></i></a>
+                                                                                class="fa fa-pencil text-info fa-2x"></i></a>
                                                                     <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">leer
                                                                         más
                                                                         <i class="fa fa-chevron-circle-right"
@@ -100,7 +108,7 @@
 
                                 </section>
                                 <div class="row justify-content-around">
-                                    <div class="">{{ $posts->render() }}</div>
+                                    <div class="">{{ $posts_publicados->render() }}</div>
                                 </div>
                                 @endif
                             </div>
@@ -110,22 +118,107 @@
                 </section>
             </div>
 
+            <div class="tab-pane fade col-sm-12" id="borradores" role="tabpanel"
+                 aria-labelledby="borradores_tab">
+                <section class="mt-5">
+                    <div class="container-fluid grey lighten-4">
+                        <div class="row pt-3">
+                            <div class="col-lg-12 col-12 mt-1 ">
+                                <section class="section extra-margins pb-3 text-center text-lg-left">
+                                    @if(isset($borradores))
+                                        @foreach($borradores->chunk(3) as $postchunck)
+                                            <div class="row text-center">
+                                                @foreach($postchunck as $post)
+                                                    <div class="col-md-4 mb-4">
+                                                        <div class="card text-left card_secundaria ">
+                                                            <div class="view overlay">
+                                                                <img src="{{$post->imagen_principal}}"
+                                                                     class="card-img-top imagen_post_secundario" alt="">
+                                                                <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">
+                                                                    <div class="mask rgba-white-slight waves-effect waves-light"></div>
+                                                                </a>
+                                                            </div>
+                                                            <div class="card-body mx-4 p-0">
+                                                                <a href=""
+                                                                   class="teal-text text-center text-uppercase font-small">
+                                                                </a><h6 class="mb-3 mt-3"><a href=""
+                                                                                             class="teal-text text-center text-uppercase font-small">
+                                                                        <strong>{{$post->categoria->nombre_categoria}}</strong>
+                                                                    </a><a class="dark-grey-text font-small">
+                                                                        - {{$post->fecha}}</a>
+                                                                </h6>
+                                                                <div class=" titulo_caja_pequeña">
+                                                                    <h5 title="{{$post->titulo_post}}"
+                                                                        id="titulo_card_pequeña">
+                                                                        <strong>{{$post->titulo_post}}</strong>
+                                                                    </h5>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="caja_subtitulo_pequeñas">
+                                                                    <p class="dark-grey-text mb-4 "
+                                                                       id="subtitulo_card_pequeña">{{$post->subtitulo_post}}</p>
+                                                                </div>
+                                                                <p class="text-right mb-0 text-uppercase font-small spacing font-weight-bold">
+                                                                    <a class=" p-2 confirm"
+                                                                       data-confirm="Quieres Eliminar el post?"
+                                                                       href="{{route('eliminar_post',$post->id)}}"><i
+                                                                                class="fa fa-trash text-danger fa-2x "></i></a>
+                                                                    <a class=" p-2"
+                                                                       href="{{route('modificar_post_vista',$post->id)}}"><i
+                                                                                class="fa fa-pencil text-info fa-2x"></i></a>
+                                                                    <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">leer
+                                                                        más
+                                                                        <i class="fa fa-chevron-circle-right"
+                                                                           aria-hidden="true"></i>
+                                                                    </a>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        @endforeach
 
+                                </section>
+                                <div class="row justify-content-around">
+                                    <div class="">{{ $borradores->render() }}</div>
+                                </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
             <!-- Crear entrada-->
             <div class="tab-pane fade" id="crear_post" role="tabpanel" aria-labelledby="crear_post_tab">
-                {!! Form::Open(['route' => 'guardar_post','method'=>'POST', 'enctype'=> 'multipart/data', 'files' => true ,'class'=>'row
-  justify-content-center']) !!}
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="imagen_principal" id="imagen_principal"
-                               aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label" for="imagen_principal">Choose file</label>
+                {!! Form::Open(['route' => 'guardar_post','method'=>'POST', 'enctype'=> 'multipart/data', 'files' => true ,'class'=>'']) !!}
+                <div class="row justify-content-end mr-5">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="publicado" name="publicado" value="1">
+                        <label class="form-check-label" for="publicado">Publicar</label>
                     </div>
                 </div>
+                <div class="input-group mb-3 col-sm-12">
+                    <div class="col-sm-7">
+                        <label for="imagen_principal">Imagen principal</label>
+                        <div class="custom-file mt-2">
+                            <input type="file" class="custom-file-input" name="imagen_principal" id="imagen_principal"
+                                   aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="imagen_principal">Choose file</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <label for="categoria">Categoria Entrada</label>
+                        {!! Form::select('categoria_id',$categorias_select,null,['class'=>'form-control mt-2 browser-default custom-select','required','id'=>'categoria']) !!}
 
+                        @if ($errors->has('categoria'))
+                            <span class="invalid-feedback mr-5">
+            <strong>{{ $errors->first('categoria') }}</strong>
+        </span>
+                        @endif
+                    </div>
+                </div>
                 <label for="titulo_post">Titulo Entrada</label>
                 <input type="text" name="titulo_post" id="titulo_post"
                        class="form-control {{ $errors->has('titulo_post') ? ' invalid' : '' }}"
@@ -137,7 +230,7 @@
         </span>
                 @endif
 
-                <label for="subtitulo_post">Subtitulo Entrada</label>
+                <label for="subtitulo_post" class="mt-2">Subtitulo Entrada</label>
                 <input type="text" name="subtitulo_post" id="subtitulo_post"
                        class="form-control {{ $errors->has('subtitulo_post') ? ' invalid' : '' }}"
                        value="{{old('subtitulo_post')}}"
@@ -148,17 +241,7 @@
         </span>
                 @endif
 
-                <label for="categoria">Categoria Entrada</label>
-                {!! Form::select('categoria_id',$categorias_select,null,['class'=>'form-control mt-2','required','id'=>'categoria']) !!}
-
-                @if ($errors->has('categoria'))
-                    <span class="invalid-feedback mr-5">
-            <strong>{{ $errors->first('categoria') }}</strong>
-        </span>
-                @endif
-
-
-                <label for="descripcion_post">Texto Entrada</label>
+                <label for="descripcion_post" class="mt-2">Texto Entrada</label>
                 <textarea name="descripcion_post" class="form-control my-editor"
                           id="descripcion_post ">{{old('descripcion_post')}}</textarea>
                 @if ($errors->has('descripcion_post'))
@@ -166,8 +249,9 @@
              <strong>{{ $errors->first('descripcion_post') }}</strong>
             </span>
                 @endif
-
-                <input type="submit" value="Crear Entrada" class="btn btn-success">
+                <div class="row justify-content-end mr-5 m-3">
+                    <input type="submit" value="Crear Entrada" class="btn btn-success btn-rounded">
+                </div>
                 {!! Form::Close() !!}
             </div>
 

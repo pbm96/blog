@@ -21,3 +21,5 @@ Homestead.json
 *.jpg
 .idea/workspace.xml
 *.png
+.idea/blog.iml
+.idea/workspace.xml
