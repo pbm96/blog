@@ -302,7 +302,7 @@ ESTILOS VISTA POST
         margin-top: 61px;
     }
     .tabla_post_responsive{
-        width: 100%;
+        width: 100% !important;
     }
 
 }
