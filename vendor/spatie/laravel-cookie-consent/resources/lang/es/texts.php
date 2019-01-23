@@ -2,5 +2,6 @@
 
 return [
     'message' => 'Su experiencia en este sitio será mejorada con el uso de cookies.',
+    'enlace'=>'Política de cookies',
     'agree' => 'Aceptar',
 ];
