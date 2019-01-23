@@ -1,12 +1,8 @@
 
 @extends('templates.main')
-@section('titulo_pagina', 'Home')
+@section('titulo_pagina', 'Blog Tecnología, Smartphones, Ordenadores, Componentes')
 
 @section('estilos')
-<style>
-
-
-</style>
 @endsection
 
 @section('cabezera')
