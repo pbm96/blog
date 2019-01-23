@@ -23,7 +23,9 @@ html, body{
     }
     .imagen_post{
         max-width: 100%;
+        height: auto !important;
     }
+
 }
 @media (min-width: 992px) {
     .hidden-xl {
@@ -304,6 +306,7 @@ ESTILOS VISTA POST
     }
     .tabla_post_responsive{
         width: 100% !important;
+
     }
 }
 
