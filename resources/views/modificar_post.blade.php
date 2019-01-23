@@ -91,6 +91,14 @@
                 "insertdatetime media nonbreaking save table contextmenu directionality",
                 "emoticons template paste textcolor colorpicker textpattern"
             ],
+            image_class_list: [
+                {title: 'None', value: ''},
+                {title: 'Imagen post', value: 'imagen_post'},
+            ],
+            table_class_list: [
+                {title: 'None', value: ''},
+                {title: 'Responsive', value: 'tabla_post_responsive'},
+            ],
             toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
             relative_urls: false,
             image_advtab: true,

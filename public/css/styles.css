@@ -21,6 +21,9 @@ html, body{
     .hidden-sm {
         display: none;
     }
+    .imagen_post{
+        max-width: 100%;
+    }
 }
 @media (min-width: 992px) {
     .hidden-xl {
@@ -273,7 +276,9 @@ ESTILOS VISTA POST
     -webkit-border-radius: 50%;
     border-radius: 50%;
 }
-
+.cuerpo_noticia{
+    font-size: 1.1rem;
+}
 @media (min-width: 992px) {
     .cuerpo_noticia {
         margin-top: -100px;
@@ -286,6 +291,7 @@ ESTILOS VISTA POST
     .imagen_principal_noticia {
         width: 100%;
         height: 658px;
+        margin-top: 75px;
     }
 }
 
@@ -293,7 +299,10 @@ ESTILOS VISTA POST
     .imagen_principal_noticia {
         height: 250px;
         width: 100%;
-
+        margin-top: 61px;
+    }
+    .tabla_post_responsive{
+        width: 100% !important;
     }
 
 }
