@@ -42,7 +42,7 @@
         <div class="row cuerpo_noticia">
 
             <!--Grid column-->
-            <div class="col-md-12 px-lg-5">
+            <div class="col-md-12 px-lg-5 ">
                 <!--Card-->
                 <div class="card pb-5 mx-md-3">
                     <div class="card-body">
@@ -78,10 +78,10 @@
                                 <a class=" btn-tw btn-floating"><i class="fa fa-twitter"></i></a>
                             </div>
                             <!--Grid row-->
-                            <div class="row pt-lg-5 pt-3">
+                            <div class="row pt-lg-5 pt-3  justify-content-md-center">
 
                                 <!--Grid column-->
-                                <div class="col-md-12 col-xl-12">
+                                <div class="col-md-10 col-sm-12">
 
                                     {!! $post[0]->descripcion_post !!}
 
@@ -347,12 +347,13 @@
                         if (data[1] <= 4) {
                             $('.caja_botones_comentarios').addClass('d-none')
                         }
-                        var id_comentario_siguiente = id_comentario + 1;
-                        $('#comentario' + id_comentario_anterior).addClass('comentarios_ocultos');
+
+                        //var id_comentario_siguiente = id_comentario + 1;
+                        //$('#comentario' + id_comentario_anterior).addClass('comentarios_ocultos');
                         alert('Comentario borrado')
 
                     } else {
-                        alert('error al publicar comentario')
+                        alert('Error al Borrar comentario')
                     }
                 }
             })
@@ -405,5 +406,8 @@
 
         }
 
+        /*$('.confirm').on('click', function (e) {
+            return !!confirm($(this).data('confirm'));
+        });*/
     </script>
 @endsection

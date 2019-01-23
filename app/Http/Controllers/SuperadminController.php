@@ -31,15 +31,23 @@ class SuperadminController extends Controller
 
             $categorias = Categoria::all();
 
-            $posts = Post::where('user_id',$user->id)->paginate(30);
+            $posts_publicados = Post::where('user_id',$user->id)->where('publicado',1)->paginate(30);
+
+            $borradores = Post::where('user_id',$user->id)->where('publicado',0)->paginate(30);
 
             $users = User::all();
 
-            $this->homeController->fecha_post($posts);
+            $this->homeController->fecha_post($posts_publicados);
 
             $comentarios_sin_revisar = Comentario::where('revisado',0);
 
-            return view('superadmin')->with('user', $user)->with('categorias_select', $categorias_select)->with('posts', $posts)->with('categorias', $categorias)->with('users', $users)->with('comentarios_sin_revisar',$comentarios_sin_revisar);
+            return view('superadmin')->with('user', $user)
+                ->with('categorias_select', $categorias_select)
+                ->with('posts_publicados', $posts_publicados)
+                ->with('borradores', $borradores)
+                ->with('categorias', $categorias)
+                ->with('users', $users)
+                ->with('comentarios_sin_revisar',$comentarios_sin_revisar);
         }
     }
 
@@ -54,6 +62,7 @@ class SuperadminController extends Controller
         ]);*/
 
         $user = auth()->user();
+
         $imagen = $request->file('imagen_principal');
 
         $imagen_base64 = $this->usersController->imagen_base_64($imagen);
@@ -166,13 +175,21 @@ class SuperadminController extends Controller
         } else {
             $request->imagen_principal = $post->imagen_principal;
         }
+
         $post->fill($request->all());
+
+        if (!isset($request->publicado)){
+            $post->publicado = 0;
+        }
+
         $post->slug = str_slug($request->titulo_post, '-');
 
         if (isset($imagen_base64)) {
             $post->imagen_principal = $imagen_base64;
 
         }
+
+
         $post->save();
 
         return redirect()->route('perfil_superadmin', auth()->user()->id);
