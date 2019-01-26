@@ -2,7 +2,7 @@
 
     <div class="footer-left">
 
-        <h3>TECNO<span>ZONE</span></h3>
+        <h3 class="tecnozone"> <span class="tecno">TECNO</span><span class="foryou">ZONE</span></h3>
 
         <p class="footer-links">
             <a href="{{route('home')}}" class="enlace_footer_lateral">Home</a>

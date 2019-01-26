@@ -23,7 +23,9 @@ html, body{
     }
     .imagen_post{
         max-width: 100%;
+        height: auto !important;
     }
+
 }
 @media (min-width: 992px) {
     .hidden-xl {
@@ -35,10 +37,6 @@ html, body{
 }
 .foryou{
     color:  #5383d3;
-
-}
-.tecnozone{
-    font: normal 25px 'Cookie', cursive;
 
 }
 
@@ -135,6 +133,10 @@ rgba(0, 0, 0, 0.1)
     .imagen_primer_post{
         height: 210px ;
     }
+    .tecnozone{
+        font: normal 20px 'sans-serif', normal;
+
+    }
 
 }
 
@@ -173,6 +175,10 @@ rgba(0, 0, 0, 0.1)
 @media (min-width: 992px) {
     .imagen_primer_post{
         height: 300px ;
+    }
+    .tecnozone{
+        font: normal 25px 'Cookie', cursive;
+
     }
 }
 .imagen_mia{
@@ -304,6 +310,7 @@ ESTILOS VISTA POST
     }
     .tabla_post_responsive{
         width: 100% !important;
+
     }
 }
 

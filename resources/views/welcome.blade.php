@@ -84,7 +84,7 @@
                         @foreach($posts as $post)
                             <div class="row p-3 pt-3 pb-3">
                                 <div class="col-6 ">
-                                    <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$ultimo_post->slug])}}">
+                                    <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">
 
                                         <h5 title="{{$post->titulo_post}}" class="card-title titulo_post_movil">
                                             <strong>{{$post->titulo_post}}</strong>
@@ -94,9 +94,9 @@
                                     </a>
                                 </div>
                                 <div class="col-6">
-                                    <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$ultimo_post->slug])}}">
+                                    <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">
 
-                                        <img src="{{$ultimo_post->imagen_principal}}"
+                                        <img src="{{$post->imagen_principal}}"
                                              class="w-100 imagen_card_movil" alt="">
                                     </a>
                                 </div>
