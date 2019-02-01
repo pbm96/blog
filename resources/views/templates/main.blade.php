@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" href="{{asset('imagenes/logo tecnozone.png')}}" sizes="32x32">
 
     <title>@yield('titulo_pagina')-tecnozone</title>
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
@@ -21,6 +22,8 @@
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+
+    @yield('estilos')
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132770331-1"></script>
@@ -40,10 +43,6 @@
             enable_page_level_ads: true
         });
     </script>
-
-        @yield('estilos')
-
-
 </head>
 
 <body>

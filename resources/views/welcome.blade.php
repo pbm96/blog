@@ -3,6 +3,7 @@
 @section('titulo_pagina', 'Blog Tecnología, Smartphones, Ordenadores, Componentes')
 
 @section('estilos')
+    <meta name="description" content="tecnozone se crea para todos los apasionados de la tecnología enfocada a ofrecer reviews y analizar los productos más recientes del mercado comparandolos con modelos similares.">
 @endsection
 
 @section('cabezera')
