@@ -1,5 +1,2 @@
 User-agent: *
-Disallow:/panel-superadmin/
-Disallow:/modificar-post-vista/
-
-
+Disallow:
