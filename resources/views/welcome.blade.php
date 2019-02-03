@@ -3,6 +3,7 @@
 @section('titulo_pagina', 'Blog Tecnología, Smartphones, Ordenadores, Componentes')
 
 @section('estilos')
+    <meta name="description" content="tecnozone se crea para todos los apasionados de la tecnología enfocada a ofrecer reviews y analizar los productos más recientes del mercado comparandolos con modelos similares.">
 @endsection
 
 @section('cabezera')
@@ -58,7 +59,7 @@
         @if($dispositivo == 'movil')
             @if(isset($ultimo_post))
                 <div class="bg-white mt-2">
-                    <div class="row p-3 pt-3 pb-3">
+                    <div class="row p-3 pt-3 pb-3 m-0">
                         <div class="col-6 ">
                             <a href="{{route('vista_post',[$ultimo_post->categoria->nombre_categoria,$ultimo_post->slug])}}">
                                 <h5 title="{{$ultimo_post->titulo_post}}" class="card-title titulo_post_movil">
@@ -82,7 +83,7 @@
 
                     @if(isset($posts))
                         @foreach($posts as $post)
-                            <div class="row p-3 pt-3 pb-3">
+                            <div class="row p-3 pt-3 pb-3 m-0">
                                 <div class="col-6 ">
                                     <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">
 
