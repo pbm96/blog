@@ -1,5 +1,11 @@
 @extends('templates.main')
-@section('titulo_pagina', 'Panel-admin')
+
+@if(isset($buscar))
+    @section('titulo_pagina', $buscar)
+@else
+    @section('titulo_pagina', $categoria_completa->nombre_categoria)
+@endif
+
 
 @section('estilos')
 @endsection

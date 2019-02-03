@@ -97,7 +97,7 @@
             ],
             table_class_list: [
                 {title: 'None', value: ''},
-                {title: 'Responsive', value: 'tabla_post_responsive'},
+                {title: 'Responsive', value: 'table table-striped table-responsive border-0 h-auto w-auto text-left'},
             ],
             toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
             relative_urls: false,

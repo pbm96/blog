@@ -1,5 +1,5 @@
 @extends('templates.main')
-@section('titulo_pagina', 'Panel-admin')
+@section('titulo_pagina', 'Sobre mí')
 
 @section('estilos')
 @endsection
