@@ -105,8 +105,15 @@ class HomeController extends Controller
 
         self::fecha_post($posts);
 
+        $agent = new Agent();
 
-        return view('vista_categorias')->with('posts', $posts)->with('categoria_completa', $categoria_completa);
+        if ($agent->isMobile()){
+            $dispositivo  ='movil';
+        }else{
+            $dispositivo = 'ordenador';
+        }
+
+        return view('vista_categorias')->with('posts', $posts)->with('categoria_completa', $categoria_completa)->with('dispositivo',$dispositivo);
     }
 
     public function buscar()
@@ -121,7 +128,15 @@ class HomeController extends Controller
         if (sizeof($posts) > 0) {
             self::fecha_post($posts);
 
-            return view('vista_categorias')->with('posts', $posts)->with('buscar', $buscar);
+            $agent = new Agent();
+
+            if ($agent->isMobile()){
+                $dispositivo  ='movil';
+            }else{
+                $dispositivo = 'ordenador';
+            }
+
+            return view('vista_categorias')->with('posts', $posts)->with('buscar', $buscar)->with('dispositivo',$dispositivo);
 
         } else {
             Session::flash('mensaje', 'No se ha encontrado ningun resultado de ' . $buscar);
