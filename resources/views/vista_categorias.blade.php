@@ -26,29 +26,31 @@
 
                         @endif
                     </div>
-                    @foreach($posts as $post)
-                        <div class="row p-3 pt-3 pb-3 m-0">
-                            <div class="col-6 ">
-                                <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">
+                    <div class="mt-3">
+                        @foreach($posts as $post)
+                            <div class="row p-3 pt-3 pb-3 m-0">
+                                <div class="col-6 ">
+                                    <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">
 
-                                    <h5 title="{{$post->titulo_post}}" class="card-title titulo_post_movil">
-                                        <strong>{{$post->titulo_post}}</strong>
-                                    </h5>
+                                        <h5 title="{{$post->titulo_post}}" class="card-title titulo_post_movil">
+                                            <strong>{{$post->titulo_post}}</strong>
+                                        </h5>
 
-                                    <p class="font-small dark-grey-text mb-0 font-weight-bold">{{$post->user->nombre." ".$post->user->apellidos}}</p>
-                                </a>
+                                        <p class="font-small dark-grey-text mb-0 font-weight-bold">{{$post->user->nombre." ".$post->user->apellidos}}</p>
+                                    </a>
+                                </div>
+                                <div class="col-6">
+                                    <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">
+
+                                        <img src="{{$post->imagen_principal}}"
+                                             class="w-100 imagen_card_movil" alt="">
+                                    </a>
+                                </div>
+
                             </div>
-                            <div class="col-6">
-                                <a href="{{route('vista_post',[$post->categoria->nombre_categoria,$post->slug])}}">
-
-                                    <img src="{{$post->imagen_principal}}"
-                                         class="w-100 imagen_card_movil" alt="">
-                                </a>
-                            </div>
-
-                        </div>
-                        <hr class="hr">
-                    @endforeach
+                            <hr class="w-100">
+                        @endforeach
+                    </div>
                     @endif
                 </div>
             </div>
