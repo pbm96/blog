@@ -13,7 +13,7 @@
             <div class="container">
                 <section class="section extra-margins mt-5 py-5 text-center text-lg-left">
                     <div class="row my-xl-5 py-xl-4">
-                        <div class="col-sm-12 col-md-8 offset-2">
+                        <div class="col-sm-12 col-md-8 offset-md-2">
                           <!--  <h3 class="dark-grey-text pb-2 font-weight-bold">
                                 <strong>Sobre mí</strong>
                             </h3>
