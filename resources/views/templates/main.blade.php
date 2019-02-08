@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" href="{{asset('imagenes/logo tecnozone.png')}}" sizes="32x32">
 
-    <title>@yield('titulo_pagina')-tecnozone</title>
+    <title>@yield('titulo_pagina')- Tecnozone</title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
