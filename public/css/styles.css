@@ -144,7 +144,7 @@ rgba(0, 0, 0, 0.1)
     height: 210px;
 }
 .imagenes_carousel{
-    max-height: 500px;
+   height: 500px;
     width: 90%;
     padding-left: 10%;
 
@@ -333,6 +333,10 @@ FIN VISTA POST
 
 .titulo_categoria{
     margin-top: 7em;
+    border-radius: 0.7em;
+}
+.titulo_categoria_movil{
+    margin-top: 4em;
     border-radius: 0.7em;
 }
 
