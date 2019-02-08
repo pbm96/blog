@@ -19,10 +19,10 @@
                 <div class="row p-3 pt-3 pb-3 m-0">
                     <div class="titulo_categoria_movil  col-sm-12  grey lighten-2 ">
                         @if(isset($buscar))
-                            <h3 class="p-3 text-uppercase font-weight-bold">{{$buscar}}</h3>
+                            <h3 class="p-3 text-uppercase text-center font-weight-bold">{{$buscar}}</h3>
 
                         @else
-                            <h3 class="p-3 text-uppercase font-weight-bold">{{$categoria_completa->nombre_categoria}}</h3>
+                            <h3 class="p-3 text-uppercase text-center font-weight-bold">{{$categoria_completa->nombre_categoria}}</h3>
 
                         @endif
                     </div>
