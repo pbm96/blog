@@ -39,7 +39,7 @@
     <div class="footer-right">
 
         <p class="footer-company-about">
-            <span>Sobre tecnozone</span>
+            <span>Sobre Tecnozone</span>
             tecnozone se crea para todos los apasionados de la tecnología enfocada a ofrecer reviews y analizar los
             productos más recientes del mercado comparandolos con modelos similares.
         </p>
