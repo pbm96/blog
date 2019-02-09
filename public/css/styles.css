@@ -156,11 +156,10 @@ rgba(0, 0, 0, 0.1)
 }
 
 .imagen_destacados_pequeña{
-    height: 140px;
+    height: 160px;
 }
-.imagen_destacados_lateral{
-    height: 35.02px ;
-}
+/*.imagen_destacados_lateral{
+}*/
 
 .publicidad_lateral{
     height: 300px ;
@@ -183,6 +182,7 @@ rgba(0, 0, 0, 0.1)
 }
 .imagen_mia{
     width: 100%;
+    height: 280px;
 }
 .btn-floating i {
     display: inline-block;

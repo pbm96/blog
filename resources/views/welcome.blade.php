@@ -226,18 +226,18 @@
 
                                 <ul class="list-unstyled list-inline-item circle-icons list-unstyled flex-center">
                                     <li>
-                                        <a class="fb-ic">
-                                            <i class="fa fa-facebook"> </i>
+                                        <a class="fb-ic" href="https://github.com/pbm96" target="_blank">
+                                            <i class="fa fa-github"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="tw-ic">
+                                        <a class="tw-ic" href="https://twitter.com/Tecnozone_ES" target="_blank">
                                             <i class="fa fa-twitter mx-3"> </i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="gplus-ic">
-                                            <i class="fa fa-google-plus"> </i>
+                                        <a class="gplus-ic" href="https://linkedin.com/in/pablo-bonillo-molina-a62776179" target="_blank">
+                                            <i class="fa fa-linkedin"></i>
                                         </a>
                                     </li>
                                 </ul>
